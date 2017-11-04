@@ -1,0 +1,3 @@
+rootProject.name = 'chameleon'
+
+include ':app'
