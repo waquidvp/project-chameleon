@@ -15,6 +15,7 @@ export default ({ children }) => (
   <Camera
     style={styles.container}
     aspect={Camera.constants.Aspect.fill}
+    type={Camera.constants.Type.front}
   >
     {children}
   </Camera>
