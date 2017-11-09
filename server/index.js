@@ -5,21 +5,31 @@ import { mergeSchemas } from 'graphql-tools';
 
 import testSchema from './schema';
 import authSchema from './api/auth/schema';
+import dbConnect from './api/dbConnector';
 
-const app = express();
+const startServer = async () => {
+  const app = express();
 
-const schema = mergeSchemas({
-  schemas: [
-    testSchema,
-    authSchema,
-  ],
-});
+  const db = await dbConnect();
 
-app.use('/graphql', bodyParser.json(), graphqlExpress({ schema }));
+  const schema = mergeSchemas({
+    schemas: [
+      testSchema,
+      authSchema,
+    ],
+  });
 
-app.use('/graphiql', graphiqlExpress({
-  endpointURL: '/graphql',
-}));
+  app.use('/graphql', bodyParser.json(), graphqlExpress({
+    context: { db },
+    schema,
+  }));
 
-const PORT = 8080;
-app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
+  app.use('/graphiql', graphiqlExpress({
+    endpointURL: '/graphql',
+  }));
+  
+  const PORT = 8080;
+  app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
+};
+
+startServer();
