@@ -4,17 +4,21 @@ import resolvers from './resolvers';
 
 const typeDefs = `
     type User {
-        _id: ID!,
-        userName: String!,
-        phoneNumber: Int!
+        _id: ID!
+        email: String!
+        userName: String
+        jwt: String
     }
 
     type Query {
-        users: [User]!
+        user(_id: ID!): User
+        currentUser: User
+        userNameTaken(userName: String!): Boolean!
     }
 
     type Mutation {
-        createUser(userName: String!, phoneNumber: Int!): User
+        signup(email: String!, password: String!): User
+        login(email: String!, password: String!): User
     }
 `;
 
