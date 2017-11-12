@@ -1,21 +1,27 @@
 // @flow
 
 import React from 'react';
-import {
-  StyleSheet,
-  View,
-} from 'react-native';
+import { ApolloProvider } from 'react-apollo';
 
-import CameraBgView from './components/CameraBgView';
+import client from './api/gql-client';
+import OnboardingStack from './Onboarding/OnboardingStack';
+import Home from './Home/Home';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
+export default class App extends React.Component {
+  constructor() {
+    super();
 
-export default () => (
-  <View style={styles.container}>
-    <CameraBgView />
-  </View>
-);
+    this.state = {
+      loggedIn: false,
+    };
+  }
+  render() {
+    return (
+      <ApolloProvider client={client}>
+        {this.state.loggedIn ?
+          <Home /> :
+          <OnboardingStack />}
+      </ApolloProvider>
+    );
+  }
+}
