@@ -21,4 +21,5 @@ allprojects {
             url "$rootDir/../node_modules/react-native/android"
         }
     }
+    buildDir = "C:/temp/${rootProject.name}/${project.name}"
 }
