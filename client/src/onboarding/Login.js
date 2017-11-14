@@ -2,11 +2,15 @@
 
 import React from 'react';
 import styled from 'styled-components/native';
+import { LoginButton, AccessToken } from 'react-native-fbsdk';
+import { Alert } from 'react-native';
 
 const MainContainer = styled.View`
   flex: 1;
   background: white;
 `;
+
+const Text = styled.Text``;
 
 const TextInput = styled.TextInput``;
 
@@ -23,6 +27,7 @@ export default class Login extends React.Component {
     this.state = {
       email: '',
       password: '',
+      fbAccessToken: '',
     };
   }
 
@@ -58,6 +63,24 @@ export default class Login extends React.Component {
             navigation.navigate('SignUp');
           }}
         />
+        <LoginButton
+          readPermissions={['email', 'public_profile']}
+          onLoginFinished={
+            (error, result) => {
+              if (error) {
+                Alert.alert(`login has error: ${result.error}`);
+              } else if (result.isCancelled) {
+                Alert.alert('login is cancelled.');
+              } else {
+                AccessToken.getCurrentAccessToken().then((data) => {
+                    this.setState({ fbAccessToken: data.accessToken });
+                });
+              }
+            }
+          }
+          onLogoutFinished={() => Alert.alert('logout.')}
+        />
+        <Text>{this.state.fbAccessToken}</Text>
       </MainContainer>
     );
   }
