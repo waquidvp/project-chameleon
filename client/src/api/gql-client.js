@@ -10,6 +10,7 @@ import { getToken } from '../utils/token';
 export const GRAPHQL_ENDPOINT_URI = 'http://10.0.2.2:8080/graphql';
 
 const httpLink = new HttpLink({ uri: GRAPHQL_ENDPOINT_URI });
+
 const authLink = setContext(async (req, { headers }) => {
   const token = await getToken();
 
@@ -20,11 +21,11 @@ const authLink = setContext(async (req, { headers }) => {
         authorization: `Bearer ${token}`,
       },
     };
-  } else if (!token) {
-    return {
-      headers,
-    };
   }
+
+  return {
+    headers,
+  };
 });
 
 const link = authLink.concat(httpLink);
