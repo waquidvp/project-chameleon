@@ -14,6 +14,7 @@ export default class App extends React.Component {
 
     this.state = {
       loggedIn: false,
+      render: false,
     };
   }
 
@@ -23,6 +24,8 @@ export default class App extends React.Component {
     if (token) {
       this.setState({ loggedIn: true });
     }
+
+    this.setState({ render: true });
   }
 
   handleChangeLoginState = (loggedIn = false, jwt) => {
@@ -36,12 +39,16 @@ export default class App extends React.Component {
   }
 
   render() {
-    return (
-      <ApolloProvider client={client}>
-        {this.state.loggedIn ?
-          <Home screenProps={{ changeLoginState: this.handleChangeLoginState }} /> :
-          <OnboardingStack screenProps={{ changeLoginState: this.handleChangeLoginState }} />}
-      </ApolloProvider>
-    );
+    if (this.state.render) {
+      return (
+        <ApolloProvider client={client}>
+          {this.state.loggedIn ?
+            <Home screenProps={{ changeLoginState: this.handleChangeLoginState }} /> :
+            <OnboardingStack screenProps={{ changeLoginState: this.handleChangeLoginState }} />}
+        </ApolloProvider>
+      );
+    }
+
+    return null;
   }
 }

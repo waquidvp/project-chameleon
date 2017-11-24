@@ -11,5 +11,6 @@ module.exports = {
         }],
         "react/no-multi-comp": [0],
         "no-bitwise": [0],
+        "no-underscore-dangle": [0]
     },
 };

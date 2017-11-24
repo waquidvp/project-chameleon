@@ -29,8 +29,8 @@ class SignUp extends React.Component {
       password: '',
       confirmPassword: '',
       confirmPasswordError: false,
-      emailError: false,
-      passwordError: false,
+      emailError: '',
+      passwordError: '',
     };
   }
 
@@ -40,15 +40,15 @@ class SignUp extends React.Component {
     if (password === confirmPassword) {
       this.props.signup(email, password)
         .then(({ data }) => {
-          return this.props.screenProps.changeLoginState(true, data.signup.jwt);
+          this.props.screenProps.changeLoginState(true, data.signup.jwt);
         })
         .catch((error) => {
           if (/email/i.test(error.message)) {
-            this.setState({ emailError: true });
+            this.setState({ emailError: error.message });
           }
 
           if (/password/i.test(error.message)) {
-            this.setState({ passwordError: true });
+            this.setState({ passwordError: error.message });
           }
         });
     } else {
@@ -66,7 +66,7 @@ class SignUp extends React.Component {
           }}
           value={this.state.email}
         />
-        { this.state.emailError ? <Text>Email Error</Text> : null }
+        <Text>{this.state.emailError}</Text>
         <TextInput
           placeholder="Password"
           onChangeText={(text) => {
@@ -75,7 +75,7 @@ class SignUp extends React.Component {
           value={this.state.password}
           secureTextEntry
         />
-        { this.state.passwordError ? <Text>Password Error</Text> : null }
+        <Text>{this.state.passwordError}</Text>
         <TextInput
           placeholder="Confirm Password"
           onChangeText={(text) => {
@@ -96,7 +96,7 @@ class SignUp extends React.Component {
 
 export default graphql(
   gql`
-    mutation SignUp($email: String!, $password: String!) {
+    mutation signup($email: String!, $password: String!) {
       signup(email: $email, password: $password) {
         _id
         email

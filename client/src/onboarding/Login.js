@@ -3,7 +3,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import { LoginButton, AccessToken } from 'react-native-fbsdk';
-import { Alert } from 'react-native';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
@@ -30,8 +29,8 @@ class Login extends React.Component {
       email: '',
       password: '',
       fbAccessToken: '',
-      emailError: false,
-      passwordError: false,
+      emailError: '',
+      passwordError: '',
     };
   }
 
@@ -40,14 +39,15 @@ class Login extends React.Component {
 
     this.props.login(email, password)
       .then(({ data }) => {
-        return this.props.screenProps.changeLoginState(true, data.login.jwt);
+        this.props.screenProps.changeLoginState(true, data.login.jwt);
       })
       .catch((error) => {
+        console.warn(error);
         if (/email/i.test(error.message)) {
-          this.setState({ emailError: true });
+          this.setState({ emailError: error.message });
         }
         if (/password/i.test(error.message)) {
-          this.setState({ passwordError: true });
+          this.setState({ passwordError: error.message });
         }
       });
   }
@@ -64,7 +64,7 @@ class Login extends React.Component {
           }}
           value={this.state.email}
         />
-        { this.state.emailError ? <Text>Email Error</Text> : null }
+        <Text>{this.state.emailError}</Text>
         <TextInput
           placeholder="Password"
           onChangeText={(text) => {
@@ -73,7 +73,7 @@ class Login extends React.Component {
           value={this.state.password}
           secureTextEntry
         />
-        { this.state.passwordError ? <Text>Password Error</Text> : null }
+        <Text>{this.state.passwordError}</Text>
         <Button
           title="Login"
           onPress={() => this.handleSubmit()}
@@ -89,19 +89,18 @@ class Login extends React.Component {
           onLoginFinished={
             (error, result) => {
               if (error) {
-                Alert.alert(`login has error: ${result.error}`);
+                console.warn(`login has error: ${result.error}`);
               } else if (result.isCancelled) {
-                Alert.alert('login is cancelled.');
+                console.warn('login is cancelled.');
               } else {
                 AccessToken.getCurrentAccessToken().then((data) => {
-                    this.setState({ fbAccessToken: data.accessToken });
+                    console.warn(data.accessToken);
                 });
               }
             }
           }
-          onLogoutFinished={() => Alert.alert('logout.')}
+          onLogoutFinished={() => console.warn('logout.')}
         />
-        <Text>{this.state.fbAccessToken}</Text>
       </MainContainer>
     );
   }
