@@ -22,17 +22,19 @@ const SuperContainer = styled.View`
   right: 0;
   left: 0;
   bottom: 0;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  background: #37CAC3B4;  
 `;
 
-const MainContainer = styled.ScrollView`
-  flex: 1;
-  paddingTop: 40px;
-  background: #37CAC3B4;
+const MainContainer = styled.View`
+  
 `;
 
 const Image = styled.Image`
   width: 130px;
-  height: 130px;
+  height: 150px;
   align-self: center;
 `;
 
@@ -66,8 +68,8 @@ const SelectorText = styled.Text`
 const Slider = styled.View`
   width: 75px;
   height: 0px;
-  border-width: 2px;
-  border-radius: 2px;
+  border-width: 1px;
+  border-radius: 1px;
   align-self: center;
   border-color: #ffffff;
 `;
@@ -78,31 +80,30 @@ const InputContainer = styled.View`
   padding-top: 20px;
 `;
 
-
 const ButtonText = styled.Text`
   font-size: 16;
   color: #37CAC3;
 `;
 
 const OrContainer = styled.View`
-  width:324px;
-  height:15px;
+  width: 100%;
+  height: 15px;
   margin: 20px;
   align-self: center;
   flex-direction: row;
 `;
 
 const OrLine = styled.View`
-  width: 150px;
-  height :8.5px;
+  width: 140px;
+  height: 8.5px;
   border-bottom-width: 1.5px;
   border-bottom-color: #ffffff88;
 `;
 
 const OrTextContainer = styled.View`
-  height:15px;
-  padding:6px;
-  justify-content:center;
+  height: 15px;
+  padding: 6px;
+  justify-content: center;
 `;
 
 const OrText = styled.Text`
@@ -128,7 +129,21 @@ const Touch = styled.TouchableOpacity`
   justify-content: center;
   background-color: #ffffff;
 `;
-const AnimatedTouch = Animated.createAnimatedComponent(Touch)
+
+const AnimatedTouch = Animated.createAnimatedComponent(Touch);
+
+const ForgottenPasswordButton = styled.TouchableOpacity`
+  padding-top: 40px;
+  align-self: center;
+`;
+
+const AnimatedForgottenPasswordButton = Animated.createAnimatedComponent(ForgottenPasswordButton);
+
+const ForgottenPasswordText = styled.Text`
+  text-align: center;
+  font-size: 14px;
+  color: #ffffff
+`;
 
 const OrSeperator = () => (
   <OrContainer>
@@ -158,6 +173,7 @@ class Login extends React.Component {
       passwordError: 'Incorrect password',
       confirmPasswordError: 'Passwords do not match',
       opacityValue: new Animated.Value(0),
+      forgottenOpacityValue: new Animated.Value(1),
       translationValue: new Animated.Value(200),
       sliderValue: new Animated.Value(125),
       selectorLoginValue: new Animated.Value(1),
@@ -187,6 +203,14 @@ class Login extends React.Component {
           this.state.opacityValue,
           {
             toValue: 0,
+            duration: dura,
+            easing: ease,
+          },
+        ),
+        Animated.timing(
+          this.state.forgottenOpacityValue,
+          {
+            toValue: 1,
             duration: dura,
             easing: ease,
           },
@@ -247,6 +271,14 @@ class Login extends React.Component {
           this.state.opacityValue,
           {
             toValue: 1,
+            duration: dura,
+            easing: ease,
+          },
+        ),
+        Animated.timing(
+          this.state.forgottenOpacityValue,
+          {
+            toValue: 0,
             duration: dura,
             easing: ease,
           },
@@ -355,7 +387,7 @@ class Login extends React.Component {
                 errorOpacityValue={this.state.errorOpacityValue}
               />
 
-              <Input // hide on login
+              <Input
                 placeholder="Confirm Password"
                 onChangeText={(text) => {
                   this.setState({ confirmPassword: text });
@@ -406,6 +438,12 @@ class Login extends React.Component {
               }
               onLogoutFinished={() => console.warn('logout.')}
             />
+
+            <AnimatedForgottenPasswordButton
+              style={{ opacity: this.state.forgottenOpacityValue }}
+            >
+              <ForgottenPasswordText>Forgotten your password?</ForgottenPasswordText>
+            </AnimatedForgottenPasswordButton>
           </MainContainer>
         </SuperContainer>
       </View>
