@@ -84,6 +84,8 @@ const resolvers = {
 
       let fbResponse;
 
+      console.log(fbAccessToken);
+
       await axios.get('https://graph.facebook.com/me?fields=email', {
         params: {
           access_token: fbAccessToken,

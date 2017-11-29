@@ -3,7 +3,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import { LoginButton, AccessToken } from 'react-native-fbsdk';
-import { graphql } from 'react-apollo';
+import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 
 const MainContainer = styled.View`
@@ -28,7 +28,6 @@ class Login extends React.Component {
     this.state = {
       email: '',
       password: '',
-      fbAccessToken: '',
       emailError: '',
       passwordError: '',
     };
@@ -49,6 +48,13 @@ class Login extends React.Component {
         if (/password/i.test(error.message)) {
           this.setState({ passwordError: error.message });
         }
+      });
+  }
+
+  handleLoginFb = (fbAccessToken) => {
+    this.props.loginfb(fbAccessToken)
+      .then(({ data }) => {
+        this.props.screenProps.changeLoginState(true, data.loginfb.jwt);
       });
   }
 
@@ -93,9 +99,10 @@ class Login extends React.Component {
               } else if (result.isCancelled) {
                 console.warn('login is cancelled.');
               } else {
-                AccessToken.getCurrentAccessToken().then((data) => {
-                    console.warn(data.accessToken);
-                });
+                AccessToken.getCurrentAccessToken()
+                  .then((fbAccessToken) => {
+                    this.handleLoginFb(fbAccessToken.accessToken);
+                  });
               }
             }
           }
@@ -106,19 +113,41 @@ class Login extends React.Component {
   }
 }
 
-export default graphql(
-  gql`
-    mutation Login($email: String!, $password: String!) {
-      login(email: $email, password: $password) {
-        _id
-        email
-        jwt
-      }
+const loginMutation = gql`
+  mutation login($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
+      _id
+      email
+      jwt
     }
-  `,
-  {
-    props: ({ mutate }) => ({
-      login: (email, password) => mutate({ variables: { email, password } }),
-    }),
-  },
+  }
+`;
+
+const loginfbMutation = gql`
+  mutation loginfb($fbAccessToken: String!) {
+    loginfb(fbAccessToken: $fbAccessToken) {
+      _id
+      email
+      jwt
+    }
+  }
+`;
+
+export default compose(
+  graphql(
+    loginMutation,
+    {
+      props: ({ mutate }) => ({
+        login: (email, password) => mutate({ variables: { email, password } }),
+      }),
+    },
+  ),
+  graphql(
+    loginfbMutation,
+    {
+      props: ({ mutate }) => ({
+        loginfb: fbAccessToken => mutate({ variables: { fbAccessToken } }),
+      }),
+    },
+  ),
 )(Login);
