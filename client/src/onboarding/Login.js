@@ -1,21 +1,123 @@
 // @flow
 
 import React from 'react';
+import {
+  StatusBar,
+} from 'react-native';
 import styled from 'styled-components/native';
 import { LoginButton, AccessToken } from 'react-native-fbsdk';
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 
-const MainContainer = styled.View`
+import Input from '../components/Input';
+import BlurredCamera from '../components/BlurredCamera';
+
+const View = styled.View`
   flex: 1;
-  background: white;
 `;
 
-const Text = styled.Text``;
+const SuperContainer = styled.View`
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+`;
 
-const TextInput = styled.TextInput``;
+const MainContainer = styled.ScrollView`
+  flex: 1;
+  paddingTop: 40px;
+  background: #37CAC3B4;
+`;
 
-const Button = styled.Button``;
+const Text = styled.Text`
+  font-size: 14;
+`;
+
+const Image = styled.Image`
+  width: 130px;
+  height: 130px;
+  align-self: center;
+`;
+
+const SelectorMainContainer = styled.View`
+  align-self: center;
+  flex-direction: row;
+`;
+
+const SelectorContainer = styled.View`
+  width: 125px;
+`;
+
+const Selector = styled.Button`
+  
+`;
+
+const Slider = styled.View`
+  width: 75px;
+  height :0px;
+  border-width: 2px;
+  border-radius: 2px;
+  align-self: center;
+  margin-right: 125px;
+  border-color: #ffffff;
+`;
+
+const InputContainer = styled.View`
+  padding-top: 20px;
+`;
+
+const ButtonText = styled.Text`
+  font-size: 16;
+  color: #37CAC3;
+`;
+
+const OrContainer = styled.View`
+  width:324px;
+  height:15px;
+  margin: 20px;
+  align-self: center;
+  flex-direction: row;
+`;
+
+const OrLine = styled.View`
+  width: 150px;
+  height :8.5px;
+  border-bottom-width: 1.5px;
+  border-bottom-color: #ffffff88;
+`;
+
+const OrTextContainer = styled.View`
+  height:15px;
+  padding:6px;
+  justify-content:center;
+`;
+
+const OrText = styled.Text`
+  color: #ffffff88;
+`;
+
+const Touch = styled.TouchableOpacity`
+  width: 300px;
+  height: 38px;
+  border-radius: 20;
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+`;
+
+const OrSeperator = () => (
+  <OrContainer>
+    <OrLine />
+    <OrTextContainer>
+      <OrText> or </OrText>
+    </OrTextContainer>
+    <OrLine />
+  </OrContainer>
+);
+
+const ChameleonLogoSource = require('../Assets/chameleon.png');
 
 class Login extends React.Component {
   static navigationOptions = {
@@ -28,9 +130,19 @@ class Login extends React.Component {
     this.state = {
       email: '',
       password: '',
-      emailError: '',
-      passwordError: '',
+      confirmPassword: '',
+      emailError: 'Invalid email',
+      passwordError: 'Incorrect password',
+      confirmPasswordError: 'Passwords do not match',
     };
+  }
+
+  handleSelectLogin = () => {
+
+  }
+
+  handleSelectSignup = () => {
+
   }
 
   handleSubmit = () => {
@@ -62,53 +174,96 @@ class Login extends React.Component {
     const { navigation } = this.props;
 
     return (
-      <MainContainer>
-        <TextInput
-          placeholder="Email"
-          onChangeText={(text) => {
-            this.setState({ email: text });
-          }}
-          value={this.state.email}
-        />
-        <Text>{this.state.emailError}</Text>
-        <TextInput
-          placeholder="Password"
-          onChangeText={(text) => {
-            this.setState({ password: text });
-          }}
-          value={this.state.password}
-          secureTextEntry
-        />
-        <Text>{this.state.passwordError}</Text>
-        <Button
-          title="Login"
-          onPress={() => this.handleSubmit()}
-        />
-        <Button
-          title="Sign Up"
-          onPress={() => {
-            navigation.navigate('SignUp');
-          }}
-        />
-        <LoginButton
-          readPermissions={['email', 'public_profile']}
-          onLoginFinished={
-            (error, result) => {
-              if (error) {
-                console.warn(`login has error: ${result.error}`);
-              } else if (result.isCancelled) {
-                console.warn('login is cancelled.');
-              } else {
-                AccessToken.getCurrentAccessToken()
-                  .then((fbAccessToken) => {
-                    this.handleLoginFb(fbAccessToken.accessToken);
-                  });
+      <View>
+        <BlurredCamera />
+        <SuperContainer>
+          <MainContainer keyboardShouldPersistTaps="never" scrollEnabled={false}>
+            <StatusBar barStyle="light-content" setBackgroundColor="#000000" />
+            <Image source={ChameleonLogoSource} resizeMode="contain" />
+            <SelectorMainContainer>
+              <SelectorContainer>
+                <Selector
+                  title="Login"
+                  color="#ffffffff" //  #ffffff88 on Sign up
+                  onPress={() => this.handleSelectLogin()}
+                />
+              </SelectorContainer>
+              <SelectorContainer>
+                <Selector
+                  title="Sign up"
+                  color="#ffffff88" //  #ffffffff on Sign up
+                  onPress={() => this.handleSelectSignup()}
+                />
+              </SelectorContainer>
+            </SelectorMainContainer>
+            <Slider />
+
+            <InputContainer>
+              <Input
+                placeholder="Email"
+                onChangeText={(text) => {
+                  this.setState({ email: text });
+                }}
+                value={this.state.email}
+                errorText={this.state.emailError}
+              />
+
+              <Input
+                placeholder="Password"
+                onChangeText={(text) => {
+                  this.setState({ password: text });
+                }}
+                value={this.state.password}
+                secureTextEntry
+                errorText={this.state.passwordError}
+              />
+
+              <Input // hide on login
+                placeholder="Confirm Password"
+                onChangeText={(text) => {
+                  this.setState({ confirmPassword: text });
+                }}
+                value={this.state.confirmPassword}
+                secureTextEntry
+                errorText={this.state.confirmPasswordError}
+              />
+            </InputContainer>
+
+            <Touch onPress={() => this.handleLogin()}>
+              <ButtonText>
+                Login
+              </ButtonText>
+            </Touch>
+
+            <Touch onPress={() => this.handleSignup()}>
+              <ButtonText>
+                Sign Up
+              </ButtonText>
+            </Touch>
+
+            <OrSeperator />
+
+            <LoginButton
+              readPermissions={['email', 'public_profile']}
+              onLoginFinished={
+                (error, result) => {
+                  if (error) {
+                    console.warn(`login has error: ${result.error}`);
+                  } else if (result.isCancelled) {
+                    console.warn('login is cancelled.');
+                  } else {
+                    AccessToken.getCurrentAccessToken()
+                      .then((fbAccessToken) => {
+                        this.handleLoginFb(fbAccessToken.accessToken);
+                      });
+                  }
+                }
               }
-            }
-          }
-          onLogoutFinished={() => console.warn('logout.')}
-        />
-      </MainContainer>
+              onLogoutFinished={() => console.warn('logout.')}
+            />
+          </MainContainer>
+        </SuperContainer>
+      </View>
     );
   }
 }

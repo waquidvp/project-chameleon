@@ -20,7 +20,7 @@ const ErrorText = styled.Text`
   align-self: center;
 `;
 
-export class Input extends Component {
+export default class Input extends Component {
   static propTypes = {
     placeholder: PropTypes.string.isRequired,
     onChangeText: PropTypes.func.isRequired,
@@ -72,5 +72,3 @@ export class Input extends Component {
     );
   }
 }
-
-export default Input;
