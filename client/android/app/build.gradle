@@ -136,6 +136,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-blur')
     compile project(':react-native-fbsdk')
     compile project(':react-native-camera')
     compile fileTree(dir: "libs", include: ["*.jar"])

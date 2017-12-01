@@ -8,6 +8,8 @@ import OnboardingStack from './Onboarding/OnboardingStack';
 import Home from './Home/Home';
 import { signIn, signOut, getToken } from './utils/token';
 
+import BlurredCamera from './components/BlurredCamera';
+
 export default class App extends React.Component {
   constructor() {
     super();
