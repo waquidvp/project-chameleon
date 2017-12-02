@@ -2,7 +2,7 @@
 
 import React from 'react';
 import {
-  StatusBar,Animated,Easing
+  StatusBar, Animated, Easing,
 } from 'react-native';
 import styled from 'styled-components/native';
 import { LoginButton, AccessToken } from 'react-native-fbsdk';
@@ -30,10 +30,6 @@ const MainContainer = styled.ScrollView`
   background: #37CAC3B4;
 `;
 
-const Text = styled.Text`
-  font-size: 14;
-`;
-
 const Image = styled.Image`
   width: 130px;
   height: 130px;
@@ -48,22 +44,35 @@ const SelectorMainContainer = styled.View`
 const SelectorContainer = styled.View`
   width: 125px;
 `;
-const AnimatedSelectorContainer = Animated.createAnimatedComponent(SelectorContainer)
 
-const Selector = styled.Button`
-  
+const AnimatedSelectorContainer = Animated.createAnimatedComponent(SelectorContainer);
+
+const SelectorTouch = styled.TouchableWithoutFeedback`
+
 `;
 
+const Selector = styled.View`
+  align-items: center;
+  height: 30px;
+`;
+
+const SelectorText = styled.Text`
+  color: #ffffff;
+  width: 75px;
+  text-align: center;
+  font-size: 18px;
+`;
 
 const Slider = styled.View`
   width: 75px;
-  height :0px;
+  height: 0px;
   border-width: 2px;
   border-radius: 2px;
   align-self: center;
   border-color: #ffffff;
 `;
-const AnimatedSlider = Animated.createAnimatedComponent(Slider)
+
+const AnimatedSlider = Animated.createAnimatedComponent(Slider);
 
 const InputContainer = styled.View`
   padding-top: 20px;
@@ -154,109 +163,112 @@ class Login extends React.Component {
       selectorLoginValue: new Animated.Value(1),
       selectorSignUpValue: new Animated.Value(0.25),
       errorOpacityValue: new Animated.Value(0),
-      editable:false,
+      editable: false,
     };
   }
 
   handleSelectLogin = () => {
-    this.setState({editable:false})
-    var dura = 200 
-    var ease = Easing.linear
+    const dura = 200;
+    const ease = Easing.linear;
+
+    this.setState({ editable: false });
+
     Animated.sequence([
       Animated.parallel([
-        Animated.timing(                  
-          this.state.sliderValue,            
+        Animated.timing(
+          this.state.sliderValue,
           {
-            toValue: 125,                   
-            duration: dura,  
-            easing:ease,             
-          }
+            toValue: 125,
+            duration: dura,
+            easing: ease,
+          },
         ),
-        Animated.timing(                  
-          this.state.opacityValue,            
+        Animated.timing(
+          this.state.opacityValue,
           {
-            toValue: 0,                   
-            duration: dura,  
-            easing:ease,             
-          }
+            toValue: 0,
+            duration: dura,
+            easing: ease,
+          },
         ),
-        Animated.timing(                  
-          this.state.selectorLoginValue,            
+        Animated.timing(
+          this.state.selectorLoginValue,
           {
-            toValue: 1,                   
-            duration: dura,  
-            easing:ease,             
-          }
+            toValue: 1,
+            duration: dura,
+            easing: ease,
+          },
         ),
-        Animated.timing(                  
-          this.state.selectorSignUpValue,            
+        Animated.timing(
+          this.state.selectorSignUpValue,
           {
-            toValue: 0.5,                   
-            duration: dura,  
-            easing:ease,             
-          }
+            toValue: 0.5,
+            duration: dura,
+            easing: ease,
+          },
         ),
       ]),
-      Animated.timing(                  
-        this.state.translationValue,            
+      Animated.timing(
+        this.state.translationValue,
         {
-          toValue: 200,                   
-          duration: 0,  
-          easing:ease,             
-        }
+          toValue: 200,
+          duration: 0,
+          easing: ease,
+        },
       ),
-    ]).start()
+    ]).start();
   }
 
   handleSelectSignup = () => {
-    this.setState({editable:true})
-    var dura = 200
-    var ease = Easing.linear
+    const dura = 200;
+    const ease = Easing.linear;
+
+    this.setState({ editable: true });
+
     Animated.sequence([
-      Animated.timing(                  
-        this.state.translationValue,            
+      Animated.timing(
+        this.state.translationValue,
         {
-          toValue: 0,                   
-          duration: 0,  
-          easing:ease,             
-        }
+          toValue: 0,
+          duration: 0,
+          easing: ease,
+        },
       ),
       Animated.parallel([
-        Animated.timing(                  
-          this.state.sliderValue,            
+        Animated.timing(
+          this.state.sliderValue,
           {
-            toValue: -125,                   
-            duration: dura,  
-            easing:ease,             
-          }
+            toValue: -125,
+            duration: dura,
+            easing: ease,
+          },
         ),
-        Animated.timing(                  
-          this.state.opacityValue,            
+        Animated.timing(
+          this.state.opacityValue,
           {
-            toValue: 1,                   
-            duration: dura,  
-            easing:ease,             
-          }
+            toValue: 1,
+            duration: dura,
+            easing: ease,
+          },
         ),
-        Animated.timing(                  
-          this.state.selectorLoginValue,            
+        Animated.timing(
+          this.state.selectorLoginValue,
           {
-            toValue: 0.5,                   
-            duration: dura,  
-            easing:ease,             
-          }
+            toValue: 0.5,
+            duration: dura,
+            easing: ease,
+          },
         ),
-        Animated.timing(                  
-          this.state.selectorSignUpValue,            
+        Animated.timing(
+          this.state.selectorSignUpValue,
           {
-            toValue: 1,                   
-            duration: dura,  
-            easing:ease,             
-          }
+            toValue: 1,
+            duration: dura,
+            easing: ease,
+          },
         ),
       ]),
-      
-    ]).start()
+    ]).start();
   }
 
   handleSubmit = () => {
@@ -295,24 +307,31 @@ class Login extends React.Component {
             <StatusBar barStyle="light-content" setBackgroundColor="#000000" />
             <Image source={ChameleonLogoSource} resizeMode="contain" />
             <SelectorMainContainer>
-              <AnimatedSelectorContainer style={{opacity:this.state.selectorLoginValue}}>
-                <Selector
-                  title="Login"
-                  color="#ffffffff" //  #ffffff88 on Sign up
+              <AnimatedSelectorContainer style={{ opacity: this.state.selectorLoginValue }}>
+                <SelectorTouch
                   onPress={() => this.handleSelectLogin()}
-                  
-                />
+                >
+                  <Selector
+                    color="#ffffffff" //  #ffffff88 on Sign up
+                  >
+                    <SelectorText>Login</SelectorText>
+                  </Selector>
+                </SelectorTouch>
               </AnimatedSelectorContainer>
-              <AnimatedSelectorContainer style={{opacity:this.state.selectorSignUpValue}}>
-                <Selector
-                  title="Sign up"
-                  color="#ffffffff" //  #ffffffff on Sign up
+              <AnimatedSelectorContainer style={{ opacity: this.state.selectorSignUpValue }}>
+                <SelectorTouch
                   onPress={() => this.handleSelectSignup()}
-                  
-                />
+                >
+                  <Selector
+                    color="#ffffffff" //  #ffffffff on Sign up
+                  >
+                    <SelectorText>Sign Up</SelectorText>
+                  </Selector>
+                </SelectorTouch>
               </AnimatedSelectorContainer>
             </SelectorMainContainer>
-            <AnimatedSlider style={{marginRight: this.state.sliderValue}}/>
+
+            <AnimatedSlider style={{ marginRight: this.state.sliderValue }} />
 
             <InputContainer>
               <Input
@@ -322,7 +341,6 @@ class Login extends React.Component {
                 }}
                 value={this.state.email}
                 errorText={this.state.emailError}
-                editable={true}
                 errorOpacityValue={this.state.errorOpacityValue}
               />
 
@@ -334,7 +352,6 @@ class Login extends React.Component {
                 value={this.state.password}
                 secureTextEntry
                 errorText={this.state.passwordError}
-                editable={true}
                 errorOpacityValue={this.state.errorOpacityValue}
               />
 
@@ -353,19 +370,21 @@ class Login extends React.Component {
             </InputContainer>
 
             <ButtonContainer>
-              <AnimatedTouch style={{position:'absolute'}} onPress={() => this.handleLogin()}>
+              <AnimatedTouch style={{ position: 'absolute' }} onPress={() => this.handleLogin()}>
                 <ButtonText>
                   Login
                 </ButtonText>
               </AnimatedTouch>
 
-              <AnimatedTouch style={{position:'absolute',left:this.state.translationValue,opacity:this.state.opacityValue}} onPress={() => this.handleSignup()}>
+              <AnimatedTouch
+                style={{ position: 'absolute', left: this.state.translationValue, opacity: this.state.opacityValue }}
+                onPress={() => this.handleSignup()}
+              >
                 <ButtonText>
                   Sign Up
                 </ButtonText>
               </AnimatedTouch>
             </ButtonContainer>
-            
 
             <OrSeperator />
 

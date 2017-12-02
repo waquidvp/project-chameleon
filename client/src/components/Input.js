@@ -2,10 +2,8 @@ import React, { Component } from 'react';
 import styled from 'styled-components/native';
 import PropTypes from 'prop-types';
 import {
-  Animated, Easing,
+  Animated,
 } from 'react-native';
-
-const View = styled.View``;
 
 const TextInput = styled.TextInput`
   width: 300px;
@@ -31,26 +29,22 @@ export default class Input extends Component {
     secureTextEntry: PropTypes.bool,
     placeholderTextColor: PropTypes.string,
     errorText: PropTypes.string,
+    editable: PropTypes.bool,
   };
 
   static defaultProps = {
     secureTextEntry: false,
     placeholderTextColor: '#ffffff',
     errorText: null,
+    editable: true,
   };
 
   constructor() {
     super();
 
     this.state = {
-      editable: false,
-    };
-  }
 
-  componentDidUpdate(prevProps) {
-    if (this.props.editable !== prevProps.editable) {
-      this.setState({ editable: this.props.editable });
-    }
+    };
   }
 
   render() {
@@ -61,6 +55,7 @@ export default class Input extends Component {
       value,
       secureTextEntry,
       errorText,
+      editable,
     } = this.props;
 
     return (
@@ -72,7 +67,7 @@ export default class Input extends Component {
           value={value}
           secureTextEntry={secureTextEntry}
           underlineColorAndroid="transparent"
-          editable={this.state.editable}
+          editable={editable}
         />
         <Animated.View style={{ opacity: this.props.errorOpacityValue }}>
           { errorText ?
