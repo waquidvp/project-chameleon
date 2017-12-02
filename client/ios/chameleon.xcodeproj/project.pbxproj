@@ -423,11 +423,7 @@
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				1FCAFB0AC4B540DB835E0FED /* libRCTCamera.a in Frameworks */,
 				85E36033D7FB4B99ADD29D17 /* libRCTFBSDK.a in Frameworks */,
-<<<<<<< HEAD
-				3197A3B84FE447BAA4B213C9 /* libRNBlur.a in Frameworks */,
-=======
 				75F5146E7AA84D6BBCE78E15 /* libRNBlur.a in Frameworks */,
->>>>>>> 0c521c2f973473a687246a5ee713b7d7d6cd4d79
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -605,11 +601,7 @@
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				F1A6DA3CBCDE489A94F08C3E /* RCTCamera.xcodeproj */,
 				3D4854F64E1B4B2CA7398FC3 /* RCTFBSDK.xcodeproj */,
-<<<<<<< HEAD
-				6774D2A738724B5099C33BCC /* RNBlur.xcodeproj */,
-=======
 				F1D8975716E34302B9ECA5AC /* RNBlur.xcodeproj */,
->>>>>>> 0c521c2f973473a687246a5ee713b7d7d6cd4d79
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -672,11 +664,7 @@
 			children = (
 				2F104BD9CB5F4A70AED1D9D9 /* libRCTCamera.a */,
 				524D8AC6F74A445188F8505B /* libRCTFBSDK.a */,
-<<<<<<< HEAD
-				E9F91EB1761147B2B21391CF /* libRNBlur.a */,
-=======
 				298561CBED1C41F3A6039A32 /* libRNBlur.a */,
->>>>>>> 0c521c2f973473a687246a5ee713b7d7d6cd4d79
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -890,13 +878,8 @@
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
 				},
 				{
-<<<<<<< HEAD
-					ProductGroup = B3CCB8381FD1CBE900D567BC /* Products */;
-					ProjectRef = 6774D2A738724B5099C33BCC /* RNBlur.xcodeproj */;
-=======
 					ProductGroup = E7F137B91FD2B1E100969C22 /* Products */;
 					ProjectRef = F1D8975716E34302B9ECA5AC /* RNBlur.xcodeproj */;
->>>>>>> 0c521c2f973473a687246a5ee713b7d7d6cd4d79
 				},
 			);
 			projectRoot = "";
