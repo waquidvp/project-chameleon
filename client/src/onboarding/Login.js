@@ -189,7 +189,8 @@ class Login extends React.Component {
       confirmPasswordError: 'Passwords do not match',
       opacityValue: new Animated.Value(0),
       forgottenOpacityValue: new Animated.Value(1),
-      translationValue: new Animated.Value(200),
+      loginTranslationValue: new Animated.Value(0),
+      signUpTranslationValue: new Animated.Value(0),
       sliderValue: new Animated.Value(125),
       selectorLoginValue: new Animated.Value(1),
       selectorSignUpValue: new Animated.Value(0.25),
@@ -254,9 +255,17 @@ class Login extends React.Component {
         ),
       ]),
       Animated.timing(
-        this.state.translationValue,
+        this.state.loginTranslationValue,
         {
-          toValue: 200,
+          toValue: 0,
+          duration: 0,
+          easing: ease,
+        },
+      ),
+      Animated.timing(
+        this.state.signUpTranslationValue,
+        {
+          toValue: 800,
           duration: 0,
           easing: ease,
         },
@@ -275,7 +284,15 @@ class Login extends React.Component {
 
     Animated.sequence([
       Animated.timing(
-        this.state.translationValue,
+        this.state.loginTranslationValue,
+        {
+          toValue: 800,
+          duration: 0,
+          easing: ease,
+        },
+      ),
+      Animated.timing(
+        this.state.signUpTranslationValue,
         {
           toValue: 0,
           duration: 0,
@@ -443,7 +460,7 @@ class Login extends React.Component {
 
             <ButtonContainer>
               <AnimatedTouch
-                style={{ position: 'absolute' }}
+                style={{ position: 'absolute', left: this.state.loginTranslationValue, opacity: this.state.forgottenOpacityValue}}
                 onPress={() => this.handleLogin()}
                 disabled={this.state.loginDisabled}
               >
@@ -453,7 +470,7 @@ class Login extends React.Component {
               </AnimatedTouch>
 
               <AnimatedTouch
-                style={{ position: 'absolute', left: this.state.translationValue, opacity: this.state.opacityValue }}
+                style={{ position: 'absolute', left: this.state.signUpTranslationValue, opacity: this.state.opacityValue }}
                 onPress={() => this.handleSignup()}
                 disabled={this.state.signUpDisabled}
               >
