@@ -84,7 +84,10 @@ const InputContainer = styled.View`
 const ButtonText = styled.Text`
   font-size: 16;
   color: #37CAC3;
+  position:absolute;
 `;
+
+const AnimatedButtonText = Animated.createAnimatedComponent(ButtonText);
 
 const OrContainer = styled.View`
   width: 100%;
@@ -130,8 +133,6 @@ const Touch = styled.TouchableOpacity`
   justify-content: center;
   background-color: #ffffff;
 `;
-
-const AnimatedTouch = Animated.createAnimatedComponent(Touch);
 
 const ContinueWithFacebookButton = styled.TouchableOpacity`
   width: 300px;
@@ -188,9 +189,8 @@ class Login extends React.Component {
       passwordError: 'Incorrect password',
       confirmPasswordError: 'Passwords do not match',
       opacityValue: new Animated.Value(0),
+      mode:true,
       forgottenOpacityValue: new Animated.Value(1),
-      loginTranslationValue: new Animated.Value(0),
-      signUpTranslationValue: new Animated.Value(0),
       sliderValue: new Animated.Value(125),
       selectorLoginValue: new Animated.Value(1),
       selectorSignUpValue: new Animated.Value(0.25),
@@ -210,8 +210,8 @@ class Login extends React.Component {
     this.setState({ forgottenDisabled: false });
     this.setState({ signUpDisabled: true });
     this.setState({ loginDisabled: false });
-
-    Animated.sequence([
+    this.setState({ mode: true });
+    
       Animated.parallel([
         Animated.timing(
           this.state.sliderValue,
@@ -253,24 +253,7 @@ class Login extends React.Component {
             easing: ease,
           },
         ),
-      ]),
-      Animated.timing(
-        this.state.loginTranslationValue,
-        {
-          toValue: 0,
-          duration: 0,
-          easing: ease,
-        },
-      ),
-      Animated.timing(
-        this.state.signUpTranslationValue,
-        {
-          toValue: 800,
-          duration: 0,
-          easing: ease,
-        },
-      ),
-    ]).start();
+      ]).start();
   }
 
   handleSelectSignup = () => {
@@ -281,8 +264,8 @@ class Login extends React.Component {
     this.setState({ forgottenDisabled: true });
     this.setState({ signUpDisabled: false });
     this.setState({ loginDisabled: true });
-
-    Animated.sequence([
+    this.setState({ mode: false });
+    
       Animated.timing(
         this.state.loginTranslationValue,
         {
@@ -323,24 +306,7 @@ class Login extends React.Component {
             duration: dura,
             easing: ease,
           },
-        ),
-        Animated.timing(
-          this.state.selectorLoginValue,
-          {
-            toValue: 0.5,
-            duration: dura,
-            easing: ease,
-          },
-        ),
-        Animated.timing(
-          this.state.selectorSignUpValue,
-          {
-            toValue: 1,
-            duration: dura,
-            easing: ease,
-          },
-        ),
-      ]),
+        )
     ]).start();
   }
 
@@ -458,27 +424,16 @@ class Login extends React.Component {
               />
             </InputContainer>
 
-            <ButtonContainer>
-              <AnimatedTouch
-                style={{ position: 'absolute', left: this.state.loginTranslationValue, opacity: this.state.forgottenOpacityValue}}
-                onPress={() => this.handleLogin()}
-                disabled={this.state.loginDisabled}
+              <Touch
+                onPress={() => {this.state.mode == true ? this.handleLogin() : this.handleSignup()}}
               >
-                <ButtonText>
+                <AnimatedButtonText style={{opacity: this.state.forgottenOpacityValue}}>
                   Login
-                </ButtonText>
-              </AnimatedTouch>
-
-              <AnimatedTouch
-                style={{ position: 'absolute', left: this.state.signUpTranslationValue, opacity: this.state.opacityValue }}
-                onPress={() => this.handleSignup()}
-                disabled={this.state.signUpDisabled}
-              >
-                <ButtonText>
+                </AnimatedButtonText>
+                <AnimatedButtonText style={{opacity: this.state.opacityValue}}>
                   Sign Up
-                </ButtonText>
-              </AnimatedTouch>
-            </ButtonContainer>
+                </AnimatedButtonText>
+              </Touch>                
 
             <OrSeperator />
 
