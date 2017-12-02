@@ -423,7 +423,7 @@
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				1FCAFB0AC4B540DB835E0FED /* libRCTCamera.a in Frameworks */,
 				85E36033D7FB4B99ADD29D17 /* libRCTFBSDK.a in Frameworks */,
-				75F5146E7AA84D6BBCE78E15 /* libRNBlur.a in Frameworks */,
+				3197A3B84FE447BAA4B213C9 /* libRNBlur.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -601,7 +601,7 @@
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				F1A6DA3CBCDE489A94F08C3E /* RCTCamera.xcodeproj */,
 				3D4854F64E1B4B2CA7398FC3 /* RCTFBSDK.xcodeproj */,
-				F1D8975716E34302B9ECA5AC /* RNBlur.xcodeproj */,
+				6774D2A738724B5099C33BCC /* RNBlur.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -664,7 +664,7 @@
 			children = (
 				2F104BD9CB5F4A70AED1D9D9 /* libRCTCamera.a */,
 				524D8AC6F74A445188F8505B /* libRCTFBSDK.a */,
-				298561CBED1C41F3A6039A32 /* libRNBlur.a */,
+				E9F91EB1761147B2B21391CF /* libRNBlur.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -795,7 +795,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = 9FBK2Y8522;
+						DevelopmentTeam = YVV8YZ7389;
 						ProvisioningStyle = Automatic;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
@@ -878,8 +878,8 @@
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
 				},
 				{
-					ProductGroup = E7F137B91FD2B1E100969C22 /* Products */;
-					ProjectRef = F1D8975716E34302B9ECA5AC /* RNBlur.xcodeproj */;
+					ProductGroup = B3CCB8381FD1CBE900D567BC /* Products */;
+					ProjectRef = 6774D2A738724B5099C33BCC /* RNBlur.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -1381,7 +1381,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = 9FBK2Y8522;
+				DEVELOPMENT_TEAM = YVV8YZ7389;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "~/Documents/FacebookSDK";
 				HEADER_SEARCH_PATHS = (
@@ -1398,7 +1398,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.tce.chameleon;
+				PRODUCT_BUNDLE_IDENTIFIER = org.chameleon.com;
 				PRODUCT_NAME = chameleon;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1412,7 +1412,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9FBK2Y8522;
+				DEVELOPMENT_TEAM = YVV8YZ7389;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "~/Documents/FacebookSDK";
 				HEADER_SEARCH_PATHS = (
@@ -1429,7 +1429,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.tce.chameleon;
+				PRODUCT_BUNDLE_IDENTIFIER = org.chameleon.com;
 				PRODUCT_NAME = chameleon;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				VERSIONING_SYSTEM = "apple-generic";
