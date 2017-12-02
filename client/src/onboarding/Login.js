@@ -189,7 +189,7 @@ class Login extends React.Component {
       passwordError: 'Incorrect password',
       confirmPasswordError: 'Passwords do not match',
       opacityValue: new Animated.Value(0),
-      mode:true,
+      mode: true,
       forgottenOpacityValue: new Animated.Value(1),
       sliderValue: new Animated.Value(125),
       selectorLoginValue: new Animated.Value(1),
@@ -197,8 +197,6 @@ class Login extends React.Component {
       errorOpacityValue: new Animated.Value(0),
       editable: false,
       forgottenDisabled: false,
-      loginDisabled: false,
-      signUpDisabled: true,
     };
   }
 
@@ -208,52 +206,50 @@ class Login extends React.Component {
 
     this.setState({ editable: false });
     this.setState({ forgottenDisabled: false });
-    this.setState({ signUpDisabled: true });
-    this.setState({ loginDisabled: false });
     this.setState({ mode: true });
-    
-      Animated.parallel([
-        Animated.timing(
-          this.state.sliderValue,
-          {
-            toValue: 125,
-            duration: dura,
-            easing: ease,
-          },
-        ),
-        Animated.timing(
-          this.state.opacityValue,
-          {
-            toValue: 0,
-            duration: dura,
-            easing: ease,
-          },
-        ),
-        Animated.timing(
-          this.state.forgottenOpacityValue,
-          {
-            toValue: 1,
-            duration: dura,
-            easing: ease,
-          },
-        ),
-        Animated.timing(
-          this.state.selectorLoginValue,
-          {
-            toValue: 1,
-            duration: dura,
-            easing: ease,
-          },
-        ),
-        Animated.timing(
-          this.state.selectorSignUpValue,
-          {
-            toValue: 0.5,
-            duration: dura,
-            easing: ease,
-          },
-        ),
-      ]).start();
+
+    Animated.parallel([
+      Animated.timing(
+        this.state.sliderValue,
+        {
+          toValue: 125,
+          duration: dura,
+          easing: ease,
+        },
+      ),
+      Animated.timing(
+        this.state.opacityValue,
+        {
+          toValue: 0,
+          duration: dura,
+          easing: ease,
+        },
+      ),
+      Animated.timing(
+        this.state.forgottenOpacityValue,
+        {
+          toValue: 1,
+          duration: dura,
+          easing: ease,
+        },
+      ),
+      Animated.timing(
+        this.state.selectorLoginValue,
+        {
+          toValue: 1,
+          duration: dura,
+          easing: ease,
+        },
+      ),
+      Animated.timing(
+        this.state.selectorSignUpValue,
+        {
+          toValue: 0.5,
+          duration: dura,
+          easing: ease,
+        },
+      ),
+    ]).start();
   }
 
   handleSelectSignup = () => {
@@ -262,51 +258,49 @@ class Login extends React.Component {
 
     this.setState({ editable: true });
     this.setState({ forgottenDisabled: true });
-    this.setState({ signUpDisabled: false });
-    this.setState({ loginDisabled: true });
     this.setState({ mode: false });
-    
-      Animated.parallel([
-        Animated.timing(
-          this.state.sliderValue,
-          {
-            toValue: -125,
-            duration: dura,
-            easing: ease,
-          },
-        ),
-        Animated.timing(
-          this.state.opacityValue,
-          {
-            toValue: 1,
-            duration: dura,
-            easing: ease,
-          },
-        ),
-        Animated.timing(
-          this.state.forgottenOpacityValue,
-          {
-            toValue: 0,
-            duration: dura,
-            easing: ease,
-          },
-        ),
-        Animated.timing(
-          this.state.selectorLoginValue,
-          {
-            toValue: 0.5,
-            duration: 0,
-            easing: ease,
-          },
-        ),
-        Animated.timing(
-          this.state.selectorSignUpValue,
-          {
-            toValue: 1,
-            duration: 0,
-            easing: ease,
-          },
-        ),
+
+    Animated.parallel([
+      Animated.timing(
+        this.state.sliderValue,
+        {
+          toValue: -125,
+          duration: dura,
+          easing: ease,
+        },
+      ),
+      Animated.timing(
+        this.state.opacityValue,
+        {
+          toValue: 1,
+          duration: dura,
+          easing: ease,
+        },
+      ),
+      Animated.timing(
+        this.state.forgottenOpacityValue,
+        {
+          toValue: 0,
+          duration: dura,
+          easing: ease,
+        },
+      ),
+      Animated.timing(
+        this.state.selectorLoginValue,
+        {
+          toValue: 0.5,
+          duration: 0,
+          easing: ease,
+        },
+      ),
+      Animated.timing(
+        this.state.selectorSignUpValue,
+        {
+          toValue: 1,
+          duration: 0,
+          easing: ease,
+        },
+      ),
     ]).start();
   }
 
@@ -345,6 +339,22 @@ class Login extends React.Component {
             });
         }
       });
+  }
+
+  handleLogin = () => {
+    console.warn('login');
+  }
+
+  handleSignup = () => {
+    console.warn('Signup');
+  }
+
+  handleLoginSignupPress = () => {
+    if (this.state.mode) {
+      this.handleLogin();
+    } else {
+      this.handleSignup();
+    }
   }
 
   render() {
@@ -424,16 +434,18 @@ class Login extends React.Component {
               />
             </InputContainer>
 
-              <Touch
-                onPress={() => {this.state.mode == true ? this.handleLogin() : this.handleSignup()}}
-              >
-                <AnimatedButtonText style={{opacity: this.state.forgottenOpacityValue}}>
-                  Login
-                </AnimatedButtonText>
-                <AnimatedButtonText style={{opacity: this.state.opacityValue}}>
-                  Sign Up
-                </AnimatedButtonText>
-              </Touch>                
+            <Touch
+              onPress={() => {
+                this.handleLoginSignupPress();
+              }}
+            >
+              <AnimatedButtonText style={{ opacity: this.state.forgottenOpacityValue }}>
+                Login
+              </AnimatedButtonText>
+              <AnimatedButtonText style={{ opacity: this.state.opacityValue }}>
+                Sign Up
+              </AnimatedButtonText>
+            </Touch>
 
             <OrSeperator />
 
