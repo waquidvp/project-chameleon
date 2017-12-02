@@ -2,10 +2,10 @@
 
 import React from 'react';
 import {
-  StatusBar, Animated, Easing,
+  StatusBar, Animated, Easing, Text,
 } from 'react-native';
 import styled from 'styled-components/native';
-import { LoginButton, AccessToken } from 'react-native-fbsdk';
+import { LoginButton, AccessToken, LoginManager } from 'react-native-fbsdk';
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 
@@ -78,6 +78,7 @@ const AnimatedSlider = Animated.createAnimatedComponent(Slider);
 
 const InputContainer = styled.View`
   padding-top: 20px;
+  padding-bottom: 5px;
 `;
 
 const ButtonText = styled.Text`
@@ -132,6 +133,20 @@ const Touch = styled.TouchableOpacity`
 
 const AnimatedTouch = Animated.createAnimatedComponent(Touch);
 
+const ContinueWithFacebookButton = styled.TouchableOpacity`
+  width: 300px;
+  height: 38px;
+  border-radius: 20;
+  background-color: #3B5998;    
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+`;
+
+const ContinueWithFacebookText = styled.Text`
+  color: #ffffff;
+`;
+
 const ForgottenPasswordButton = styled.TouchableOpacity`
   padding-top: 40px;
   align-self: center;
@@ -180,6 +195,9 @@ class Login extends React.Component {
       selectorSignUpValue: new Animated.Value(0.25),
       errorOpacityValue: new Animated.Value(0),
       editable: false,
+      forgottenDisabled: false,
+      loginDisabled: false,
+      signUpDisabled: true,
     };
   }
 
@@ -188,6 +206,9 @@ class Login extends React.Component {
     const ease = Easing.linear;
 
     this.setState({ editable: false });
+    this.setState({ forgottenDisabled: false });
+    this.setState({ signUpDisabled: true });
+    this.setState({ loginDisabled: false });
 
     Animated.sequence([
       Animated.parallel([
@@ -248,6 +269,9 @@ class Login extends React.Component {
     const ease = Easing.linear;
 
     this.setState({ editable: true });
+    this.setState({ forgottenDisabled: true });
+    this.setState({ signUpDisabled: false });
+    this.setState({ loginDisabled: true });
 
     Animated.sequence([
       Animated.timing(
@@ -321,10 +345,22 @@ class Login extends React.Component {
       });
   }
 
-  handleLoginFb = (fbAccessToken) => {
-    this.props.loginfb(fbAccessToken)
-      .then(({ data }) => {
-        this.props.screenProps.changeLoginState(true, data.loginfb.jwt);
+  handleLoginFb = () => {
+    LoginManager.logInWithReadPermissions(['email', 'public_profile'])
+      .then((error, result) => {
+        if (error) {
+          console.warn(`login has error: ${result.error}`);
+        } else if (result.isCancelled) {
+          console.warn('login is cancelled.');
+        } else {
+          AccessToken.getCurrentAccessToken()
+            .then((fbAccessToken) => {
+              this.props.loginfb(fbAccessToken)
+                .then(({ data }) => {
+                  this.props.screenProps.changeLoginState(true, data.loginfb.jwt);
+                });
+            });
+        }
       });
   }
 
@@ -336,7 +372,11 @@ class Login extends React.Component {
         <BlurredCamera />
         <SuperContainer>
           <MainContainer keyboardShouldPersistTaps="never" scrollEnabled={false}>
-            <StatusBar barStyle="light-content" setBackgroundColor="#000000" />
+            <StatusBar
+              barStyle="light-content"
+              backgroundColor="#0000003c"
+              translucent
+            />
             <Image source={ChameleonLogoSource} resizeMode="contain" />
             <SelectorMainContainer>
               <AnimatedSelectorContainer style={{ opacity: this.state.selectorLoginValue }}>
@@ -402,7 +442,11 @@ class Login extends React.Component {
             </InputContainer>
 
             <ButtonContainer>
-              <AnimatedTouch style={{ position: 'absolute' }} onPress={() => this.handleLogin()}>
+              <AnimatedTouch
+                style={{ position: 'absolute' }}
+                onPress={() => this.handleLogin()}
+                disabled={this.state.loginDisabled}
+              >
                 <ButtonText>
                   Login
                 </ButtonText>
@@ -411,6 +455,7 @@ class Login extends React.Component {
               <AnimatedTouch
                 style={{ position: 'absolute', left: this.state.translationValue, opacity: this.state.opacityValue }}
                 onPress={() => this.handleSignup()}
+                disabled={this.state.signUpDisabled}
               >
                 <ButtonText>
                   Sign Up
@@ -420,27 +465,17 @@ class Login extends React.Component {
 
             <OrSeperator />
 
-            <LoginButton
-              readPermissions={['email', 'public_profile']}
-              onLoginFinished={
-                (error, result) => {
-                  if (error) {
-                    console.warn(`login has error: ${result.error}`);
-                  } else if (result.isCancelled) {
-                    console.warn('login is cancelled.');
-                  } else {
-                    AccessToken.getCurrentAccessToken()
-                      .then((fbAccessToken) => {
-                        this.handleLoginFb(fbAccessToken.accessToken);
-                      });
-                  }
-                }
-              }
-              onLogoutFinished={() => console.warn('logout.')}
-            />
+            <ContinueWithFacebookButton
+              onPress={() => {
+                this.handleLoginFb();
+              }}
+            >
+              <ContinueWithFacebookText>CONTINUE WITH FACEBOOK</ContinueWithFacebookText>
+            </ContinueWithFacebookButton>
 
             <AnimatedForgottenPasswordButton
               style={{ opacity: this.state.forgottenOpacityValue }}
+              disabled={this.state.forgottenDisabled}
             >
               <ForgottenPasswordText>Forgotten your password?</ForgottenPasswordText>
             </AnimatedForgottenPasswordButton>
