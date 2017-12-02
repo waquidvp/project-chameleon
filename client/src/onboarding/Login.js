@@ -2,7 +2,7 @@
 
 import React from 'react';
 import {
-  StatusBar, Animated, Easing, Text,
+  StatusBar, Animated, Easing, Text,Keyboard
 } from 'react-native';
 import styled from 'styled-components/native';
 import { LoginButton, AccessToken, LoginManager } from 'react-native-fbsdk';
@@ -27,6 +27,10 @@ const SuperContainer = styled.View`
   flex: 1;
   background: #37CAC3B4;  
 `;
+
+const SuperButton = styled.TouchableHighlight`
+  flex:1;
+`
 
 const MainContainer = styled.View`
   
@@ -354,6 +358,7 @@ class Login extends React.Component {
       <View>
         <BlurredCamera />
         <SuperContainer>
+          <SuperButton onPress={Keyboard.dismiss} underlayColor={"transparent"} activeOpacity={1}>
           <MainContainer keyboardShouldPersistTaps="never" scrollEnabled={false}>
             <StatusBar
               barStyle="light-content"
@@ -452,6 +457,7 @@ class Login extends React.Component {
               <ForgottenPasswordText>Forgotten your password?</ForgottenPasswordText>
             </AnimatedForgottenPasswordButton>
           </MainContainer>
+          </SuperButton>
         </SuperContainer>
       </View>
     );
