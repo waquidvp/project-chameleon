@@ -266,22 +266,6 @@ class Login extends React.Component {
     this.setState({ loginDisabled: true });
     this.setState({ mode: false });
     
-      Animated.timing(
-        this.state.loginTranslationValue,
-        {
-          toValue: 800,
-          duration: 0,
-          easing: ease,
-        },
-      ),
-      Animated.timing(
-        this.state.signUpTranslationValue,
-        {
-          toValue: 0,
-          duration: 0,
-          easing: ease,
-        },
-      ),
       Animated.parallel([
         Animated.timing(
           this.state.sliderValue,
@@ -306,7 +290,23 @@ class Login extends React.Component {
             duration: dura,
             easing: ease,
           },
-        )
+        ),
+        Animated.timing(
+          this.state.selectorLoginValue,
+          {
+            toValue: 0.5,
+            duration: 0,
+            easing: ease,
+          },
+        ),
+        Animated.timing(
+          this.state.selectorSignUpValue,
+          {
+            toValue: 1,
+            duration: 0,
+            easing: ease,
+          },
+        ),
     ]).start();
   }
 
