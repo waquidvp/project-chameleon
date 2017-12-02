@@ -37,6 +37,7 @@
 		2DCD954D1E0B4F2C00145EB5 /* chameleonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* chameleonTests.m */; };
 		3197A3B84FE447BAA4B213C9 /* libRNBlur.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9F91EB1761147B2B21391CF /* libRNBlur.a */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
+		75F5146E7AA84D6BBCE78E15 /* libRNBlur.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 298561CBED1C41F3A6039A32 /* libRNBlur.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		85E36033D7FB4B99ADD29D17 /* libRCTFBSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 524D8AC6F74A445188F8505B /* libRCTFBSDK.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
@@ -334,6 +335,20 @@
 			remoteGlobalIDString = 9350E0F11CE3B0920041D815;
 			remoteInfo = RCTFBSDK;
 		};
+		E7F137BD1FD2B1E200969C22 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F1D8975716E34302B9ECA5AC /* RNBlur.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A68BD7BC1BC31318005F02DF;
+			remoteInfo = RNBlur;
+		};
+		E7F137BF1FD2B1E200969C22 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F1D8975716E34302B9ECA5AC /* RNBlur.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 64D1BD361EEFE88700F3F219;
+			remoteInfo = "RNBlur-tvOS";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -356,6 +371,7 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = chameleon/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = chameleon/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
+		298561CBED1C41F3A6039A32 /* libRNBlur.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNBlur.a; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* chameleon-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "chameleon-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* chameleon-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "chameleon-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F104BD9CB5F4A70AED1D9D9 /* libRCTCamera.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTCamera.a; sourceTree = "<group>"; };
@@ -372,6 +388,7 @@
 		E7DB02401FBA61BD00F03598 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = ../../../../Documents/FacebookSDK/Bolts.framework; sourceTree = "<group>"; };
 		E9F91EB1761147B2B21391CF /* libRNBlur.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNBlur.a; sourceTree = "<group>"; };
 		F1A6DA3CBCDE489A94F08C3E /* RCTCamera.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTCamera.xcodeproj; path = "../node_modules/react-native-camera/ios/RCTCamera.xcodeproj"; sourceTree = "<group>"; };
+		F1D8975716E34302B9ECA5AC /* RNBlur.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNBlur.xcodeproj; path = "../node_modules/react-native-blur/ios/RNBlur.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -406,7 +423,11 @@
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				1FCAFB0AC4B540DB835E0FED /* libRCTCamera.a in Frameworks */,
 				85E36033D7FB4B99ADD29D17 /* libRCTFBSDK.a in Frameworks */,
+<<<<<<< HEAD
 				3197A3B84FE447BAA4B213C9 /* libRNBlur.a in Frameworks */,
+=======
+				75F5146E7AA84D6BBCE78E15 /* libRNBlur.a in Frameworks */,
+>>>>>>> 0c521c2f973473a687246a5ee713b7d7d6cd4d79
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -584,7 +605,11 @@
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				F1A6DA3CBCDE489A94F08C3E /* RCTCamera.xcodeproj */,
 				3D4854F64E1B4B2CA7398FC3 /* RCTFBSDK.xcodeproj */,
+<<<<<<< HEAD
 				6774D2A738724B5099C33BCC /* RNBlur.xcodeproj */,
+=======
+				F1D8975716E34302B9ECA5AC /* RNBlur.xcodeproj */,
+>>>>>>> 0c521c2f973473a687246a5ee713b7d7d6cd4d79
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -647,7 +672,11 @@
 			children = (
 				2F104BD9CB5F4A70AED1D9D9 /* libRCTCamera.a */,
 				524D8AC6F74A445188F8505B /* libRCTFBSDK.a */,
+<<<<<<< HEAD
 				E9F91EB1761147B2B21391CF /* libRNBlur.a */,
+=======
+				298561CBED1C41F3A6039A32 /* libRNBlur.a */,
+>>>>>>> 0c521c2f973473a687246a5ee713b7d7d6cd4d79
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -677,6 +706,15 @@
 				E7DB022C1FBA601C00F03598 /* FBSDKCoreKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E7F137B91FD2B1E100969C22 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E7F137BE1FD2B1E200969C22 /* libRNBlur.a */,
+				E7F137C01FD2B1E200969C22 /* libRNBlur.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -852,8 +890,13 @@
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
 				},
 				{
+<<<<<<< HEAD
 					ProductGroup = B3CCB8381FD1CBE900D567BC /* Products */;
 					ProjectRef = 6774D2A738724B5099C33BCC /* RNBlur.xcodeproj */;
+=======
+					ProductGroup = E7F137B91FD2B1E100969C22 /* Products */;
+					ProjectRef = F1D8975716E34302B9ECA5AC /* RNBlur.xcodeproj */;
+>>>>>>> 0c521c2f973473a687246a5ee713b7d7d6cd4d79
 				},
 			);
 			projectRoot = "";
@@ -1138,6 +1181,20 @@
 			fileType = archive.ar;
 			path = libRCTFBSDK.a;
 			remoteRef = E7DB02291FBA594200F03598 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E7F137BE1FD2B1E200969C22 /* libRNBlur.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNBlur.a;
+			remoteRef = E7F137BD1FD2B1E200969C22 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E7F137C01FD2B1E200969C22 /* libRNBlur.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNBlur.a;
+			remoteRef = E7F137BF1FD2B1E200969C22 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */

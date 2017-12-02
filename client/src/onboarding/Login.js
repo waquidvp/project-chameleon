@@ -2,10 +2,10 @@
 
 import React from 'react';
 import {
-  StatusBar,
+  StatusBar, Animated, Easing, Text,
 } from 'react-native';
 import styled from 'styled-components/native';
-import { LoginButton, AccessToken } from 'react-native-fbsdk';
+import { LoginButton, AccessToken, LoginManager } from 'react-native-fbsdk';
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 
@@ -22,21 +22,19 @@ const SuperContainer = styled.View`
   right: 0;
   left: 0;
   bottom: 0;
-`;
-
-const MainContainer = styled.ScrollView`
+  justify-content: center;
+  align-items: center;
   flex: 1;
-  paddingTop: 40px;
-  background: #37CAC3B4;
+  background: #37CAC3B4;  
 `;
 
-const Text = styled.Text`
-  font-size: 14;
+const MainContainer = styled.View`
+  
 `;
 
 const Image = styled.Image`
   width: 130px;
-  height: 130px;
+  height: 150px;
   align-self: center;
 `;
 
@@ -49,22 +47,38 @@ const SelectorContainer = styled.View`
   width: 125px;
 `;
 
-const Selector = styled.Button`
-  
+const AnimatedSelectorContainer = Animated.createAnimatedComponent(SelectorContainer);
+
+const SelectorTouch = styled.TouchableWithoutFeedback`
+
+`;
+
+const Selector = styled.View`
+  align-items: center;
+  height: 30px;
+`;
+
+const SelectorText = styled.Text`
+  color: #ffffff;
+  width: 75px;
+  text-align: center;
+  font-size: 18px;
 `;
 
 const Slider = styled.View`
   width: 75px;
-  height :0px;
-  border-width: 2px;
-  border-radius: 2px;
+  height: 0px;
+  border-width: 1px;
+  border-radius: 1px;
   align-self: center;
-  margin-right: 125px;
   border-color: #ffffff;
 `;
 
+const AnimatedSlider = Animated.createAnimatedComponent(Slider);
+
 const InputContainer = styled.View`
   padding-top: 20px;
+  padding-bottom: 5px;
 `;
 
 const ButtonText = styled.Text`
@@ -73,28 +87,38 @@ const ButtonText = styled.Text`
 `;
 
 const OrContainer = styled.View`
-  width:324px;
-  height:15px;
+  width: 100%;
+  height: 15px;
   margin: 20px;
   align-self: center;
   flex-direction: row;
 `;
 
 const OrLine = styled.View`
-  width: 150px;
-  height :8.5px;
+  width: 140px;
+  height: 8.5px;
   border-bottom-width: 1.5px;
   border-bottom-color: #ffffff88;
 `;
 
 const OrTextContainer = styled.View`
-  height:15px;
-  padding:6px;
-  justify-content:center;
+  height: 15px;
+  padding: 6px;
+  justify-content: center;
 `;
 
 const OrText = styled.Text`
   color: #ffffff88;
+`;
+
+const ButtonContainer = styled.View`
+  width: 300px;
+  height: 38px;
+  border-radius: 20;
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
 `;
 
 const Touch = styled.TouchableOpacity`
@@ -105,6 +129,35 @@ const Touch = styled.TouchableOpacity`
   align-items: center;
   justify-content: center;
   background-color: #ffffff;
+`;
+
+const AnimatedTouch = Animated.createAnimatedComponent(Touch);
+
+const ContinueWithFacebookButton = styled.TouchableOpacity`
+  width: 300px;
+  height: 38px;
+  border-radius: 20;
+  background-color: #3B5998;    
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+`;
+
+const ContinueWithFacebookText = styled.Text`
+  color: #ffffff;
+`;
+
+const ForgottenPasswordButton = styled.TouchableOpacity`
+  padding-top: 40px;
+  align-self: center;
+`;
+
+const AnimatedForgottenPasswordButton = Animated.createAnimatedComponent(ForgottenPasswordButton);
+
+const ForgottenPasswordText = styled.Text`
+  text-align: center;
+  font-size: 14px;
+  color: #ffffff
 `;
 
 const OrSeperator = () => (
@@ -134,15 +187,144 @@ class Login extends React.Component {
       emailError: 'Invalid email',
       passwordError: 'Incorrect password',
       confirmPasswordError: 'Passwords do not match',
+      opacityValue: new Animated.Value(0),
+      forgottenOpacityValue: new Animated.Value(1),
+      translationValue: new Animated.Value(200),
+      sliderValue: new Animated.Value(125),
+      selectorLoginValue: new Animated.Value(1),
+      selectorSignUpValue: new Animated.Value(0.25),
+      errorOpacityValue: new Animated.Value(0),
+      editable: false,
+      forgottenDisabled: false,
+      loginDisabled: false,
+      signUpDisabled: true,
     };
   }
 
   handleSelectLogin = () => {
+    const dura = 200;
+    const ease = Easing.linear;
 
+    this.setState({ editable: false });
+    this.setState({ forgottenDisabled: false });
+    this.setState({ signUpDisabled: true });
+    this.setState({ loginDisabled: false });
+
+    Animated.sequence([
+      Animated.parallel([
+        Animated.timing(
+          this.state.sliderValue,
+          {
+            toValue: 125,
+            duration: dura,
+            easing: ease,
+          },
+        ),
+        Animated.timing(
+          this.state.opacityValue,
+          {
+            toValue: 0,
+            duration: dura,
+            easing: ease,
+          },
+        ),
+        Animated.timing(
+          this.state.forgottenOpacityValue,
+          {
+            toValue: 1,
+            duration: dura,
+            easing: ease,
+          },
+        ),
+        Animated.timing(
+          this.state.selectorLoginValue,
+          {
+            toValue: 1,
+            duration: dura,
+            easing: ease,
+          },
+        ),
+        Animated.timing(
+          this.state.selectorSignUpValue,
+          {
+            toValue: 0.5,
+            duration: dura,
+            easing: ease,
+          },
+        ),
+      ]),
+      Animated.timing(
+        this.state.translationValue,
+        {
+          toValue: 200,
+          duration: 0,
+          easing: ease,
+        },
+      ),
+    ]).start();
   }
 
   handleSelectSignup = () => {
+    const dura = 200;
+    const ease = Easing.linear;
 
+    this.setState({ editable: true });
+    this.setState({ forgottenDisabled: true });
+    this.setState({ signUpDisabled: false });
+    this.setState({ loginDisabled: true });
+
+    Animated.sequence([
+      Animated.timing(
+        this.state.translationValue,
+        {
+          toValue: 0,
+          duration: 0,
+          easing: ease,
+        },
+      ),
+      Animated.parallel([
+        Animated.timing(
+          this.state.sliderValue,
+          {
+            toValue: -125,
+            duration: dura,
+            easing: ease,
+          },
+        ),
+        Animated.timing(
+          this.state.opacityValue,
+          {
+            toValue: 1,
+            duration: dura,
+            easing: ease,
+          },
+        ),
+        Animated.timing(
+          this.state.forgottenOpacityValue,
+          {
+            toValue: 0,
+            duration: dura,
+            easing: ease,
+          },
+        ),
+        Animated.timing(
+          this.state.selectorLoginValue,
+          {
+            toValue: 0.5,
+            duration: dura,
+            easing: ease,
+          },
+        ),
+        Animated.timing(
+          this.state.selectorSignUpValue,
+          {
+            toValue: 1,
+            duration: dura,
+            easing: ease,
+          },
+        ),
+      ]),
+    ]).start();
   }
 
   handleSubmit = () => {
@@ -163,10 +345,22 @@ class Login extends React.Component {
       });
   }
 
-  handleLoginFb = (fbAccessToken) => {
-    this.props.loginfb(fbAccessToken)
-      .then(({ data }) => {
-        this.props.screenProps.changeLoginState(true, data.loginfb.jwt);
+  handleLoginFb = () => {
+    LoginManager.logInWithReadPermissions(['email', 'public_profile'])
+      .then((error, result) => {
+        if (error) {
+          console.warn(`login has error: ${result.error}`);
+        } else if (result.isCancelled) {
+          console.warn('login is cancelled.');
+        } else {
+          AccessToken.getCurrentAccessToken()
+            .then((fbAccessToken) => {
+              this.props.loginfb(fbAccessToken)
+                .then(({ data }) => {
+                  this.props.screenProps.changeLoginState(true, data.loginfb.jwt);
+                });
+            });
+        }
       });
   }
 
@@ -178,25 +372,38 @@ class Login extends React.Component {
         <BlurredCamera />
         <SuperContainer>
           <MainContainer keyboardShouldPersistTaps="never" scrollEnabled={false}>
-            <StatusBar barStyle="light-content" setBackgroundColor="#000000" />
+            <StatusBar
+              barStyle="light-content"
+              backgroundColor="#0000003c"
+              translucent
+            />
             <Image source={ChameleonLogoSource} resizeMode="contain" />
             <SelectorMainContainer>
-              <SelectorContainer>
-                <Selector
-                  title="Login"
-                  color="#ffffffff" //  #ffffff88 on Sign up
+              <AnimatedSelectorContainer style={{ opacity: this.state.selectorLoginValue }}>
+                <SelectorTouch
                   onPress={() => this.handleSelectLogin()}
-                />
-              </SelectorContainer>
-              <SelectorContainer>
-                <Selector
-                  title="Sign up"
-                  color="#ffffff88" //  #ffffffff on Sign up
+                >
+                  <Selector
+                    color="#ffffffff" //  #ffffff88 on Sign up
+                  >
+                    <SelectorText>Login</SelectorText>
+                  </Selector>
+                </SelectorTouch>
+              </AnimatedSelectorContainer>
+              <AnimatedSelectorContainer style={{ opacity: this.state.selectorSignUpValue }}>
+                <SelectorTouch
                   onPress={() => this.handleSelectSignup()}
-                />
-              </SelectorContainer>
+                >
+                  <Selector
+                    color="#ffffffff" //  #ffffffff on Sign up
+                  >
+                    <SelectorText>Sign Up</SelectorText>
+                  </Selector>
+                </SelectorTouch>
+              </AnimatedSelectorContainer>
             </SelectorMainContainer>
-            <Slider />
+
+            <AnimatedSlider style={{ marginRight: this.state.sliderValue }} />
 
             <InputContainer>
               <Input
@@ -206,6 +413,7 @@ class Login extends React.Component {
                 }}
                 value={this.state.email}
                 errorText={this.state.emailError}
+                errorOpacityValue={this.state.errorOpacityValue}
               />
 
               <Input
@@ -216,9 +424,10 @@ class Login extends React.Component {
                 value={this.state.password}
                 secureTextEntry
                 errorText={this.state.passwordError}
+                errorOpacityValue={this.state.errorOpacityValue}
               />
 
-              <Input // hide on login
+              <Input
                 placeholder="Confirm Password"
                 onChangeText={(text) => {
                   this.setState({ confirmPassword: text });
@@ -226,41 +435,50 @@ class Login extends React.Component {
                 value={this.state.confirmPassword}
                 secureTextEntry
                 errorText={this.state.confirmPasswordError}
+                opacityValue={this.state.opacityValue}
+                editable={this.state.editable}
+                errorOpacityValue={this.state.errorOpacityValue}
               />
             </InputContainer>
 
-            <Touch onPress={() => this.handleLogin()}>
-              <ButtonText>
-                Login
-              </ButtonText>
-            </Touch>
+            <ButtonContainer>
+              <AnimatedTouch
+                style={{ position: 'absolute' }}
+                onPress={() => this.handleLogin()}
+                disabled={this.state.loginDisabled}
+              >
+                <ButtonText>
+                  Login
+                </ButtonText>
+              </AnimatedTouch>
 
-            <Touch onPress={() => this.handleSignup()}>
-              <ButtonText>
-                Sign Up
-              </ButtonText>
-            </Touch>
+              <AnimatedTouch
+                style={{ position: 'absolute', left: this.state.translationValue, opacity: this.state.opacityValue }}
+                onPress={() => this.handleSignup()}
+                disabled={this.state.signUpDisabled}
+              >
+                <ButtonText>
+                  Sign Up
+                </ButtonText>
+              </AnimatedTouch>
+            </ButtonContainer>
 
             <OrSeperator />
 
-            <LoginButton
-              readPermissions={['email', 'public_profile']}
-              onLoginFinished={
-                (error, result) => {
-                  if (error) {
-                    console.warn(`login has error: ${result.error}`);
-                  } else if (result.isCancelled) {
-                    console.warn('login is cancelled.');
-                  } else {
-                    AccessToken.getCurrentAccessToken()
-                      .then((fbAccessToken) => {
-                        this.handleLoginFb(fbAccessToken.accessToken);
-                      });
-                  }
-                }
-              }
-              onLogoutFinished={() => console.warn('logout.')}
-            />
+            <ContinueWithFacebookButton
+              onPress={() => {
+                this.handleLoginFb();
+              }}
+            >
+              <ContinueWithFacebookText>CONTINUE WITH FACEBOOK</ContinueWithFacebookText>
+            </ContinueWithFacebookButton>
+
+            <AnimatedForgottenPasswordButton
+              style={{ opacity: this.state.forgottenOpacityValue }}
+              disabled={this.state.forgottenDisabled}
+            >
+              <ForgottenPasswordText>Forgotten your password?</ForgottenPasswordText>
+            </AnimatedForgottenPasswordButton>
           </MainContainer>
         </SuperContainer>
       </View>
