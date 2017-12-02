@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import styled from 'styled-components/native';
 import PropTypes from 'prop-types';
+import {
+  Animated,Easing
+} from 'react-native';
 
 const View = styled.View``;
 
@@ -40,8 +43,14 @@ export default class Input extends Component {
     super();
 
     this.state = {
-
+      editable:false,
     };
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.editable !== prevProps.editable) {
+      this.setState({editable:this.props.editable})
+    } 
   }
 
   render() {
@@ -55,20 +64,23 @@ export default class Input extends Component {
     } = this.props;
 
     return (
-      <View>
+      <Animated.View style={{opacity:this.props.opacityValue}}>
         <TextInput
           placeholder={placeholder}
           placeholderTextColor={placeholderTextColor}
           onChangeText={onChangeText}
           value={value}
           secureTextEntry={secureTextEntry}
+          editable={this.state.editable}
         />
+        <Animated.View style={{opacity:this.props.errorOpacityValue}}>
         { errorText ?
-          <ErrorText>{errorText}</ErrorText>
+          <ErrorText >{errorText}</ErrorText>
           :
           null
         }
-      </View>
+        </Animated.View>
+      </Animated.View>
     );
   }
 }

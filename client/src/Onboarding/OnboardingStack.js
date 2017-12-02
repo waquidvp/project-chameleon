@@ -12,6 +12,9 @@ const OnboardingStack = StackNavigator({
   SignUp: {
     screen: SignUp,
   },
-});
+  
+}, {navigationOptions: {
+  header:null,
+}});
 
 export default OnboardingStack;
