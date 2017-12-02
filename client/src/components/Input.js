@@ -62,6 +62,7 @@ export default class Input extends Component {
           onChangeText={onChangeText}
           value={value}
           secureTextEntry={secureTextEntry}
+          underlineColorAndroid="transparent"
         />
         { errorText ?
           <ErrorText>{errorText}</ErrorText>
