@@ -2,7 +2,7 @@
 
 import React from 'react';
 import {
-  StatusBar,
+  StatusBar,Animated,Easing
 } from 'react-native';
 import styled from 'styled-components/native';
 import { LoginButton, AccessToken } from 'react-native-fbsdk';
@@ -48,10 +48,12 @@ const SelectorMainContainer = styled.View`
 const SelectorContainer = styled.View`
   width: 125px;
 `;
+const AnimatedSelectorContainer = Animated.createAnimatedComponent(SelectorContainer)
 
 const Selector = styled.Button`
   
 `;
+
 
 const Slider = styled.View`
   width: 75px;
@@ -59,13 +61,14 @@ const Slider = styled.View`
   border-width: 2px;
   border-radius: 2px;
   align-self: center;
-  margin-right: 125px;
   border-color: #ffffff;
 `;
+const AnimatedSlider = Animated.createAnimatedComponent(Slider)
 
 const InputContainer = styled.View`
   padding-top: 20px;
 `;
+
 
 const ButtonText = styled.Text`
   font-size: 16;
@@ -97,6 +100,16 @@ const OrText = styled.Text`
   color: #ffffff88;
 `;
 
+const ButtonContainer = styled.View`
+  width: 300px;
+  height: 38px;
+  border-radius: 20;
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+`;
+
 const Touch = styled.TouchableOpacity`
   width: 300px;
   height: 38px;
@@ -106,6 +119,7 @@ const Touch = styled.TouchableOpacity`
   justify-content: center;
   background-color: #ffffff;
 `;
+const AnimatedTouch = Animated.createAnimatedComponent(Touch)
 
 const OrSeperator = () => (
   <OrContainer>
@@ -134,15 +148,115 @@ class Login extends React.Component {
       emailError: 'Invalid email',
       passwordError: 'Incorrect password',
       confirmPasswordError: 'Passwords do not match',
+      opacityValue: new Animated.Value(0),
+      translationValue: new Animated.Value(200),
+      sliderValue: new Animated.Value(125),
+      selectorLoginValue: new Animated.Value(1),
+      selectorSignUpValue: new Animated.Value(0.25),
+      errorOpacityValue: new Animated.Value(0),
+      editable:false,
     };
   }
 
   handleSelectLogin = () => {
-
+    this.setState({editable:false})
+    var dura = 200 
+    var ease = Easing.linear
+    Animated.sequence([
+      Animated.parallel([
+        Animated.timing(                  
+          this.state.sliderValue,            
+          {
+            toValue: 125,                   
+            duration: dura,  
+            easing:ease,             
+          }
+        ),
+        Animated.timing(                  
+          this.state.opacityValue,            
+          {
+            toValue: 0,                   
+            duration: dura,  
+            easing:ease,             
+          }
+        ),
+        Animated.timing(                  
+          this.state.selectorLoginValue,            
+          {
+            toValue: 1,                   
+            duration: dura,  
+            easing:ease,             
+          }
+        ),
+        Animated.timing(                  
+          this.state.selectorSignUpValue,            
+          {
+            toValue: 0.5,                   
+            duration: dura,  
+            easing:ease,             
+          }
+        ),
+      ]),
+      Animated.timing(                  
+        this.state.translationValue,            
+        {
+          toValue: 200,                   
+          duration: 0,  
+          easing:ease,             
+        }
+      ),
+    ]).start()
   }
 
   handleSelectSignup = () => {
-
+    this.setState({editable:true})
+    var dura = 200
+    var ease = Easing.linear
+    Animated.sequence([
+      Animated.timing(                  
+        this.state.translationValue,            
+        {
+          toValue: 0,                   
+          duration: 0,  
+          easing:ease,             
+        }
+      ),
+      Animated.parallel([
+        Animated.timing(                  
+          this.state.sliderValue,            
+          {
+            toValue: -125,                   
+            duration: dura,  
+            easing:ease,             
+          }
+        ),
+        Animated.timing(                  
+          this.state.opacityValue,            
+          {
+            toValue: 1,                   
+            duration: dura,  
+            easing:ease,             
+          }
+        ),
+        Animated.timing(                  
+          this.state.selectorLoginValue,            
+          {
+            toValue: 0.5,                   
+            duration: dura,  
+            easing:ease,             
+          }
+        ),
+        Animated.timing(                  
+          this.state.selectorSignUpValue,            
+          {
+            toValue: 1,                   
+            duration: dura,  
+            easing:ease,             
+          }
+        ),
+      ]),
+      
+    ]).start()
   }
 
   handleSubmit = () => {
@@ -181,22 +295,24 @@ class Login extends React.Component {
             <StatusBar barStyle="light-content" setBackgroundColor="#000000" />
             <Image source={ChameleonLogoSource} resizeMode="contain" />
             <SelectorMainContainer>
-              <SelectorContainer>
+              <AnimatedSelectorContainer style={{opacity:this.state.selectorLoginValue}}>
                 <Selector
                   title="Login"
                   color="#ffffffff" //  #ffffff88 on Sign up
                   onPress={() => this.handleSelectLogin()}
+                  
                 />
-              </SelectorContainer>
-              <SelectorContainer>
+              </AnimatedSelectorContainer>
+              <AnimatedSelectorContainer style={{opacity:this.state.selectorSignUpValue}}>
                 <Selector
                   title="Sign up"
-                  color="#ffffff88" //  #ffffffff on Sign up
+                  color="#ffffffff" //  #ffffffff on Sign up
                   onPress={() => this.handleSelectSignup()}
+                  
                 />
-              </SelectorContainer>
+              </AnimatedSelectorContainer>
             </SelectorMainContainer>
-            <Slider />
+            <AnimatedSlider style={{marginRight: this.state.sliderValue}}/>
 
             <InputContainer>
               <Input
@@ -206,6 +322,8 @@ class Login extends React.Component {
                 }}
                 value={this.state.email}
                 errorText={this.state.emailError}
+                editable={true}
+                errorOpacityValue={this.state.errorOpacityValue}
               />
 
               <Input
@@ -216,6 +334,8 @@ class Login extends React.Component {
                 value={this.state.password}
                 secureTextEntry
                 errorText={this.state.passwordError}
+                editable={true}
+                errorOpacityValue={this.state.errorOpacityValue}
               />
 
               <Input // hide on login
@@ -226,20 +346,26 @@ class Login extends React.Component {
                 value={this.state.confirmPassword}
                 secureTextEntry
                 errorText={this.state.confirmPasswordError}
+                opacityValue={this.state.opacityValue}
+                editable={this.state.editable}
+                errorOpacityValue={this.state.errorOpacityValue}
               />
             </InputContainer>
 
-            <Touch onPress={() => this.handleLogin()}>
-              <ButtonText>
-                Login
-              </ButtonText>
-            </Touch>
+            <ButtonContainer>
+              <AnimatedTouch style={{position:'absolute'}} onPress={() => this.handleLogin()}>
+                <ButtonText>
+                  Login
+                </ButtonText>
+              </AnimatedTouch>
 
-            <Touch onPress={() => this.handleSignup()}>
-              <ButtonText>
-                Sign Up
-              </ButtonText>
-            </Touch>
+              <AnimatedTouch style={{position:'absolute',left:this.state.translationValue,opacity:this.state.opacityValue}} onPress={() => this.handleSignup()}>
+                <ButtonText>
+                  Sign Up
+                </ButtonText>
+              </AnimatedTouch>
+            </ButtonContainer>
+            
 
             <OrSeperator />
 
