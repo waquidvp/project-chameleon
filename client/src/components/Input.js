@@ -6,15 +6,12 @@ import {
 } from 'react-native';
 
 const TextInputContainer = styled.View`
-  width: 300px;
+  width: 100%;
   height: 38px;
-  padding-left: 14px;
-  padding-right: 14px;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  align-self: center;
-  border-radius: 20.5;
-  background-color: #00000020;
+  padding: 0 14px;
+  margin: 5px 0;
+  border-radius: 19;
+  background-color: ${props => props.backgroundColor};
 `;
 
 const TextInput = styled.TextInput`
@@ -42,6 +39,12 @@ export default class Input extends Component {
     placeholderTextColor: PropTypes.string,
     errorText: PropTypes.string,
     editable: PropTypes.bool,
+    selectionColor: PropTypes.string,
+    opacityValue: PropTypes.number,
+    errorOpacityValue: PropTypes.number,
+    autoCapitalize: PropTypes.string,
+    keyboardType: PropTypes.string,
+    backgroundColor: PropTypes.string,
   };
 
   static defaultProps = {
@@ -49,6 +52,10 @@ export default class Input extends Component {
     placeholderTextColor: '#ffffff',
     errorText: null,
     editable: true,
+    selectionColor: '#ffffff99',
+    autoCapitalize: 'none',
+    keyboardType: 'default',
+    backgroundColor: '#00000020',
   };
 
   constructor() {
@@ -68,11 +75,17 @@ export default class Input extends Component {
       secureTextEntry,
       errorText,
       editable,
+      selectionColor,
+      opacityValue,
+      errorOpacityValue,
+      autoCapitalize,
+      keyboardType,
+      backgroundColor,
     } = this.props;
 
     return (
-      <Animated.View style={{ opacity: this.props.opacityValue }}>
-        <TextInputContainer>
+      <Animated.View style={{ opacity: opacityValue }}>
+        <TextInputContainer backgroundColor={backgroundColor} >
           <TextInput
             placeholder={placeholder}
             placeholderTextColor={placeholderTextColor}
@@ -82,8 +95,11 @@ export default class Input extends Component {
             underlineColorAndroid="transparent"
             editable={editable}
             numberOfLines={1}
+            selectionColor={selectionColor}
+            autoCapitalize={autoCapitalize}
+            keyboardType={keyboardType}
           />
-          <Animated.View style={{ opacity: this.props.errorOpacityValue }}>
+          <Animated.View style={{ opacity: errorOpacityValue }}>
             { errorText ?
               <ErrorText >{errorText}</ErrorText>
               :

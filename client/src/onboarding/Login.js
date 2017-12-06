@@ -2,14 +2,15 @@
 
 import React from 'react';
 import {
-  StatusBar, Animated, Easing, Text, Keyboard,
+  StatusBar, Animated, Easing, Keyboard,
 } from 'react-native';
 import styled from 'styled-components/native';
-import { LoginButton, AccessToken, LoginManager } from 'react-native-fbsdk';
+import { AccessToken, LoginManager } from 'react-native-fbsdk';
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 
 import Input from '../components/Input';
+import Button from '../components/Button';
 import BlurredCamera from '../components/BlurredCamera';
 
 const View = styled.View`
@@ -33,7 +34,9 @@ const SuperButton = styled.TouchableWithoutFeedback`
 `;
 
 const MainContainer = styled.View`
-  
+  justify-content: center;
+  align-items: center;
+  width: 300px;
 `;
 
 const Image = styled.Image`
@@ -43,8 +46,8 @@ const Image = styled.Image`
 `;
 
 const SelectorMainContainer = styled.View`
-  align-self: center;
   flex-direction: row;
+
 `;
 
 const SelectorContainer = styled.View`
@@ -71,7 +74,6 @@ const SelectorText = styled.Text`
 
 const Slider = styled.View`
   width: 75px;
-  height: 0px;
   border-width: 1px;
   border-radius: 1px;
   align-self: center;
@@ -83,63 +85,45 @@ const AnimatedSlider = Animated.createAnimatedComponent(Slider);
 const InputContainer = styled.View`
   padding-top: 20px;
   padding-bottom: 5px;
+  width: 100%;
 `;
 
 const ButtonText = styled.Text`
   font-size: 16;
   color: #37CAC3;
-  position:absolute;
+  position: absolute;
 `;
 
 const AnimatedButtonText = Animated.createAnimatedComponent(ButtonText);
 
 const OrContainer = styled.View`
   width: 100%;
-  height: 15px;
-  margin: 20px;
-  align-self: center;
+  height: 20px;
+  margin: 15px;
   flex-direction: row;
 `;
 
 const OrLine = styled.View`
-  width: 140px;
-  height: 8.5px;
+  flex: 6;
+  height: 9px;
   border-bottom-width: 1.5px;
   border-bottom-color: #ffffff88;
 `;
 
 const OrTextContainer = styled.View`
+  flex: 1;
   height: 15px;
   padding: 6px;
   justify-content: center;
+  align-items: center;
 `;
 
 const OrText = styled.Text`
   color: #ffffff88;
 `;
 
-const ButtonContainer = styled.View`
-  width: 300px;
-  height: 38px;
-  border-radius: 20;
-  align-self: center;
-  align-items: center;
-  justify-content: center;
-  background-color: #ffffff;
-`;
-
-const Touch = styled.TouchableOpacity`
-  width: 300px;
-  height: 38px;
-  border-radius: 20;
-  align-self: center;
-  align-items: center;
-  justify-content: center;
-  background-color: #ffffff;
-`;
-
 const ContinueWithFacebookButton = styled.TouchableOpacity`
-  width: 300px;
+  width: 100%;
   height: 38px;
   border-radius: 20;
   background-color: #3B5998;    
@@ -308,24 +292,6 @@ class Login extends React.Component {
     ]).start();
   }
 
-  handleSubmit = () => {
-    const { email, password } = this.state;
-
-    this.props.login(email, password)
-      .then(({ data }) => {
-        this.props.screenProps.changeLoginState(true, data.login.jwt);
-      })
-      .catch((error) => {
-        console.warn(error);
-        if (/email/i.test(error.message)) {
-          this.setState({ emailError: error.message });
-        }
-        if (/password/i.test(error.message)) {
-          this.setState({ passwordError: error.message });
-        }
-      });
-  }
-
   handleLoginFb = () => {
     LoginManager.logInWithReadPermissions(['email', 'public_profile'])
       .then((error, result) => {
@@ -346,11 +312,43 @@ class Login extends React.Component {
   }
 
   handleLogin = () => {
-    console.warn('login');
+    const { email, password } = this.state;
+
+    this.props.login(email, password)
+      .then(({ data }) => {
+        this.props.screenProps.changeLoginState(true, data.login.jwt);
+      })
+      .catch((error) => {
+        console.warn(error);
+        if (/email/i.test(error.message)) {
+          this.setState({ emailError: error.message });
+        }
+        if (/password/i.test(error.message)) {
+          this.setState({ passwordError: error.message });
+        }
+      });
   }
 
   handleSignup = () => {
-    console.warn('Signup');
+    const { email, password, confirmPassword } = this.state;
+
+    if (password === confirmPassword) {
+      this.props.signup(email, password)
+        .then(({ data }) => {
+          this.props.screenProps.changeLoginState(true, data.signup.jwt);
+        })
+        .catch((error) => {
+          if (/email/i.test(error.message)) {
+            this.setState({ emailError: error.message });
+          }
+
+          if (/password/i.test(error.message)) {
+            this.setState({ passwordError: error.message });
+          }
+        });
+    } else {
+      this.setState({ confirmPasswordError: true });
+    }
   }
 
   handleLoginSignupPress = () => {
@@ -412,6 +410,7 @@ class Login extends React.Component {
                   value={this.state.email}
                   errorText={this.state.emailError}
                   errorOpacityValue={this.state.errorOpacityValue}
+                  keyboardType="email-address"
                 />
 
                 <Input
@@ -439,7 +438,7 @@ class Login extends React.Component {
                 />
               </InputContainer>
 
-              <Touch
+              <Button
                 onPress={() => {
                   this.handleLoginSignupPress();
                 }}
@@ -450,7 +449,7 @@ class Login extends React.Component {
                 <AnimatedButtonText style={{ opacity: this.state.opacityValue }}>
                   Sign Up
                 </AnimatedButtonText>
-              </Touch>
+              </Button>
 
               <OrSeperator />
 
@@ -496,6 +495,16 @@ const loginfbMutation = gql`
   }
 `;
 
+const signupMutation = gql`
+  mutation signup($email: String!, $password: String!) {
+    signup(email: $email, password: $password) {
+      _id
+      email
+      jwt
+    }
+  }
+`;
+
 export default compose(
   graphql(
     loginMutation,
@@ -510,6 +519,14 @@ export default compose(
     {
       props: ({ mutate }) => ({
         loginfb: fbAccessToken => mutate({ variables: { fbAccessToken } }),
+      }),
+    },
+  ),
+  graphql(
+    signupMutation,
+    {
+      props: ({ mutate }) => ({
+        signup: (email, password) => mutate({ variables: { email, password } }),
       }),
     },
   ),
