@@ -1,15 +1,29 @@
 import React, { Component } from 'react';
 import styled from 'styled-components/native';
 import PropTypes from 'prop-types';
+import PlatfromTouchable from 'react-native-platform-touchable';
 
-const Touch = styled.TouchableOpacity`
-  width: 300px;
+const Touchable = ({ style, children, ...props }) => (
+  <PlatfromTouchable
+    style={style}
+    {...props}
+  >
+    {children}
+  </PlatfromTouchable>
+);
+
+const TouchContainer = styled.View`
+  width: 100%;
   height: 38px;
-  border-radius: 20;
-  align-self: center;
+  border-radius: 19px;
+`;
+
+const Touch = styled(Touchable)`
+  height: 38px;
+  border-radius: 19px;
   align-items: center;
   justify-content: center;
-  background-color: #ffffff;
+  background-color: ${props => props.backgroundColor};
 `;
 
 const ButtonText = styled.Text`
@@ -17,15 +31,22 @@ const ButtonText = styled.Text`
   color: #37CAC3;
 `;
 
+const View = styled.View`
+  align-items: center;
+  justify-content: center;
+`;
 
-export default class Input extends Component {
+export default class Button extends Component {
   static propTypes = {
-    text: PropTypes.string.isRequired,
+    text: PropTypes.string,
+    children: PropTypes.node,
+    onPress: PropTypes.func.isRequired,
+    backgroundColor: PropTypes.string,
   };
 
   static defaultProps = {
-
-  };
+    backgroundColor: '#ffffff',
+  }
 
   constructor() {
     super();
@@ -38,14 +59,29 @@ export default class Input extends Component {
   render() {
     const {
       text,
+      children,
+      onPress,
+      backgroundColor,
     } = this.props;
 
     return (
-      <Touch onPress={() => this.handleLogin()}>
-        <ButtonText>
-          {text}
-        </ButtonText>
-      </Touch>
+      <TouchContainer>
+        <Touch
+          onPress={() => onPress()}
+          background={PlatfromTouchable.SelectableBackgroundBorderless()}
+          backgroundColor={backgroundColor}
+        >
+          { text ?
+            <ButtonText>
+              {text}
+            </ButtonText>
+          :
+            <View>
+              {children}
+            </View>
+          }
+        </Touch>
+      </TouchContainer>
     );
   }
 }
