@@ -2,7 +2,7 @@
 
 import React from 'react';
 import {
-  StatusBar, Animated, Easing, Keyboard,
+  StatusBar, Animated, Easing, Keyboard, Dimensions,
 } from 'react-native';
 import styled from 'styled-components/native';
 import { AccessToken, LoginManager } from 'react-native-fbsdk';
@@ -12,6 +12,8 @@ import gql from 'graphql-tag';
 import Input from '../components/Input';
 import Button from '../components/Button';
 import BlurredCamera from '../components/BlurredCamera';
+
+const { width } = Dimensions.get('window');
 
 const View = styled.View`
   flex: 1;
@@ -36,7 +38,8 @@ const SuperButton = styled.TouchableWithoutFeedback`
 const MainContainer = styled.View`
   justify-content: center;
   align-items: center;
-  width: 300px;
+  width: ${props => props.width - 40};
+  max-width: 300px;
 `;
 
 const Image = styled.Image`
@@ -367,7 +370,7 @@ class Login extends React.Component {
         <BlurredCamera />
         <SuperButton onPress={Keyboard.dismiss}>
           <SuperContainer>
-            <MainContainer>
+            <MainContainer width={width} >
               <StatusBar
                 barStyle="light-content"
                 backgroundColor="#0000003c"
