@@ -47,6 +47,7 @@ const GradientBackground = styled(Gradient)`
 const ButtonText = styled.Text`
   font-size: 16;
   color: #37CAC3;
+  background-color: #ffffff00;
 `;
 
 const View = styled.View`
@@ -95,6 +96,7 @@ export default class Button extends Component {
           >
             <GradientBackground
               colors={gradient}
+              start={{ x: 0, y: 1 }}
               end={{ x: 1, y: 1 }}
             >
               { text ?

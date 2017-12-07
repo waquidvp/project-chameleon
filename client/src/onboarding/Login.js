@@ -127,6 +127,7 @@ const OrText = styled.Text`
 
 const ContinueWithFacebookText = styled.Text`
   color: #ffffff;
+  background-color: #ffffff00;
 `;
 
 const ForgottenPasswordButton = styled.TouchableOpacity`
