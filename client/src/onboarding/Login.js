@@ -39,7 +39,7 @@ const MainContainer = styled.View`
   justify-content: center;
   align-items: center;
   width: ${props => props.width - 40};
-  max-width: 300px;
+  max-width: 325px;
 `;
 
 const Image = styled.Image`
@@ -123,16 +123,6 @@ const OrTextContainer = styled.View`
 
 const OrText = styled.Text`
   color: #ffffff88;
-`;
-
-const ContinueWithFacebookButton = styled.TouchableOpacity`
-  width: 100%;
-  height: 38px;
-  border-radius: 20;
-  background-color: #3B5998;    
-  align-self: center;
-  align-items: center;
-  justify-content: center;
 `;
 
 const ContinueWithFacebookText = styled.Text`
@@ -456,13 +446,14 @@ class Login extends React.Component {
 
               <OrSeperator />
 
-              <ContinueWithFacebookButton
+              <Button
                 onPress={() => {
                   this.handleLoginFb();
                 }}
+                gradient={['#3B4694', '#405EA2', '#457CB3']}
               >
                 <ContinueWithFacebookText>CONTINUE WITH FACEBOOK</ContinueWithFacebookText>
-              </ContinueWithFacebookButton>
+              </Button>
 
               <AnimatedForgottenPasswordButton
                 style={{ opacity: this.state.forgottenOpacityValue }}
