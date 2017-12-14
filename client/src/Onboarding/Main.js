@@ -1,3 +1,5 @@
+// @flow
+
 import React, { Component } from 'react';
 import styled from 'styled-components/native';
 import { graphql, compose } from 'react-apollo';

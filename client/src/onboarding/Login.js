@@ -29,6 +29,7 @@ const SelectorMainContainer = styled.View`
 
 const SelectorContainer = styled.View`
   width: 125px;
+  background-color: transparent;
 `;
 
 const AnimatedSelectorContainer = Animated.createAnimatedComponent(SelectorContainer);
@@ -91,6 +92,7 @@ const OrTextContainer = styled.View`
   padding: 6px;
   justify-content: center;
   align-items: center;
+  background-color: transparent;
 `;
 
 const OrText = styled.Text`
@@ -105,6 +107,7 @@ const ContinueWithFacebookText = styled.Text`
 const ForgottenPasswordButton = styled.TouchableOpacity`
   padding-top: 40px;
   align-self: center;
+  background-color: transparent;
 `;
 
 const AnimatedForgottenPasswordButton = Animated.createAnimatedComponent(ForgottenPasswordButton);
@@ -329,6 +332,9 @@ class Login extends React.Component {
         <AnimatedForgottenPasswordButton
           style={{ opacity: this.state.forgottenOpacityValue }}
           disabled={this.state.forgottenDisabled}
+          onPress={() => {
+            navigation.navigate('ForgotPassword');
+          }}
         >
           <ForgottenPasswordText>Forgotten your password?</ForgottenPasswordText>
         </AnimatedForgottenPasswordButton>
