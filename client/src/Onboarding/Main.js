@@ -15,8 +15,6 @@ const MainContainer = styled.View`
   flex: 1;
 `;
 
-const Text = styled.Text``;
-
 const StackNavigatorContainer = styled.View`
   position: absolute;
   top: 0;
@@ -24,7 +22,7 @@ const StackNavigatorContainer = styled.View`
   left: 0;
   bottom: 0;
   flex: 1;
-  background: #37cac3b4;
+  background-color: #37cac3b4;
 `;
 
 const KeyboardDismissView = KeyboardDismissHOC(MainContainer);

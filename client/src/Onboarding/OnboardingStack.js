@@ -24,7 +24,7 @@ const OnboardingStack = StackNavigator(
   },
   {
     cardStyle: {
-      backgroundColor: 'transparent',
+      backgroundColor: '#37cac3b4',
     },
     navigationOptions: {
       header: null,
