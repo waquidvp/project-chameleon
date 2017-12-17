@@ -24,12 +24,6 @@ const TextInput = styled.TextInput`
   padding-vertical: 0px;
 `;
 
-const ErrorText = styled.Text`
-  font-size: 12;
-  color: #D75745;
-  align-self: center;
-`;
-
 export default class Input extends Component {
   static propTypes = {
     placeholder: PropTypes.string.isRequired,
@@ -37,11 +31,9 @@ export default class Input extends Component {
     value: PropTypes.string.isRequired,
     secureTextEntry: PropTypes.bool,
     placeholderTextColor: PropTypes.string,
-    errorText: PropTypes.string,
     editable: PropTypes.bool,
     selectionColor: PropTypes.string,
     opacityValue: PropTypes.number,
-    errorOpacityValue: PropTypes.number,
     autoCapitalize: PropTypes.string,
     keyboardType: PropTypes.string,
     backgroundColor: PropTypes.string,
@@ -50,7 +42,6 @@ export default class Input extends Component {
   static defaultProps = {
     secureTextEntry: false,
     placeholderTextColor: '#ffffff',
-    errorText: null,
     editable: true,
     selectionColor: '#ffffff99',
     autoCapitalize: 'none',
@@ -73,11 +64,9 @@ export default class Input extends Component {
       onChangeText,
       value,
       secureTextEntry,
-      errorText,
       editable,
       selectionColor,
       opacityValue,
-      errorOpacityValue,
       autoCapitalize,
       keyboardType,
       backgroundColor,
@@ -99,13 +88,6 @@ export default class Input extends Component {
             autoCapitalize={autoCapitalize}
             keyboardType={keyboardType}
           />
-          <Animated.View style={{ opacity: errorOpacityValue }}>
-            { errorText ?
-              <ErrorText >{errorText}</ErrorText>
-              :
-              null
-            }
-          </Animated.View>
         </TextInputContainer>
       </Animated.View>
     );

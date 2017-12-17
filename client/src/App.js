@@ -4,19 +4,15 @@ import React from 'react';
 import { ApolloProvider } from 'react-apollo';
 
 import client from './api/gql-client';
-import OnboardingStack from './Onboarding/OnboardingStack';
+import Onboarding from './Onboarding/Main';
 import Home from './Home/Home';
 import { signIn, signOut, getToken } from './utils/token';
 
 export default class App extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      loggedIn: false,
-      render: false,
-    };
-  }
+  state = {
+    loggedIn: false,
+    render: false,
+  };
 
   async componentWillMount() {
     const token = await getToken();
@@ -28,7 +24,7 @@ export default class App extends React.Component {
     this.setState({ render: true });
   }
 
-  handleChangeLoginState = (loggedIn = false, jwt) => {
+  handleChangeLoginState = (loggedIn: Boolean = false, jwt: String) => {
     this.setState({ loggedIn });
 
     if (loggedIn) {
@@ -36,15 +32,17 @@ export default class App extends React.Component {
     } else {
       signOut();
     }
-  }
+  };
 
   render() {
     if (this.state.render) {
       return (
         <ApolloProvider client={client}>
-          {this.state.loggedIn ?
-            <Home screenProps={{ changeLoginState: this.handleChangeLoginState }} /> :
-            <OnboardingStack screenProps={{ changeLoginState: this.handleChangeLoginState }} />}
+          {this.state.loggedIn ? (
+            <Home screenProps={{ changeLoginState: this.handleChangeLoginState }} />
+          ) : (
+            <Onboarding changeLoginState={this.handleChangeLoginState} />
+          )}
         </ApolloProvider>
       );
     }
