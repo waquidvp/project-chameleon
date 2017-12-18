@@ -7,6 +7,9 @@ const typeDefs = `
         _id: ID!
         email: String!
         userName: String
+        firstName: String
+        lastName: String
+
         jwt: String
     }
 
@@ -20,6 +23,7 @@ const typeDefs = `
         signup(email: String!, password: String!): User
         login(email: String!, password: String!): User
         loginfb(fbAccessToken: String!): User
+        register(userName: String!, firstName: String!, lastName: String!): User
     }
 `;
 
