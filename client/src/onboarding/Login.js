@@ -10,6 +10,12 @@ import Button from '../components/Button';
 
 const { width } = Dimensions.get('window');
 
+const SuperContainer = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`;
+
 const MainContainer = styled.View`
   justify-content: center;
   align-items: center;
@@ -247,98 +253,100 @@ class Login extends React.Component {
     } = this.props.screenProps;
 
     return (
-      <MainContainer width={width}>
-        <StatusBar barStyle="light-content" backgroundColor="#0000003c" translucent />
-        <Image source={ChameleonLogoSource} resizeMode="contain" />
+      <SuperContainer>
+        <MainContainer width={width}>
+          <StatusBar barStyle="light-content" backgroundColor="#0000003c" translucent />
+          <Image source={ChameleonLogoSource} resizeMode="contain" />
 
-        <SelectorMainContainer>
-          <AnimatedSelectorContainer style={{ opacity: this.state.selectorLoginValue }}>
-            <SelectorTouch onPress={() => this.handleSelectLogin()}>
-              <Selector
-                color="#ffffffff" //  #ffffff88 on Sign up
-              >
-                <SelectorText>Login</SelectorText>
-              </Selector>
-            </SelectorTouch>
-          </AnimatedSelectorContainer>
-          <AnimatedSelectorContainer style={{ opacity: this.state.selectorSignUpValue }}>
-            <SelectorTouch onPress={() => this.handleSelectSignup()}>
-              <Selector
-                color="#ffffffff" //  #ffffffff on Sign up
-              >
-                <SelectorText>Sign Up</SelectorText>
-              </Selector>
-            </SelectorTouch>
-          </AnimatedSelectorContainer>
-        </SelectorMainContainer>
+          <SelectorMainContainer>
+            <AnimatedSelectorContainer style={{ opacity: this.state.selectorLoginValue }}>
+              <SelectorTouch onPress={() => this.handleSelectLogin()}>
+                <Selector
+                  color="#ffffffff" //  #ffffff88 on Sign up
+                >
+                  <SelectorText>Login</SelectorText>
+                </Selector>
+              </SelectorTouch>
+            </AnimatedSelectorContainer>
+            <AnimatedSelectorContainer style={{ opacity: this.state.selectorSignUpValue }}>
+              <SelectorTouch onPress={() => this.handleSelectSignup()}>
+                <Selector
+                  color="#ffffffff" //  #ffffffff on Sign up
+                >
+                  <SelectorText>Sign Up</SelectorText>
+                </Selector>
+              </SelectorTouch>
+            </AnimatedSelectorContainer>
+          </SelectorMainContainer>
 
-        <AnimatedSlider style={{ marginRight: this.state.sliderValue }} />
+          <AnimatedSlider style={{ marginRight: this.state.sliderValue }} />
 
-        <InputContainer>
-          <Input
-            placeholder="Email"
-            onChangeText={(text) => {
-              setEmail(text);
+          <InputContainer>
+            <Input
+              placeholder="Email"
+              onChangeText={(text) => {
+                setEmail(text);
+              }}
+              value={this.state.email}
+              keyboardType="email-address"
+            />
+
+            <Input
+              placeholder="Password"
+              onChangeText={(text) => {
+                setPassword(text);
+              }}
+              value={this.state.password}
+              secureTextEntry
+            />
+
+            <Input
+              placeholder="Confirm Password"
+              onChangeText={(text) => {
+                setConfirmPassword(text);
+              }}
+              value={this.state.confirmPassword}
+              secureTextEntry
+              opacityValue={this.state.opacityValue}
+              editable={this.state.editable}
+            />
+          </InputContainer>
+
+          <Button
+            onPress={() => {
+              this.handleLoginSignupPress();
             }}
-            value={this.state.email}
-            keyboardType="email-address"
-          />
+          >
+            <AnimatedButtonText style={{ opacity: this.state.forgottenOpacityValue }}>
+              Login
+            </AnimatedButtonText>
+            <AnimatedButtonText style={{ opacity: this.state.opacityValue }}>
+              Sign Up
+            </AnimatedButtonText>
+          </Button>
 
-          <Input
-            placeholder="Password"
-            onChangeText={(text) => {
-              setPassword(text);
+          <OrSeperator />
+
+          <Button
+            onPress={() => {
+              handleLoginFb();
             }}
-            value={this.state.password}
-            secureTextEntry
-          />
+            gradient={['#3B4694', '#405EA2', '#457CB3']}
+          >
+            <ContinueWithFacebookText>CONTINUE WITH FACEBOOK</ContinueWithFacebookText>
+          </Button>
 
-          <Input
-            placeholder="Confirm Password"
-            onChangeText={(text) => {
-              setConfirmPassword(text);
+          <AnimatedForgottenPasswordButton
+            style={{ opacity: this.state.forgottenOpacityValue }}
+            disabled={this.state.forgottenDisabled}
+            onPress={() => {
+              navigation.navigate('ForgotPassword');
             }}
-            value={this.state.confirmPassword}
-            secureTextEntry
-            opacityValue={this.state.opacityValue}
-            editable={this.state.editable}
-          />
-        </InputContainer>
-
-        <Button
-          onPress={() => {
-            this.handleLoginSignupPress();
-          }}
-        >
-          <AnimatedButtonText style={{ opacity: this.state.forgottenOpacityValue }}>
-            Login
-          </AnimatedButtonText>
-          <AnimatedButtonText style={{ opacity: this.state.opacityValue }}>
-            Sign Up
-          </AnimatedButtonText>
-        </Button>
-
-        <OrSeperator />
-
-        <Button
-          onPress={() => {
-            handleLoginFb();
-          }}
-          gradient={['#3B4694', '#405EA2', '#457CB3']}
-        >
-          <ContinueWithFacebookText>CONTINUE WITH FACEBOOK</ContinueWithFacebookText>
-        </Button>
-
-        <AnimatedForgottenPasswordButton
-          style={{ opacity: this.state.forgottenOpacityValue }}
-          disabled={this.state.forgottenDisabled}
-          onPress={() => {
-            navigation.navigate('ForgotPassword');
-          }}
-        >
-          <ForgottenPasswordText>Forgotten your password?</ForgottenPasswordText>
-        </AnimatedForgottenPasswordButton>
-      </MainContainer>
+          >
+            <ForgottenPasswordText>Forgotten your password?</ForgottenPasswordText>
+          </AnimatedForgottenPasswordButton>
+        </MainContainer>
+      </SuperContainer>
     );
   }
 }

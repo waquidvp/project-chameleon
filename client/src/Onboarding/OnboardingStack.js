@@ -23,6 +23,9 @@ const OnboardingStack = StackNavigator(
     },
   },
   {
+    cardStyle: {
+      backgroundColor: 'transparent',
+    },
     navigationOptions: {
       header: null,
     },

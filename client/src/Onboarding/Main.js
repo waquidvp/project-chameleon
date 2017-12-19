@@ -15,14 +15,14 @@ const MainContainer = styled.View`
   flex: 1;
 `;
 
+const Text = styled.Text``;
+
 const StackNavigatorContainer = styled.View`
   position: absolute;
   top: 0;
   right: 0;
   left: 0;
   bottom: 0;
-  justify-content: center;
-  align-items: center;
   flex: 1;
   background: #37cac3b4;
 `;
