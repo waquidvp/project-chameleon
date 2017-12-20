@@ -7,10 +7,18 @@ const MainContainer = styled.View`
   flex: 1;
 `;
 
+const Text = styled.Text`
+
+`;
+
 class ForgotPassword extends Component {
   state = {};
   render() {
-    return <MainContainer />;
+    return (
+      <MainContainer>
+        <Text>Forgotten Password</Text>
+      </MainContainer>
+    );
   }
 }
 

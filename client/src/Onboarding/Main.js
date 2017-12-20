@@ -22,7 +22,6 @@ const StackNavigatorContainer = styled.View`
   left: 0;
   bottom: 0;
   flex: 1;
-  background-color: #37cac3b4;
 `;
 
 const KeyboardDismissView = KeyboardDismissHOC(MainContainer);
