@@ -25,7 +25,6 @@ const MainContainer = styled.View`
 const Image = styled.Image`
   width: 130px;
   height: 150px;
-  margin-bottom: 10px;
   align-self: center;
 `;
 
@@ -33,13 +32,14 @@ const Title = styled.Text`
   font-size: 18px;
   color: #ffffff;
   margin-bottom: 10px;
+  height: 30px;
 `;
 
 const Description = styled.Text`
   font-size: 14px;
   color: #ffffff;
   text-align: center;
-  margin-bottom: 20px;
+  height: 63px;
 `;
 
 const InputContainer = styled.View`
@@ -48,7 +48,7 @@ const InputContainer = styled.View`
 `;
 
 const GoBackButton = styled.TouchableOpacity`
-  margin-top: 93px;
+  margin-top: 128px;
   background-color: transparent;
 `;
 
