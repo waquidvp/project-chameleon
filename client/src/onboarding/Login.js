@@ -111,7 +111,7 @@ const ContinueWithFacebookText = styled.Text`
 `;
 
 const ForgottenPasswordButton = styled.TouchableOpacity`
-  padding-top: 40px;
+  margin-top: 40px;
   align-self: center;
   background-color: transparent;
 `;

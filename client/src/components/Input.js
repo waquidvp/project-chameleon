@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components/native';
 import PropTypes from 'prop-types';
-import {
-  Animated,
-} from 'react-native';
+import { Animated } from 'react-native';
 
 const TextInputContainer = styled.View`
   width: 100%;
@@ -52,9 +50,7 @@ export default class Input extends Component {
   constructor() {
     super();
 
-    this.state = {
-
-    };
+    this.state = {};
   }
 
   render() {
@@ -74,7 +70,7 @@ export default class Input extends Component {
 
     return (
       <Animated.View style={{ opacity: opacityValue }}>
-        <TextInputContainer backgroundColor={backgroundColor} >
+        <TextInputContainer backgroundColor={backgroundColor}>
           <TextInput
             placeholder={placeholder}
             placeholderTextColor={placeholderTextColor}
