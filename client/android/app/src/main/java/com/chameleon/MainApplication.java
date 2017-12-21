@@ -3,6 +3,7 @@ package com.chameleon;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.wix.interactable.Interactable;
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.cmcewen.blurview.BlurViewPackage;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
@@ -36,6 +37,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new Interactable(),
             new LinearGradientPackage(),
             new BlurViewPackage(),
             new RCTCameraPackage(),
