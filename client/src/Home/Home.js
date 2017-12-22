@@ -1,24 +1,32 @@
 // @flow
 
 import React from 'react';
-import { Dimensions, Animated, StyleSheet } from 'react-native';
+import { Dimensions, Animated, StyleSheet, StatusBar, Platform } from 'react-native';
 import styled from 'styled-components/native';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import Interactable from 'react-native-interactable';
 import Camera from 'react-native-camera';
 
-const Screen = {
-  width: Dimensions.get('window').width,
-  height: Dimensions.get('window').height,
-};
+import Button from '../components/Button';
+
+const Screen = Platform.select({
+  ios: () => ({
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
+    statusBarHeight: 20,
+  }),
+  android: () => ({
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
+    statusBarHeight: 24,
+  }),
+})();
 
 const MainContainer = styled.View`
   flex: 1;
   background: green;
 `;
-
-const Button = styled.Button``;
 
 const View = styled.View``;
 
@@ -38,7 +46,8 @@ class Home extends React.Component {
 
     return (
       <MainContainer>
-        <Button title="Sign Out" onPress={() => changeLoginState(false)} />
+        <StatusBar barStyle="light-content" backgroundColor="#0000003c" translucent />
+        <Button text="Sign Out" onPress={() => changeLoginState(false)} />
         {currentUser && (
           <View>
             <Text>{currentUser._id}</Text>
@@ -53,7 +62,7 @@ class Home extends React.Component {
               {
                 backgroundColor: 'black',
                 opacity: this._deltaY.interpolate({
-                  inputRange: [0, Screen.height - 100],
+                  inputRange: [0, Screen.height],
                   outputRange: [0.5, 0],
                   extrapolateRight: 'clamp',
                 }),
@@ -62,9 +71,9 @@ class Home extends React.Component {
           />
           <Interactable.View
             verticalOnly
-            snapPoints={[{ y: 0 }, { y: Screen.height - 65 }]}
-            boundaries={{ top: -15, bottom: Screen.height - 50 }}
-            initialPosition={{ y: Screen.height - 65 }}
+            snapPoints={[{ y: Screen.statusBarHeight }, { y: Screen.height - 40 }]}
+            boundaries={{ top: -15, bottom: Screen.height - 25 }}
+            initialPosition={{ y: Screen.height - 40 }}
             animatedValueY={this._deltaY}
           >
             <View style={styles.panel} pointerEvents="box-only">
@@ -93,25 +102,14 @@ const styles = StyleSheet.create({
     right: 0,
   },
   panel: {
-    height: Screen.height,
-    padding: 20,
-    backgroundColor: '#f7f5eee8',
+    height: Screen.height + Screen.statusBarHeight,
+    backgroundColor: '#ffffff',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     shadowColor: '#000000',
     shadowOffset: { width: 0, height: 0 },
     shadowRadius: 5,
     shadowOpacity: 0.4,
-  },
-  panelHeader: {
-    alignItems: 'center',
-  },
-  panelHandle: {
-    width: 40,
-    height: 8,
-    borderRadius: 4,
-    backgroundColor: '#00000040',
-    marginBottom: 10,
   },
 });
 
