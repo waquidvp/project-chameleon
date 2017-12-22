@@ -25,7 +25,8 @@ const Screen = Platform.select({
 
 const MainContainer = styled.View`
   flex: 1;
-  background: green;
+  background: rgba(55, 202, 195, 10);
+  padding-top: ${props => props.statusBarHeight}
 `;
 
 const View = styled.View``;
@@ -37,7 +38,7 @@ class Home extends React.Component {
     super();
 
     this.state = {};
-    this._deltaY = new Animated.Value(Screen.height - 100);
+    this._deltaY = new Animated.Value(Screen.height);
   }
 
   render() {
@@ -45,7 +46,7 @@ class Home extends React.Component {
     const { currentUser } = this.props.data;
 
     return (
-      <MainContainer>
+      <MainContainer statusBarHeight={Screen.statusBarHeight} >
         <StatusBar barStyle="light-content" backgroundColor="#0000003c" translucent />
         <Button text="Sign Out" onPress={() => changeLoginState(false)} />
         {currentUser && (
@@ -104,8 +105,9 @@ const styles = StyleSheet.create({
   panel: {
     height: Screen.height + Screen.statusBarHeight,
     backgroundColor: '#ffffff',
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
+    borderTopLeftRadius: 28,
+    borderTopRightRadius: 28,
+    overflow: 'hidden',
     shadowColor: '#000000',
     shadowOffset: { width: 0, height: 0 },
     shadowRadius: 5,
