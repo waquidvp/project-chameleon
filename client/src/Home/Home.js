@@ -13,6 +13,7 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import Interactable from 'react-native-interactable';
 import Camera from 'react-native-camera';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 import Button from '../components/Button';
 
@@ -107,7 +108,9 @@ class Home extends React.Component {
                     }),
                   },
                 ]}
-              />
+              >
+                <Icon name="camera" color="white" size={20} />
+              </Animated.View>
             </View>
           </Interactable.View>
         </View>
@@ -133,12 +136,14 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgb(55, 202, 195)',
     position: 'absolute',
     top: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   panel: {
     height: Screen.height + Screen.statusBarHeight,
     backgroundColor: '#ffffff',
-    borderTopLeftRadius: 28,
-    borderTopRightRadius: 28,
+    borderTopLeftRadius: 19,
+    borderTopRightRadius: 19,
     overflow: 'hidden',
     shadowColor: '#000000',
     shadowOffset: { width: 0, height: 0 },
