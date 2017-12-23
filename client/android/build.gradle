@@ -29,5 +29,5 @@ allprojects {
             name 'Google'
         }
     }
-    buildDir = "C:/temp/${rootProject.name}/${project.name}"
+    // buildDir = "C:/temp/${rootProject.name}/${project.name}"
 }
