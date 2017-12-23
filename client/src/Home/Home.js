@@ -1,7 +1,13 @@
 // @flow
 
 import React from 'react';
-import { Dimensions, Animated, StyleSheet, StatusBar, Platform } from 'react-native';
+import {
+  Dimensions,
+  Animated,
+  StyleSheet,
+  StatusBar,
+  Platform,
+} from 'react-native';
 import styled from 'styled-components/native';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
@@ -25,8 +31,8 @@ const Screen = Platform.select({
 
 const MainContainer = styled.View`
   flex: 1;
-  background: rgba(55, 202, 195, 10);
-  padding-top: ${props => props.statusBarHeight}
+  background-color: rgba(55, 202, 195, 0.2);
+  padding-top: ${props => props.statusBarHeight};
 `;
 
 const View = styled.View``;
@@ -38,7 +44,7 @@ class Home extends React.Component {
     super();
 
     this.state = {};
-    this._deltaY = new Animated.Value(Screen.height);
+    this._deltaY = new Animated.Value(Screen.height + Screen.statusBarHeight);
   }
 
   render() {
@@ -46,8 +52,12 @@ class Home extends React.Component {
     const { currentUser } = this.props.data;
 
     return (
-      <MainContainer statusBarHeight={Screen.statusBarHeight} >
-        <StatusBar barStyle="light-content" backgroundColor="#0000003c" translucent />
+      <MainContainer statusBarHeight={Screen.statusBarHeight}>
+        <StatusBar
+          barStyle="light-content"
+          backgroundColor="#0000003c"
+          translucent
+        />
         <Button text="Sign Out" onPress={() => changeLoginState(false)} />
         {currentUser && (
           <View>
@@ -63,7 +73,7 @@ class Home extends React.Component {
               {
                 backgroundColor: 'black',
                 opacity: this._deltaY.interpolate({
-                  inputRange: [0, Screen.height],
+                  inputRange: [Screen.statusBarHeight, Screen.height - 40],
                   outputRange: [0.5, 0],
                   extrapolateRight: 'clamp',
                 }),
@@ -72,8 +82,11 @@ class Home extends React.Component {
           />
           <Interactable.View
             verticalOnly
-            snapPoints={[{ y: Screen.statusBarHeight }, { y: Screen.height - 40 }]}
-            boundaries={{ top: -15, bottom: Screen.height - 25 }}
+            snapPoints={[
+              { y: Screen.statusBarHeight },
+              { y: Screen.height - 40 },
+            ]}
+            boundaries={{ top: 0, bottom: Screen.height - 25 }}
             initialPosition={{ y: Screen.height - 40 }}
             animatedValueY={this._deltaY}
           >
@@ -82,6 +95,18 @@ class Home extends React.Component {
                 style={styles.container}
                 aspect={Camera.constants.Aspect.fill}
                 type={Camera.constants.Type.front}
+              />
+              <Animated.View
+                style={[
+                  styles.tab,
+                  {
+                    opacity: this._deltaY.interpolate({
+                      inputRange: [Screen.statusBarHeight, Screen.height - 40],
+                      outputRange: [0, 1],
+                      extrapolateRight: 'clamp',
+                    }),
+                  },
+                ]}
               />
             </View>
           </Interactable.View>
@@ -101,6 +126,13 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
+  },
+  tab: {
+    height: 40,
+    width: Screen.width,
+    backgroundColor: 'rgb(55, 202, 195)',
+    position: 'absolute',
+    top: 0,
   },
   panel: {
     height: Screen.height + Screen.statusBarHeight,
