@@ -1,9 +1,9 @@
 // @flow
 
 import React from 'react';
-import { ApolloProvider } from 'react-apollo';
+// import { ApolloProvider } from 'react-apollo';
 
-import client from './api/gql-client';
+// import client from './api/gql-client';
 import Onboarding from './Onboarding/Main';
 import Home from './Home/Home';
 import { signIn, signOut, getToken } from './utils/token';
@@ -37,7 +37,7 @@ export default class App extends React.Component {
   render() {
     if (this.state.render) {
       return (
-        <ApolloProvider client={client}>
+        {/* <ApolloProvider client={client}> */}
           {/* {this.state.loggedIn ? ( */}
           <Home
             screenProps={{ changeLoginState: this.handleChangeLoginState }}
@@ -45,7 +45,7 @@ export default class App extends React.Component {
           {/* ) : ( */}
           {/* <Onboarding changeLoginState={this.handleChangeLoginState} /> */}
           {/* )} */}
-        </ApolloProvider>
+        {/* </ApolloProvider> */}
       );
     }
 
