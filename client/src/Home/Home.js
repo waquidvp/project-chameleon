@@ -50,7 +50,7 @@ class Home extends React.Component {
 
   render() {
     const { changeLoginState } = this.props.screenProps;
-    // const { currentUser } = this.props.data;
+    const { currentUser } = this.props.data;
 
     return (
       <MainContainer statusBarHeight={Screen.statusBarHeight}>
@@ -60,12 +60,12 @@ class Home extends React.Component {
           translucent
         />
         <Button text="Sign Out" onPress={() => changeLoginState(false)} />
-        {/* {currentUser && (
+        {currentUser && (
           <View>
             <Text>{currentUser._id}</Text>
             <Text>{currentUser.email}</Text>
           </View>
-        )} */}
+        )}
         <View style={styles.panelContainer} pointerEvents="box-none">
           <Animated.View
             pointerEvents="box-none"
@@ -87,7 +87,7 @@ class Home extends React.Component {
               { y: Screen.statusBarHeight },
               { y: Screen.height - 40 },
             ]}
-            boundaries={{ top: 0, bottom: Screen.height - 25 }}
+            boundaries={{ top: 40, bottom: Screen.height - 25 }}
             initialPosition={{ y: Screen.height - 40 }}
             animatedValueY={this._deltaY}
           >
@@ -152,13 +152,11 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Home;
-
-// export default graphql(gql`
-//   query User {
-//     currentUser {
-//       _id
-//       email
-//     }
-//   }
-// `)(Home);
+export default graphql(gql`
+  query User {
+    currentUser {
+      _id
+      email
+    }
+  }
+`)(Home);
