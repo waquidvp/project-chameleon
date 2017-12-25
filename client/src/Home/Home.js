@@ -27,7 +27,7 @@ class Home extends React.Component {
     super();
 
     this.state = {};
-    this._deltaY = new Animated.Value(screenDimensions.height - 40);
+    this._deltaY = new Animated.Value(screenDimensions.height - 60);
   }
 
   render() {
@@ -52,7 +52,7 @@ class Home extends React.Component {
               {
                 backgroundColor: 'black',
                 opacity: this._deltaY.interpolate({
-                  inputRange: [screenDimensions.statusBarHeight, screenDimensions.height - 40],
+                  inputRange: [screenDimensions.statusBarHeight, screenDimensions.height - 60],
                   outputRange: [0.5, 0],
                   extrapolateRight: 'clamp',
                 }),
@@ -63,10 +63,10 @@ class Home extends React.Component {
             verticalOnly
             snapPoints={[
               { y: screenDimensions.statusBarHeight },
-              { y: screenDimensions.height - 40 },
+              { y: screenDimensions.height - 60 },
             ]}
             boundaries={{ top: 0, bottom: screenDimensions.height - 25 }}
-            initialPosition={{ y: screenDimensions.height - 40 }}
+            initialPosition={{ y: screenDimensions.height - 60 }}
             animatedValueY={this._deltaY}
           >
             <View style={styles.panel} pointerEvents="box-only">
@@ -80,7 +80,7 @@ class Home extends React.Component {
                   styles.tab,
                   {
                     opacity: this._deltaY.interpolate({
-                      inputRange: [screenDimensions.statusBarHeight, screenDimensions.height - 40],
+                      inputRange: [screenDimensions.statusBarHeight, screenDimensions.height - 60],
                       outputRange: [0, 1],
                       extrapolateRight: 'clamp',
                     }),
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
     right: 0,
   },
   tab: {
-    height: 40,
+    height: 60,
     width: screenDimensions.width,
     backgroundColor: 'rgb(55, 202, 195)',
     position: 'absolute',

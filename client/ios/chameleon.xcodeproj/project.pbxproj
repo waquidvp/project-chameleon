@@ -881,7 +881,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = 4RQUZCA8H9;
+						DevelopmentTeam = 9FBK2Y8522;
 						ProvisioningStyle = Automatic;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
@@ -1516,7 +1516,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = 4RQUZCA8H9;
+				DEVELOPMENT_TEAM = 9FBK2Y8522;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "~/Documents/FacebookSDK";
 				HEADER_SEARCH_PATHS = (
@@ -1536,7 +1536,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.chameleon.com;
+				PRODUCT_BUNDLE_IDENTIFIER = org.chameleon.tce;
 				PRODUCT_NAME = chameleon;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1551,7 +1551,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4RQUZCA8H9;
+				DEVELOPMENT_TEAM = 9FBK2Y8522;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "~/Documents/FacebookSDK";
 				HEADER_SEARCH_PATHS = (
@@ -1571,7 +1571,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.chameleon.com;
+				PRODUCT_BUNDLE_IDENTIFIER = org.chameleon.tce;
 				PRODUCT_NAME = chameleon;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
