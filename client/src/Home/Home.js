@@ -27,7 +27,7 @@ class Home extends React.Component {
     super();
 
     this.state = {};
-    this._deltaY = new Animated.Value(screenDimensions.height + screenDimensions.statusBarHeight);
+    this._deltaY = new Animated.Value(screenDimensions.height - 40);
   }
 
   render() {
