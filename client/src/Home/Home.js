@@ -21,7 +21,6 @@ const MainContainer = styled.View`
 const TabContainer = styled.View`
   height: 40px;
   width: 100%;
-  flex: 1;
   justify-content: center;
   align-items: center;
 `;
@@ -124,8 +123,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgb(55, 202, 195)',
     position: 'absolute',
     top: 0,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   panel: {
     height: screenDimensions.height + screenDimensions.statusBarHeight,
