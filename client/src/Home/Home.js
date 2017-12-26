@@ -61,7 +61,7 @@ class Home extends React.Component {
             verticalOnly
             snapPoints={[
               { y: screenDimensions.statusBarHeight },
-              { y: screenDimensions.height - 40 },
+              { y: screenDimensions.height - 60 },
             ]}
             boundaries={{ top: 0, bottom: screenDimensions.height - 25 }}
             initialPosition={{ y: screenDimensions.height - 40 }}
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     right: 0,
   },
   tab: {
-    height: 40,
+    height: 60,
     width: screenDimensions.width,
     backgroundColor: 'rgb(55, 202, 195)',
     position: 'absolute',
