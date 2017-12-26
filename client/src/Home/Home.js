@@ -23,16 +23,15 @@ const View = styled.View``;
 const Text = styled.Text``;
 
 class Home extends React.Component {
-  constructor() {
-    super();
+  state = {};
 
-    this.state = {};
-    this._deltaY = new Animated.Value(screenDimensions.height - 40);
-  }
+  deltaY = new Animated.Value(screenDimensions.height - 40);
 
   render() {
     const { changeLoginState } = this.props.screenProps;
     const { currentUser } = this.props.data;
+
+    console.warn(this.deltaY);
 
     return (
       <MainContainer statusBarHeight={screenDimensions.statusBarHeight}>
@@ -51,10 +50,9 @@ class Home extends React.Component {
               styles.panelContainer,
               {
                 backgroundColor: 'black',
-                opacity: this._deltaY.interpolate({
+                opacity: this.deltaY.interpolate({
                   inputRange: [screenDimensions.statusBarHeight, screenDimensions.height - 40],
                   outputRange: [0.5, 0],
-                  extrapolateRight: 'clamp',
                 }),
               },
             ]}
@@ -67,7 +65,7 @@ class Home extends React.Component {
             ]}
             boundaries={{ top: 0, bottom: screenDimensions.height - 25 }}
             initialPosition={{ y: screenDimensions.height - 40 }}
-            animatedValueY={this._deltaY}
+            animatedValueY={this.deltaY}
           >
             <View style={styles.panel} pointerEvents="box-only">
               <Camera
@@ -79,10 +77,9 @@ class Home extends React.Component {
                 style={[
                   styles.tab,
                   {
-                    opacity: this._deltaY.interpolate({
+                    opacity: this.deltaY.interpolate({
                       inputRange: [screenDimensions.statusBarHeight, screenDimensions.height - 40],
                       outputRange: [0, 1],
-                      extrapolateRight: 'clamp',
                     }),
                   },
                 ]}
