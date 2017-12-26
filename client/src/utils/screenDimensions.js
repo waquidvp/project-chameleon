@@ -20,10 +20,20 @@ export const getStatusBarHeight = () => {
   } else if (Platform.OS === 'android') {
     return 24;
   }
+
   return null;
+};
+
+export const getBottomBarHeight = () => {
+  if (isIphoneTen() === true) {
+    return 34;
+  }
+
+  return 0;
 };
 
 export const screenDimensions = {
   ...screen,
   statusBarHeight: getStatusBarHeight(),
+  bottomBarHeight: getBottomBarHeight(),
 };

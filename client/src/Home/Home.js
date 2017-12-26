@@ -18,6 +18,14 @@ const MainContainer = styled.View`
   padding-top: ${props => props.statusBarHeight};
 `;
 
+const TabContainer = styled.View`
+  height: 40px;
+  width: 100%;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`;
+
 const View = styled.View``;
 
 const Text = styled.Text``;
@@ -61,10 +69,13 @@ class Home extends React.Component {
             verticalOnly
             snapPoints={[
               { y: screenDimensions.statusBarHeight },
-              { y: screenDimensions.height - 60 },
+              { y: screenDimensions.height - screenDimensions.bottomBarHeight - 40 },
             ]}
-            boundaries={{ top: 0, bottom: screenDimensions.height - 25 }}
-            initialPosition={{ y: screenDimensions.height - 40 }}
+            boundaries={{
+              top: 0,
+              bottom: screenDimensions.height - screenDimensions.bottomBarHeight - 25,
+            }}
+            initialPosition={{ y: screenDimensions.height - screenDimensions.bottomBarHeight - 40 }}
             animatedValueY={this.deltaY}
           >
             <View style={styles.panel} pointerEvents="box-only">
@@ -84,7 +95,9 @@ class Home extends React.Component {
                   },
                 ]}
               >
-                <Icon name="camera" color="white" size={20} />
+                <TabContainer>
+                  <Icon name="camera" color="white" size={20} />
+                </TabContainer>
               </Animated.View>
             </View>
           </Interactable.View>
@@ -106,7 +119,7 @@ const styles = StyleSheet.create({
     right: 0,
   },
   tab: {
-    height: 60,
+    height: 40 + screenDimensions.bottomBarHeight,
     width: screenDimensions.width,
     backgroundColor: 'rgb(55, 202, 195)',
     position: 'absolute',
