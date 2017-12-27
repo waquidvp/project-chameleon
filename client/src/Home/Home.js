@@ -32,13 +32,14 @@ const Text = styled.Text``;
 class Home extends React.Component {
   state = {};
 
-  deltaY = new Animated.Value(screenDimensions.height - 40);
+  deltaY = new Animated.Value(screenDimensions.height - screenDimensions.bottomBarHeight - 40);
 
   render() {
     const { changeLoginState } = this.props.screenProps;
     const { currentUser } = this.props.data;
 
     console.warn(this.deltaY);
+    console.warn(screenDimensions);
 
     return (
       <MainContainer statusBarHeight={screenDimensions.statusBarHeight}>
@@ -58,8 +59,9 @@ class Home extends React.Component {
               {
                 backgroundColor: 'black',
                 opacity: this.deltaY.interpolate({
-                  inputRange: [screenDimensions.statusBarHeight, screenDimensions.height - 40],
+                  inputRange: [screenDimensions.statusBarHeight, screenDimensions.height - screenDimensions.bottomBarHeight - 40],
                   outputRange: [0.5, 0],
+                  extrapolate: 'clamp',
                 }),
               },
             ]}
@@ -67,12 +69,12 @@ class Home extends React.Component {
           <Interactable.View
             verticalOnly
             snapPoints={[
-              { y: screenDimensions.statusBarHeight },
               { y: screenDimensions.height - screenDimensions.bottomBarHeight - 40 },
+              { y: screenDimensions.statusBarHeight },
             ]}
             boundaries={{
               top: 0,
-              bottom: screenDimensions.height - screenDimensions.bottomBarHeight - 25,
+              bottom: screenDimensions.height - screenDimensions.bottomBarHeight - 20,
             }}
             initialPosition={{ y: screenDimensions.height - screenDimensions.bottomBarHeight - 40 }}
             animatedValueY={this.deltaY}
@@ -88,8 +90,9 @@ class Home extends React.Component {
                   styles.tab,
                   {
                     opacity: this.deltaY.interpolate({
-                      inputRange: [screenDimensions.statusBarHeight, screenDimensions.height - 40],
+                      inputRange: [screenDimensions.statusBarHeight, screenDimensions.height - screenDimensions.bottomBarHeight - 40],
                       outputRange: [0, 1],
+                      extrapolate: 'clamp',
                     }),
                   },
                 ]}
