@@ -102,8 +102,6 @@ class PullUpPanel extends React.Component {
   deltaY = new Animated.Value(screenDimensions.height - screenDimensions.bottomBarHeight - 40);
 
   render() {
-    console.warn(this.deltaY);
-    console.warn(screenDimensions);
     return (
       <MainContainer pointerEvents="box-none">
         <GreyOverlay pointerEvents="box-none" deltaY={this.deltaY} />
