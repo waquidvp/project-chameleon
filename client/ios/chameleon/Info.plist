@@ -58,7 +58,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>We would like to access the camera</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>We would like to access the microphone</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
@@ -78,6 +78,7 @@
 		<string>Octicons.ttf</string>
 		<string>SimpleLineIcons.ttf</string>
 		<string>Zocial.ttf</string>
+		<string>Open Sans SemiBold.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

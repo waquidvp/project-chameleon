@@ -7,6 +7,11 @@
     "test": "jest",
     "ios:setup": "node ./node_modules/react-native-fbsdk/bin/ios_setup.js"
   },
+  "rnpm": {
+    "assets": [
+      "./src/Assets/fonts/"
+    ]
+  },
   "dependencies": {
     "apollo-cache-inmemory": "^1.1.4",
     "apollo-client": "^2.0.4",
