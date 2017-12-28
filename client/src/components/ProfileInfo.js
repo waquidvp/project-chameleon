@@ -17,9 +17,17 @@ const ProfilePictureContainer = styled.View`
     (props.online === true ? 'rgba(55, 202, 195, 0.6)' : 'rgba(55, 202, 195, 0)')};
 `;
 
-const UserInfoContainer = styled.View`
+const ColumnContainer = styled.View`
+  flex-direction: column;
   padding-left: 14px;
 `;
+
+const MainInfoContainer = styled.View`
+  flex-direction: row;
+  align-items: center;
+`;
+
+const UserInfoContainer = styled.View``;
 
 const Name = styled.Text`
   font-family: OpenSans-SemiBold;
@@ -46,8 +54,15 @@ const Minutes = styled.Text`
   color: rgba(0, 0, 0, 0.54);
 `;
 
+const ChatPreview = styled.Text`
+  margin-top: 2px;
+  font-family: OpenSans-SemiBold;
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.38);
+`;
+
 const ProfileInfo = ({
-  profilePictureURL, online, name, minutes,
+  profilePictureURL, online, name, minutes, chatPreview,
 }) => (
   <ProfileInfoContainer>
     <ProfilePictureContainer online={online}>
@@ -57,11 +72,16 @@ const ProfileInfo = ({
         }}
       />
     </ProfilePictureContainer>
-    <UserInfoContainer>
-      <Name>{name}</Name>
-    </UserInfoContainer>
-    <SeperatorBar />
-    <Minutes>{minutes}</Minutes>
+    <ColumnContainer>
+      <MainInfoContainer>
+        <UserInfoContainer>
+          <Name>{name}</Name>
+        </UserInfoContainer>
+        <SeperatorBar />
+        <Minutes>{minutes}</Minutes>
+      </MainInfoContainer>
+      {chatPreview ? <ChatPreview>{chatPreview}</ChatPreview> : null}
+    </ColumnContainer>
   </ProfileInfoContainer>
 );
 
@@ -70,6 +90,7 @@ ProfileInfo.propTypes = {
   online: PropTypes.bool.isRequired,
   name: PropTypes.string.isRequired,
   minutes: PropTypes.number.isRequired,
+  chatPreview: PropTypes.string,
 };
 
 export default ProfileInfo;

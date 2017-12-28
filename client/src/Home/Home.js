@@ -47,6 +47,7 @@ const demoChats = [
     online: false,
     profilePictureURL: 'https://randomuser.me/api/portraits/women/30.jpg',
     minutes: 5467,
+    chatPreview: 'Hey man',
   },
   {
     key: 2,
@@ -54,6 +55,7 @@ const demoChats = [
     online: true,
     profilePictureURL: 'https://randomuser.me/api/portraits/men/8.jpg',
     minutes: 2345,
+    chatPreview: 'Hey women',
   },
   {
     key: 3,
@@ -61,6 +63,7 @@ const demoChats = [
     online: true,
     profilePictureURL: 'https://randomuser.me/api/portraits/women/63.jpg',
     minutes: 9845,
+    chatPreview: 'Hey lady',
   },
   {
     key: 4,
@@ -68,6 +71,7 @@ const demoChats = [
     online: false,
     profilePictureURL: 'https://randomuser.me/api/portraits/men/73.jpg',
     minutes: 4375,
+    chatPreview: 'Hey old lady',
   },
   {
     key: 5,
@@ -75,6 +79,7 @@ const demoChats = [
     online: true,
     profilePictureURL: 'https://randomuser.me/api/portraits/women/2.jpg',
     minutes: 5343,
+    chatPreview: 'Hey my man',
   },
   {
     key: 6,
@@ -82,6 +87,7 @@ const demoChats = [
     online: false,
     profilePictureURL: 'https://randomuser.me/api/portraits/men/39.jpg',
     minutes: 34543,
+    chatPreview: 'Hey my women',
   },
   {
     key: 7,
@@ -89,6 +95,7 @@ const demoChats = [
     online: true,
     profilePictureURL: 'https://randomuser.me/api/portraits/men/9.jpg',
     minutes: 534,
+    chatPreview: 'Hey boy',
   },
   {
     key: 8,
@@ -96,6 +103,7 @@ const demoChats = [
     online: false,
     profilePictureURL: 'https://randomuser.me/api/portraits/women/68.jpg',
     minutes: 8457,
+    chatPreview: 'Hey my boy',
   },
   {
     key: 9,

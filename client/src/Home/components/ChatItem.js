@@ -13,7 +13,7 @@ const ChatContainer = styled.View`
 
 const ChatItem = ({
   chat: {
-    name, online, profilePictureURL, minutes,
+    name, online, profilePictureURL, minutes, chatPreview,
   },
 }) => (
   <ChatContainer>
@@ -22,6 +22,7 @@ const ChatItem = ({
       online={online}
       profilePictureURL={profilePictureURL}
       minutes={minutes}
+      chatPreview={chatPreview}
     />
   </ChatContainer>
 );
@@ -33,6 +34,7 @@ ChatItem.propTypes = {
     online: PropTypes.bool.isRequired,
     name: PropTypes.string.isRequired,
     minutes: PropTypes.number.isRequired,
+    chatPreview: PropTypes.string,
   }),
 };
 
