@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -49,7 +50,6 @@
 		868D09EBF04342B6842BB6F7 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B7B1691DBC9744359C0D7B6E /* MaterialIcons.ttf */; };
 		A2AB32F08B7D4A3B866BF016 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 54F9222585B646788538AF81 /* Foundation.ttf */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
-		B46572F4B66C4AA19EDCC13F /* Open Sans SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DDEECAF63EF84CC3A2CF22BF /* Open Sans SemiBold.ttf */; };
 		C0598FA6462C420FB35C48B1 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E25D4121AFF14EF5BDD44E00 /* libRNVectorIcons.a */; };
 		C07783E1226A43F49D87B1F5 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7AB94784A7F54CE8A9DC2CB7 /* FontAwesome.ttf */; };
 		C8522C8C91F0410AB4B7FFD0 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4CCE457CA3BF437A8075CCB4 /* EvilIcons.ttf */; };
@@ -426,7 +426,6 @@
 		AE08B2CC9FC049578547A292 /* libInteractable.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libInteractable.a; sourceTree = "<group>"; };
 		AE70E14AACFF4C03822D0EFC /* BVLinearGradient.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = BVLinearGradient.xcodeproj; path = "../node_modules/react-native-linear-gradient/BVLinearGradient.xcodeproj"; sourceTree = "<group>"; };
 		B7B1691DBC9744359C0D7B6E /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
-		DDEECAF63EF84CC3A2CF22BF /* Open Sans SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Open Sans SemiBold.ttf"; path = "../src/Assets/fonts/Open Sans SemiBold.ttf"; sourceTree = "<group>"; };
 		E25D4121AFF14EF5BDD44E00 /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
 		E7DB022C1FBA601C00F03598 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../../../Documents/FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		E7DB022E1FBA603A00F03598 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../../../Documents/FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
@@ -628,7 +627,6 @@
 				2D04F684CB4F4F238FC9B64F /* Octicons.ttf */,
 				84D710BD6D34492585687A5D /* SimpleLineIcons.ttf */,
 				87D81239798441FF8EBB5CE8 /* Zocial.ttf */,
-				DDEECAF63EF84CC3A2CF22BF /* Open Sans SemiBold.ttf */,
 				286685938BD447FAA47557B7 /* OpenSans-SemiBold.ttf */,
 			);
 			name = Resources;
@@ -1324,7 +1322,6 @@
 				C8C189EEA029447D830CFFFA /* Octicons.ttf in Resources */,
 				59802D6DFC65488CB38623AD /* SimpleLineIcons.ttf in Resources */,
 				59AD86EFE1D54B89AB61240F /* Zocial.ttf in Resources */,
-				B46572F4B66C4AA19EDCC13F /* Open Sans SemiBold.ttf in Resources */,
 				22587DA50E2E4D0F8B49653B /* OpenSans-SemiBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

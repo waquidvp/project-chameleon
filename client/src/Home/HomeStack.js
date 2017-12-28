@@ -15,6 +15,11 @@ const HomeStack = StackNavigator(
     cardStyle: {
       backgroundColor: 'rgba(55, 202, 195, 0.1)',
     },
+    transitionConfig: () => ({
+      containerStyle: {
+        backgroundColor: 'rgba(55, 202, 195, 0.1)',
+      },
+    }),
   },
 );
 
