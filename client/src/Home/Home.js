@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import { StatusBar } from 'react-native';
+import { StatusBar, Platform } from 'react-native';
 import styled from 'styled-components/native';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
@@ -29,16 +29,16 @@ const TopBar = styled.View`
 
 const ProfileInfoContainer = styled.View`
   flex-direction: row;
-  align-items: center;  
+  align-items: center;
 `;
 
 const ProfilePictureContainer = styled.View`
   width: 44px;
   height: 44px;
-  borderRadius: 22px;
+  border-radius: 22px;
   align-items: center;
   justify-content: center;
-  background-color: rgba(55, 202, 195, 0.60);
+  background-color: rgba(55, 202, 195, 0.6);
 `;
 
 const UserInfoContainer = styled.View`
@@ -46,15 +46,15 @@ const UserInfoContainer = styled.View`
 `;
 
 const UserName = styled.Text`
+  font-family: Open Sans SemiBold;
   font-size: 14px;
-  font-weight: 500;
-  color: #000000
+  color: #000000;
 `;
 
 const ProfilePicture = styled.Image`
   width: 40px;
   height: 40px;
-  borderRadius: 20px;
+  border-radius: 20px;
 `;
 
 const SeperatorBar = styled.View`
@@ -65,13 +65,16 @@ const SeperatorBar = styled.View`
 `;
 
 const UserScore = styled.Text`
+  font-family: Open Sans SemiBold;
   font-size: 12px;
-  font-weight: 500;
-  color: rgba(0, 0, 0, 0.54)
+  color: rgba(0, 0, 0, 0.54);
 `;
 
 const IconButton = styled.View`
-
+  height: 24px;
+  width: 24px;
+  align-items: center;
+  justify-content: center;
 `;
 
 const ChatsPanel = styled.View`
@@ -86,6 +89,11 @@ const View = styled.View``;
 
 const Text = styled.Text``;
 
+const CustomStatusBar = Platform.select({
+  ios: () => <StatusBar barStyle="dark-content" backgroundColor="#0000003c" translucent />,
+  android: () => <StatusBar barStyle="light-content" backgroundColor="#0000003c" translucent />,
+});
+
 class Home extends React.Component {
   state = {};
 
@@ -95,11 +103,16 @@ class Home extends React.Component {
 
     return (
       <MainContainer statusBarHeight={screenDimensions.statusBarHeight}>
-        <StatusBar barStyle="dark-content" backgroundColor="#0000003c" translucent />
+        <CustomStatusBar />
         <TopBar statusBarHeight={screenDimensions.statusBarHeight}>
           <ProfileInfoContainer>
             <ProfilePictureContainer>
-              <ProfilePicture source={{ uri: 'https://avatars3.githubusercontent.com/u/15846228?s=400&u=a882c5df4fd991ee0d97ac6be4b1887fd580dad5&v=4' }} />
+              <ProfilePicture
+                source={{
+                  uri:
+                    'https://avatars3.githubusercontent.com/u/15846228?s=400&u=a882c5df4fd991ee0d97ac6be4b1887fd580dad5&v=4',
+                }}
+              />
             </ProfilePictureContainer>
             <UserInfoContainer>
               <UserName>Waquid VP</UserName>

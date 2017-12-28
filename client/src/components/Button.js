@@ -5,19 +5,13 @@ import PlatfromTouchable from 'react-native-platform-touchable';
 import LinearGradient from 'react-native-linear-gradient';
 
 const Touchable = ({ style, children, ...props }) => (
-  <PlatfromTouchable
-    style={style}
-    {...props}
-  >
+  <PlatfromTouchable style={style} {...props}>
     {children}
   </PlatfromTouchable>
 );
 
 const Gradient = ({ style, children, ...props }) => (
-  <LinearGradient
-    style={style}
-    {...props}
-  >
+  <LinearGradient style={style} {...props}>
     {children}
   </LinearGradient>
 );
@@ -45,8 +39,9 @@ const GradientBackground = styled(Gradient)`
 `;
 
 const ButtonText = styled.Text`
+  font-family: Open Sans SemiBold;
   font-size: 16;
-  color: #37CAC3;
+  color: #37cac3;
   background-color: #ffffff00;
 `;
 
@@ -66,25 +61,18 @@ export default class Button extends Component {
 
   static defaultProps = {
     backgroundColor: '#ffffff',
-  }
+  };
 
   constructor() {
     super();
 
-    this.state = {
-
-    };
+    this.state = {};
   }
 
   render() {
     const {
-      text,
-      children,
-      onPress,
-      backgroundColor,
-      gradient,
+      text, children, onPress, backgroundColor, gradient,
     } = this.props;
-
 
     if (gradient) {
       return (
@@ -94,20 +82,8 @@ export default class Button extends Component {
             foreground={PlatfromTouchable.SelectableBackgroundBorderless()}
             backgroundColor={backgroundColor}
           >
-            <GradientBackground
-              colors={gradient}
-              start={{ x: 0, y: 1 }}
-              end={{ x: 1, y: 1 }}
-            >
-              { text ?
-                <ButtonText>
-                  {text}
-                </ButtonText>
-              :
-                <View>
-                  {children}
-                </View>
-              }
+            <GradientBackground colors={gradient} start={{ x: 0, y: 1 }} end={{ x: 1, y: 1 }}>
+              {text ? <ButtonText>{text}</ButtonText> : <View>{children}</View>}
             </GradientBackground>
           </Touch>
         </TouchContainer>
@@ -121,15 +97,7 @@ export default class Button extends Component {
           background={PlatfromTouchable.SelectableBackgroundBorderless()}
           backgroundColor={backgroundColor}
         >
-          { text ?
-            <ButtonText>
-              {text}
-            </ButtonText>
-          :
-            <View>
-              {children}
-            </View>
-          }
+          {text ? <ButtonText>{text}</ButtonText> : <View>{children}</View>}
         </Touch>
       </TouchContainer>
     );
