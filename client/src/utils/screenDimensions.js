@@ -26,7 +26,7 @@ export const getStatusBarHeight = () => {
 
 export const getBottomBarHeight = () => {
   if (isIphoneTen() === true) {
-    return 30;
+    return 24;
   }
 
   return 0;
