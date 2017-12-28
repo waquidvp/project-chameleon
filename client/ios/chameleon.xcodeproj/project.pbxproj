@@ -24,6 +24,7 @@
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		177ACCA8B5024201846A52D7 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A09F360D29C54C84BFD324A2 /* Feather.ttf */; };
 		1FCAFB0AC4B540DB835E0FED /* libRCTCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F104BD9CB5F4A70AED1D9D9 /* libRCTCamera.a */; };
+		22587DA50E2E4D0F8B49653B /* OpenSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 286685938BD447FAA47557B7 /* OpenSans-SemiBold.ttf */; };
 		28892C1DF7D44AA3BB672AE5 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 715A3BBFAA7D43F6A6814218 /* MaterialCommunityIcons.ttf */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
@@ -48,6 +49,7 @@
 		868D09EBF04342B6842BB6F7 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B7B1691DBC9744359C0D7B6E /* MaterialIcons.ttf */; };
 		A2AB32F08B7D4A3B866BF016 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 54F9222585B646788538AF81 /* Foundation.ttf */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
+		B46572F4B66C4AA19EDCC13F /* Open Sans SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DDEECAF63EF84CC3A2CF22BF /* Open Sans SemiBold.ttf */; };
 		C0598FA6462C420FB35C48B1 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E25D4121AFF14EF5BDD44E00 /* libRNVectorIcons.a */; };
 		C07783E1226A43F49D87B1F5 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7AB94784A7F54CE8A9DC2CB7 /* FontAwesome.ttf */; };
 		C8522C8C91F0410AB4B7FFD0 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4CCE457CA3BF437A8075CCB4 /* EvilIcons.ttf */; };
@@ -57,8 +59,6 @@
 		E7DB022F1FBA603A00F03598 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DB022E1FBA603A00F03598 /* FBSDKLoginKit.framework */; };
 		E7DB02311FBA605600F03598 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DB02301FBA605600F03598 /* FBSDKShareKit.framework */; };
 		E7DB02661FBA61BD00F03598 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DB02401FBA61BD00F03598 /* Bolts.framework */; };
-		B46572F4B66C4AA19EDCC13F /* Open Sans SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DDEECAF63EF84CC3A2CF22BF /* Open Sans SemiBold.ttf */; };
-		22587DA50E2E4D0F8B49653B /* OpenSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 286685938BD447FAA47557B7 /* OpenSans-SemiBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -401,6 +401,7 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = chameleon/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		2554B753F0F840909D333E72 /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNVectorIcons.xcodeproj; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; };
+		286685938BD447FAA47557B7 /* OpenSans-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-SemiBold.ttf"; path = "../src/Assets/fonts/OpenSans-SemiBold.ttf"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* chameleon-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "chameleon-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* chameleon-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "chameleon-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D04F684CB4F4F238FC9B64F /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
@@ -425,6 +426,7 @@
 		AE08B2CC9FC049578547A292 /* libInteractable.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libInteractable.a; sourceTree = "<group>"; };
 		AE70E14AACFF4C03822D0EFC /* BVLinearGradient.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = BVLinearGradient.xcodeproj; path = "../node_modules/react-native-linear-gradient/BVLinearGradient.xcodeproj"; sourceTree = "<group>"; };
 		B7B1691DBC9744359C0D7B6E /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
+		DDEECAF63EF84CC3A2CF22BF /* Open Sans SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Open Sans SemiBold.ttf"; path = "../src/Assets/fonts/Open Sans SemiBold.ttf"; sourceTree = "<group>"; };
 		E25D4121AFF14EF5BDD44E00 /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
 		E7DB022C1FBA601C00F03598 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../../../Documents/FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		E7DB022E1FBA603A00F03598 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../../../Documents/FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
@@ -432,8 +434,6 @@
 		E7DB02401FBA61BD00F03598 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = ../../../../Documents/FacebookSDK/Bolts.framework; sourceTree = "<group>"; };
 		E9F91EB1761147B2B21391CF /* libRNBlur.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNBlur.a; sourceTree = "<group>"; };
 		F1A6DA3CBCDE489A94F08C3E /* RCTCamera.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTCamera.xcodeproj; path = "../node_modules/react-native-camera/ios/RCTCamera.xcodeproj"; sourceTree = "<group>"; };
-		DDEECAF63EF84CC3A2CF22BF /* Open Sans SemiBold.ttf */ = {isa = PBXFileReference; name = "Open Sans SemiBold.ttf"; path = "../src/Assets/fonts/Open Sans SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		286685938BD447FAA47557B7 /* OpenSans-SemiBold.ttf */ = {isa = PBXFileReference; name = "OpenSans-SemiBold.ttf"; path = "../src/Assets/fonts/OpenSans-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */

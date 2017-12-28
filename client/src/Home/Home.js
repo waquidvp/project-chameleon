@@ -85,6 +85,40 @@ const ChatsPanel = styled.View`
   border-top-right-radius: 19;
 `;
 
+const ChatsTopBar = styled.View`
+  height: 52px;
+  padding: 0 16px;
+  flex-direction: row;
+  align-items: center;
+`;
+
+const SearchBarContainer = styled.View`
+  height: 36px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 18px;
+  flex: 1;
+  margin-right: 16px;
+  padding: 0 16px;
+  flex-direction: row;
+  align-items: center;  
+`;
+
+const SearchBar = styled.TextInput`
+  flex: 1;
+  margin-left: 16px;
+`;
+
+const Chats = styled.ScrollView`
+  flex: 1;
+`;
+
+const ChatContainer = styled.View`
+  height: 56px;
+  padding: 0 16px;
+  flex-direction: row;
+  align-items: center;
+`;
+
 const View = styled.View``;
 
 const Text = styled.Text``;
@@ -125,13 +159,213 @@ class Home extends React.Component {
           </IconButton>
         </TopBar>
         <ChatsPanel>
-          <Button text="Sign Out" onPress={() => changeLoginState(false)} />
-          {currentUser && (
-            <View>
-              <Text>{currentUser._id}</Text>
-              <Text>{currentUser.email}</Text>
-            </View>
-          )}
+          <ChatsTopBar>
+            <SearchBarContainer>
+              <IconButton>
+                <Icon name="search" color="rgba(255, 255, 255, 1)" size={20} />
+              </IconButton>
+              <SearchBar placeholder="Search Friends and Chats" placeholderTextColor="rgba(255, 255, 255, 0.7)" />
+            </SearchBarContainer>
+            <IconButton>
+              <Icon name="plus" color="rgba(55, 202, 195, 0.87)" size={20} />
+            </IconButton>
+          </ChatsTopBar>
+          <Chats>
+            <ChatContainer>
+              <ProfileInfoContainer>
+                <ProfilePictureContainer>
+                  <ProfilePicture
+                    source={{
+                      uri:
+                        'https://avatars3.githubusercontent.com/u/15846228?s=400&u=a882c5df4fd991ee0d97ac6be4b1887fd580dad5&v=4',
+                    }}
+                  />
+                </ProfilePictureContainer>
+                <UserInfoContainer>
+                  <UserName>Waquid VP</UserName>
+                </UserInfoContainer>
+                <SeperatorBar />
+                <UserScore>6585</UserScore>
+              </ProfileInfoContainer>
+            </ChatContainer>
+            <ChatContainer>
+              <ProfileInfoContainer>
+                <ProfilePictureContainer>
+                  <ProfilePicture
+                    source={{
+                      uri:
+                        'https://avatars3.githubusercontent.com/u/15846228?s=400&u=a882c5df4fd991ee0d97ac6be4b1887fd580dad5&v=4',
+                    }}
+                  />
+                </ProfilePictureContainer>
+                <UserInfoContainer>
+                  <UserName>Waquid VP</UserName>
+                </UserInfoContainer>
+                <SeperatorBar />
+                <UserScore>6585</UserScore>
+              </ProfileInfoContainer>
+            </ChatContainer>
+            <ChatContainer>
+              <ProfileInfoContainer>
+                <ProfilePictureContainer>
+                  <ProfilePicture
+                    source={{
+                      uri:
+                        'https://avatars3.githubusercontent.com/u/15846228?s=400&u=a882c5df4fd991ee0d97ac6be4b1887fd580dad5&v=4',
+                    }}
+                  />
+                </ProfilePictureContainer>
+                <UserInfoContainer>
+                  <UserName>Waquid VP</UserName>
+                </UserInfoContainer>
+                <SeperatorBar />
+                <UserScore>6585</UserScore>
+              </ProfileInfoContainer>
+            </ChatContainer>
+            <ChatContainer>
+              <ProfileInfoContainer>
+                <ProfilePictureContainer>
+                  <ProfilePicture
+                    source={{
+                      uri:
+                        'https://avatars3.githubusercontent.com/u/15846228?s=400&u=a882c5df4fd991ee0d97ac6be4b1887fd580dad5&v=4',
+                    }}
+                  />
+                </ProfilePictureContainer>
+                <UserInfoContainer>
+                  <UserName>Waquid VP</UserName>
+                </UserInfoContainer>
+                <SeperatorBar />
+                <UserScore>6585</UserScore>
+              </ProfileInfoContainer>
+            </ChatContainer>
+            <ChatContainer>
+              <ProfileInfoContainer>
+                <ProfilePictureContainer>
+                  <ProfilePicture
+                    source={{
+                      uri:
+                        'https://avatars3.githubusercontent.com/u/15846228?s=400&u=a882c5df4fd991ee0d97ac6be4b1887fd580dad5&v=4',
+                    }}
+                  />
+                </ProfilePictureContainer>
+                <UserInfoContainer>
+                  <UserName>Waquid VP</UserName>
+                </UserInfoContainer>
+                <SeperatorBar />
+                <UserScore>6585</UserScore>
+              </ProfileInfoContainer>
+            </ChatContainer>
+            <ChatContainer>
+              <ProfileInfoContainer>
+                <ProfilePictureContainer>
+                  <ProfilePicture
+                    source={{
+                      uri:
+                        'https://avatars3.githubusercontent.com/u/15846228?s=400&u=a882c5df4fd991ee0d97ac6be4b1887fd580dad5&v=4',
+                    }}
+                  />
+                </ProfilePictureContainer>
+                <UserInfoContainer>
+                  <UserName>Waquid VP</UserName>
+                </UserInfoContainer>
+                <SeperatorBar />
+                <UserScore>6585</UserScore>
+              </ProfileInfoContainer>
+            </ChatContainer>
+            <ChatContainer>
+              <ProfileInfoContainer>
+                <ProfilePictureContainer>
+                  <ProfilePicture
+                    source={{
+                      uri:
+                        'https://avatars3.githubusercontent.com/u/15846228?s=400&u=a882c5df4fd991ee0d97ac6be4b1887fd580dad5&v=4',
+                    }}
+                  />
+                </ProfilePictureContainer>
+                <UserInfoContainer>
+                  <UserName>Waquid VP</UserName>
+                </UserInfoContainer>
+                <SeperatorBar />
+                <UserScore>6585</UserScore>
+              </ProfileInfoContainer>
+            </ChatContainer>
+            <ChatContainer>
+              <ProfileInfoContainer>
+                <ProfilePictureContainer>
+                  <ProfilePicture
+                    source={{
+                      uri:
+                        'https://avatars3.githubusercontent.com/u/15846228?s=400&u=a882c5df4fd991ee0d97ac6be4b1887fd580dad5&v=4',
+                    }}
+                  />
+                </ProfilePictureContainer>
+                <UserInfoContainer>
+                  <UserName>Waquid VP</UserName>
+                </UserInfoContainer>
+                <SeperatorBar />
+                <UserScore>6585</UserScore>
+              </ProfileInfoContainer>
+            </ChatContainer>
+            <ChatContainer>
+              <ProfileInfoContainer>
+                <ProfilePictureContainer>
+                  <ProfilePicture
+                    source={{
+                      uri:
+                        'https://avatars3.githubusercontent.com/u/15846228?s=400&u=a882c5df4fd991ee0d97ac6be4b1887fd580dad5&v=4',
+                    }}
+                  />
+                </ProfilePictureContainer>
+                <UserInfoContainer>
+                  <UserName>Waquid VP</UserName>
+                </UserInfoContainer>
+                <SeperatorBar />
+                <UserScore>6585</UserScore>
+              </ProfileInfoContainer>
+            </ChatContainer>
+            <ChatContainer>
+              <ProfileInfoContainer>
+                <ProfilePictureContainer>
+                  <ProfilePicture
+                    source={{
+                      uri:
+                        'https://avatars3.githubusercontent.com/u/15846228?s=400&u=a882c5df4fd991ee0d97ac6be4b1887fd580dad5&v=4',
+                    }}
+                  />
+                </ProfilePictureContainer>
+                <UserInfoContainer>
+                  <UserName>Waquid VP</UserName>
+                </UserInfoContainer>
+                <SeperatorBar />
+                <UserScore>6585</UserScore>
+              </ProfileInfoContainer>
+            </ChatContainer>
+            <ChatContainer>
+              <ProfileInfoContainer>
+                <ProfilePictureContainer>
+                  <ProfilePicture
+                    source={{
+                      uri:
+                        'https://avatars3.githubusercontent.com/u/15846228?s=400&u=a882c5df4fd991ee0d97ac6be4b1887fd580dad5&v=4',
+                    }}
+                  />
+                </ProfilePictureContainer>
+                <UserInfoContainer>
+                  <UserName>Waquid VP</UserName>
+                </UserInfoContainer>
+                <SeperatorBar />
+                <UserScore>6585</UserScore>
+              </ProfileInfoContainer>
+            </ChatContainer>
+            <Button text="Sign Out" onPress={() => changeLoginState(false)} />
+            {currentUser && (
+              <View>
+                <Text>{currentUser._id}</Text>
+                <Text>{currentUser.email}</Text>
+              </View>
+            )}
+          </Chats>
         </ChatsPanel>
         <PullUpPanel />
       </MainContainer>
