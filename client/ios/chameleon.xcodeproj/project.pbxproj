@@ -58,6 +58,7 @@
 		E7DB02311FBA605600F03598 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DB02301FBA605600F03598 /* FBSDKShareKit.framework */; };
 		E7DB02661FBA61BD00F03598 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DB02401FBA61BD00F03598 /* Bolts.framework */; };
 		B46572F4B66C4AA19EDCC13F /* Open Sans SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DDEECAF63EF84CC3A2CF22BF /* Open Sans SemiBold.ttf */; };
+		22587DA50E2E4D0F8B49653B /* OpenSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 286685938BD447FAA47557B7 /* OpenSans-SemiBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -432,6 +433,7 @@
 		E9F91EB1761147B2B21391CF /* libRNBlur.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNBlur.a; sourceTree = "<group>"; };
 		F1A6DA3CBCDE489A94F08C3E /* RCTCamera.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTCamera.xcodeproj; path = "../node_modules/react-native-camera/ios/RCTCamera.xcodeproj"; sourceTree = "<group>"; };
 		DDEECAF63EF84CC3A2CF22BF /* Open Sans SemiBold.ttf */ = {isa = PBXFileReference; name = "Open Sans SemiBold.ttf"; path = "../src/Assets/fonts/Open Sans SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		286685938BD447FAA47557B7 /* OpenSans-SemiBold.ttf */ = {isa = PBXFileReference; name = "OpenSans-SemiBold.ttf"; path = "../src/Assets/fonts/OpenSans-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -627,6 +629,7 @@
 				84D710BD6D34492585687A5D /* SimpleLineIcons.ttf */,
 				87D81239798441FF8EBB5CE8 /* Zocial.ttf */,
 				DDEECAF63EF84CC3A2CF22BF /* Open Sans SemiBold.ttf */,
+				286685938BD447FAA47557B7 /* OpenSans-SemiBold.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1322,6 +1325,7 @@
 				59802D6DFC65488CB38623AD /* SimpleLineIcons.ttf in Resources */,
 				59AD86EFE1D54B89AB61240F /* Zocial.ttf in Resources */,
 				B46572F4B66C4AA19EDCC13F /* Open Sans SemiBold.ttf in Resources */,
+				22587DA50E2E4D0F8B49653B /* OpenSans-SemiBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

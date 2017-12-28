@@ -46,7 +46,7 @@ const UserInfoContainer = styled.View`
 `;
 
 const UserName = styled.Text`
-  font-family: Open Sans SemiBold;
+  font-family: OpenSans-SemiBold;
   font-size: 14px;
   color: #000000;
 `;
@@ -65,7 +65,7 @@ const SeperatorBar = styled.View`
 `;
 
 const UserScore = styled.Text`
-  font-family: Open Sans SemiBold;
+  font-family: OpenSans-SemiBold;
   font-size: 12px;
   color: rgba(0, 0, 0, 0.54);
 `;

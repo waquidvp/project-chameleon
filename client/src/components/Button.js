@@ -39,7 +39,7 @@ const GradientBackground = styled(Gradient)`
 `;
 
 const ButtonText = styled.Text`
-  font-family: Open Sans SemiBold;
+  font-family: OpenSans-SemiBold;
   font-size: 16;
   color: #37cac3;
   background-color: #ffffff00;
