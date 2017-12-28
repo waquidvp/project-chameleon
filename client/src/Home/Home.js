@@ -1,80 +1,21 @@
 // @flow
 
 import React from 'react';
-import { StatusBar, Platform } from 'react-native';
+import { FlatList } from 'react-native';
 import styled from 'styled-components/native';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import Icon from 'react-native-vector-icons/FontAwesome';
 
 import Button from '../components/Button';
-import { screenDimensions } from '../utils/screenDimensions';
 import PullUpPanel from './PullUpPanel';
+import TopBar from './components/TopBar';
+import SearchTopBar from './components/SearchTopBar';
+import ChatItem from './components/ChatItem';
+import { screenDimensions } from '../utils/screenDimensions';
 
 const MainContainer = styled.View`
   flex: 1;
   background-color: rgba(55, 202, 195, 0.1);
-`;
-
-const TopBar = styled.View`
-  height: ${props => props.statusBarHeight + 56};
-  background-color: #ffffff;
-  padding-top: ${props => props.statusBarHeight};
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  padding-left: 16px;
-  padding-right: 16px;
-`;
-
-const ProfileInfoContainer = styled.View`
-  flex-direction: row;
-  align-items: center;
-`;
-
-const ProfilePictureContainer = styled.View`
-  width: 44px;
-  height: 44px;
-  border-radius: 22px;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(55, 202, 195, 0.6);
-`;
-
-const UserInfoContainer = styled.View`
-  padding-left: 14px;
-`;
-
-const UserName = styled.Text`
-  font-family: OpenSans-SemiBold;
-  font-size: 14px;
-  color: #000000;
-`;
-
-const ProfilePicture = styled.Image`
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
-`;
-
-const SeperatorBar = styled.View`
-  height: 12px;
-  width: 1px;
-  background-color: rgba(0, 0, 0, 0.54);
-  margin: 0 8px;
-`;
-
-const UserScore = styled.Text`
-  font-family: OpenSans-SemiBold;
-  font-size: 12px;
-  color: rgba(0, 0, 0, 0.54);
-`;
-
-const IconButton = styled.View`
-  height: 24px;
-  width: 24px;
-  align-items: center;
-  justify-content: center;
 `;
 
 const ChatsPanel = styled.View`
@@ -83,50 +24,94 @@ const ChatsPanel = styled.View`
   margin-top: 8px;
   border-top-left-radius: 19;
   border-top-right-radius: 19;
-`;
-
-const ChatsTopBar = styled.View`
-  height: 52px;
-  padding: 0 16px;
-  flex-direction: row;
-  align-items: center;
-`;
-
-const SearchBarContainer = styled.View`
-  height: 36px;
-  background-color: rgba(0, 0, 0, 0.2);
-  border-radius: 18px;
-  flex: 1;
-  margin-right: 16px;
-  padding: 0 16px;
-  flex-direction: row;
-  align-items: center;  
-`;
-
-const SearchBar = styled.TextInput`
-  flex: 1;
-  margin-left: 16px;
+  overflow: hidden;
 `;
 
 const Chats = styled.ScrollView`
   flex: 1;
+  padding-top: 54px;
 `;
 
-const ChatContainer = styled.View`
-  height: 56px;
-  padding: 0 16px;
-  flex-direction: row;
-  align-items: center;
+const FooterSpacerComponent = styled.View`
+  height: ${props => props.screenDimensions.bottomBarHeight + 56};
 `;
 
 const View = styled.View``;
 
 const Text = styled.Text``;
 
-const CustomStatusBar = Platform.select({
-  ios: () => <StatusBar barStyle="dark-content" backgroundColor="#0000003c" translucent />,
-  android: () => <StatusBar barStyle="light-content" backgroundColor="#0000003c" translucent />,
-});
+const demoChats = [
+  {
+    key: 1,
+    name: 'Danielle Crawford',
+    online: false,
+    profilePictureURL: 'https://randomuser.me/api/portraits/women/30.jpg',
+    minutes: 5467,
+  },
+  {
+    key: 2,
+    name: 'Derrick Carpenter',
+    online: true,
+    profilePictureURL: 'https://randomuser.me/api/portraits/men/8.jpg',
+    minutes: 2345,
+  },
+  {
+    key: 3,
+    name: 'Louella Soto',
+    online: true,
+    profilePictureURL: 'https://randomuser.me/api/portraits/women/63.jpg',
+    minutes: 9845,
+  },
+  {
+    key: 4,
+    name: 'Shawn Rodriquez',
+    online: false,
+    profilePictureURL: 'https://randomuser.me/api/portraits/men/73.jpg',
+    minutes: 4375,
+  },
+  {
+    key: 5,
+    name: 'Jacqueline Lucas',
+    online: true,
+    profilePictureURL: 'https://randomuser.me/api/portraits/women/2.jpg',
+    minutes: 5343,
+  },
+  {
+    key: 6,
+    name: 'Evan Griffin',
+    online: false,
+    profilePictureURL: 'https://randomuser.me/api/portraits/men/39.jpg',
+    minutes: 34543,
+  },
+  {
+    key: 7,
+    name: 'David Bell',
+    online: true,
+    profilePictureURL: 'https://randomuser.me/api/portraits/men/9.jpg',
+    minutes: 534,
+  },
+  {
+    key: 8,
+    name: 'Nora Olson',
+    online: false,
+    profilePictureURL: 'https://randomuser.me/api/portraits/women/68.jpg',
+    minutes: 8457,
+  },
+  {
+    key: 9,
+    name: 'Sharlene Young',
+    online: true,
+    profilePictureURL: 'https://randomuser.me/api/portraits/women/80.jpg',
+    minutes: 9546,
+  },
+  {
+    key: 10,
+    name: 'Ray Vargas',
+    online: false,
+    profilePictureURL: 'https://randomuser.me/api/portraits/men/84.jpg',
+    minutes: 7346,
+  },
+];
 
 class Home extends React.Component {
   state = {};
@@ -136,228 +121,15 @@ class Home extends React.Component {
     const { currentUser } = this.props.data;
 
     return (
-      <MainContainer statusBarHeight={screenDimensions.statusBarHeight}>
-        <CustomStatusBar />
-        <TopBar statusBarHeight={screenDimensions.statusBarHeight}>
-          <ProfileInfoContainer>
-            <ProfilePictureContainer>
-              <ProfilePicture
-                source={{
-                  uri:
-                    'https://avatars3.githubusercontent.com/u/15846228?s=400&u=a882c5df4fd991ee0d97ac6be4b1887fd580dad5&v=4',
-                }}
-              />
-            </ProfilePictureContainer>
-            <UserInfoContainer>
-              <UserName>Waquid VP</UserName>
-            </UserInfoContainer>
-            <SeperatorBar />
-            <UserScore>6585</UserScore>
-          </ProfileInfoContainer>
-          <IconButton>
-            <Icon name="cog" color="rgba(0, 0, 0, 0.87)" size={20} />
-          </IconButton>
-        </TopBar>
+      <MainContainer>
+        <TopBar />
         <ChatsPanel>
-          <ChatsTopBar>
-            <SearchBarContainer>
-              <IconButton>
-                <Icon name="search" color="rgba(255, 255, 255, 1)" size={20} />
-              </IconButton>
-              <SearchBar placeholder="Search Friends and Chats" placeholderTextColor="rgba(255, 255, 255, 0.7)" />
-            </SearchBarContainer>
-            <IconButton>
-              <Icon name="plus" color="rgba(55, 202, 195, 0.87)" size={20} />
-            </IconButton>
-          </ChatsTopBar>
           <Chats>
-            <ChatContainer>
-              <ProfileInfoContainer>
-                <ProfilePictureContainer>
-                  <ProfilePicture
-                    source={{
-                      uri:
-                        'https://avatars3.githubusercontent.com/u/15846228?s=400&u=a882c5df4fd991ee0d97ac6be4b1887fd580dad5&v=4',
-                    }}
-                  />
-                </ProfilePictureContainer>
-                <UserInfoContainer>
-                  <UserName>Waquid VP</UserName>
-                </UserInfoContainer>
-                <SeperatorBar />
-                <UserScore>6585</UserScore>
-              </ProfileInfoContainer>
-            </ChatContainer>
-            <ChatContainer>
-              <ProfileInfoContainer>
-                <ProfilePictureContainer>
-                  <ProfilePicture
-                    source={{
-                      uri:
-                        'https://avatars3.githubusercontent.com/u/15846228?s=400&u=a882c5df4fd991ee0d97ac6be4b1887fd580dad5&v=4',
-                    }}
-                  />
-                </ProfilePictureContainer>
-                <UserInfoContainer>
-                  <UserName>Waquid VP</UserName>
-                </UserInfoContainer>
-                <SeperatorBar />
-                <UserScore>6585</UserScore>
-              </ProfileInfoContainer>
-            </ChatContainer>
-            <ChatContainer>
-              <ProfileInfoContainer>
-                <ProfilePictureContainer>
-                  <ProfilePicture
-                    source={{
-                      uri:
-                        'https://avatars3.githubusercontent.com/u/15846228?s=400&u=a882c5df4fd991ee0d97ac6be4b1887fd580dad5&v=4',
-                    }}
-                  />
-                </ProfilePictureContainer>
-                <UserInfoContainer>
-                  <UserName>Waquid VP</UserName>
-                </UserInfoContainer>
-                <SeperatorBar />
-                <UserScore>6585</UserScore>
-              </ProfileInfoContainer>
-            </ChatContainer>
-            <ChatContainer>
-              <ProfileInfoContainer>
-                <ProfilePictureContainer>
-                  <ProfilePicture
-                    source={{
-                      uri:
-                        'https://avatars3.githubusercontent.com/u/15846228?s=400&u=a882c5df4fd991ee0d97ac6be4b1887fd580dad5&v=4',
-                    }}
-                  />
-                </ProfilePictureContainer>
-                <UserInfoContainer>
-                  <UserName>Waquid VP</UserName>
-                </UserInfoContainer>
-                <SeperatorBar />
-                <UserScore>6585</UserScore>
-              </ProfileInfoContainer>
-            </ChatContainer>
-            <ChatContainer>
-              <ProfileInfoContainer>
-                <ProfilePictureContainer>
-                  <ProfilePicture
-                    source={{
-                      uri:
-                        'https://avatars3.githubusercontent.com/u/15846228?s=400&u=a882c5df4fd991ee0d97ac6be4b1887fd580dad5&v=4',
-                    }}
-                  />
-                </ProfilePictureContainer>
-                <UserInfoContainer>
-                  <UserName>Waquid VP</UserName>
-                </UserInfoContainer>
-                <SeperatorBar />
-                <UserScore>6585</UserScore>
-              </ProfileInfoContainer>
-            </ChatContainer>
-            <ChatContainer>
-              <ProfileInfoContainer>
-                <ProfilePictureContainer>
-                  <ProfilePicture
-                    source={{
-                      uri:
-                        'https://avatars3.githubusercontent.com/u/15846228?s=400&u=a882c5df4fd991ee0d97ac6be4b1887fd580dad5&v=4',
-                    }}
-                  />
-                </ProfilePictureContainer>
-                <UserInfoContainer>
-                  <UserName>Waquid VP</UserName>
-                </UserInfoContainer>
-                <SeperatorBar />
-                <UserScore>6585</UserScore>
-              </ProfileInfoContainer>
-            </ChatContainer>
-            <ChatContainer>
-              <ProfileInfoContainer>
-                <ProfilePictureContainer>
-                  <ProfilePicture
-                    source={{
-                      uri:
-                        'https://avatars3.githubusercontent.com/u/15846228?s=400&u=a882c5df4fd991ee0d97ac6be4b1887fd580dad5&v=4',
-                    }}
-                  />
-                </ProfilePictureContainer>
-                <UserInfoContainer>
-                  <UserName>Waquid VP</UserName>
-                </UserInfoContainer>
-                <SeperatorBar />
-                <UserScore>6585</UserScore>
-              </ProfileInfoContainer>
-            </ChatContainer>
-            <ChatContainer>
-              <ProfileInfoContainer>
-                <ProfilePictureContainer>
-                  <ProfilePicture
-                    source={{
-                      uri:
-                        'https://avatars3.githubusercontent.com/u/15846228?s=400&u=a882c5df4fd991ee0d97ac6be4b1887fd580dad5&v=4',
-                    }}
-                  />
-                </ProfilePictureContainer>
-                <UserInfoContainer>
-                  <UserName>Waquid VP</UserName>
-                </UserInfoContainer>
-                <SeperatorBar />
-                <UserScore>6585</UserScore>
-              </ProfileInfoContainer>
-            </ChatContainer>
-            <ChatContainer>
-              <ProfileInfoContainer>
-                <ProfilePictureContainer>
-                  <ProfilePicture
-                    source={{
-                      uri:
-                        'https://avatars3.githubusercontent.com/u/15846228?s=400&u=a882c5df4fd991ee0d97ac6be4b1887fd580dad5&v=4',
-                    }}
-                  />
-                </ProfilePictureContainer>
-                <UserInfoContainer>
-                  <UserName>Waquid VP</UserName>
-                </UserInfoContainer>
-                <SeperatorBar />
-                <UserScore>6585</UserScore>
-              </ProfileInfoContainer>
-            </ChatContainer>
-            <ChatContainer>
-              <ProfileInfoContainer>
-                <ProfilePictureContainer>
-                  <ProfilePicture
-                    source={{
-                      uri:
-                        'https://avatars3.githubusercontent.com/u/15846228?s=400&u=a882c5df4fd991ee0d97ac6be4b1887fd580dad5&v=4',
-                    }}
-                  />
-                </ProfilePictureContainer>
-                <UserInfoContainer>
-                  <UserName>Waquid VP</UserName>
-                </UserInfoContainer>
-                <SeperatorBar />
-                <UserScore>6585</UserScore>
-              </ProfileInfoContainer>
-            </ChatContainer>
-            <ChatContainer>
-              <ProfileInfoContainer>
-                <ProfilePictureContainer>
-                  <ProfilePicture
-                    source={{
-                      uri:
-                        'https://avatars3.githubusercontent.com/u/15846228?s=400&u=a882c5df4fd991ee0d97ac6be4b1887fd580dad5&v=4',
-                    }}
-                  />
-                </ProfilePictureContainer>
-                <UserInfoContainer>
-                  <UserName>Waquid VP</UserName>
-                </UserInfoContainer>
-                <SeperatorBar />
-                <UserScore>6585</UserScore>
-              </ProfileInfoContainer>
-            </ChatContainer>
+            <FlatList
+              data={demoChats}
+              renderItem={({ item }) => <ChatItem chat={item} />}
+              ListFooterComponent={<FooterSpacerComponent screenDimensions={screenDimensions} />}
+            />
             <Button text="Sign Out" onPress={() => changeLoginState(false)} />
             {currentUser && (
               <View>
@@ -366,6 +138,7 @@ class Home extends React.Component {
               </View>
             )}
           </Chats>
+          <SearchTopBar />
         </ChatsPanel>
         <PullUpPanel />
       </MainContainer>
