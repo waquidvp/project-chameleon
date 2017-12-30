@@ -3,8 +3,9 @@ import styled from 'styled-components/native';
 import PropTypes from 'prop-types';
 
 import ProfileInfo from '../../components/ProfileInfo';
+import Touchable from '../../components/Touchable';
 
-const ChatContainer = styled.View`
+const ChatContainer = styled(Touchable)`
   height: 56px;
   padding: 0 16px;
   flex-direction: row;

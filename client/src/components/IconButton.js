@@ -2,13 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components/native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import PlatfromTouchable from 'react-native-platform-touchable';
+import PlatformTouchable from 'react-native-platform-touchable';
 
-const Touchable = ({ style, children, ...props }) => (
-  <PlatfromTouchable style={style} {...props}>
-    {children}
-  </PlatfromTouchable>
-);
+import Touchable from './Touchable';
 
 const TouchContainer = styled.View`
   height: 40px;
@@ -48,7 +44,7 @@ class IconButton extends React.Component {
       <TouchContainer>
         <Touch
           onPress={() => onPress()}
-          background={PlatfromTouchable.SelectableBackgroundBorderless()}
+          background={PlatformTouchable.SelectableBackgroundBorderless()}
         >
           <Icon name={name} color={color} size={size} />
         </Touch>
