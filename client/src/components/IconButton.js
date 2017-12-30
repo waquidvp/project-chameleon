@@ -11,15 +11,15 @@ const Touchable = ({ style, children, ...props }) => (
 );
 
 const TouchContainer = styled.View`
-  height: 24px;
-  width: 24px;
-  border-radius: 12px;
+  height: 40px;
+  width: 40px;
+  border-radius: 20px;
 `;
 
 const Touch = styled(Touchable)`
-  height: 24px;
-  width: 24px;
-  border-radius: 12px;
+  height: 40px;
+  width: 40px;
+  border-radius: 20px;
   align-items: center;
   justify-content: center;
 `;
