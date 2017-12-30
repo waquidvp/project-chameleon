@@ -10,10 +10,11 @@ const MainContainer = styled.View`
   right: 0;
   left: 0;
   height: 54px;
-  padding: 0 16px;
+  padding-left: 16px;
+  padding-right: 8px;
   flex-direction: row;
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.85);
+  background-color: rgba(255, 255, 255, 0.9);
 `;
 
 const SearchBarContainer = styled.View`
@@ -21,7 +22,7 @@ const SearchBarContainer = styled.View`
   background-color: rgba(0, 0, 0, 0.2);
   border-radius: 19px;
   flex: 1;
-  margin-right: 16px;
+  margin-right: 8px;
   padding: 0 14px;
   flex-direction: row;
   align-items: center;
@@ -53,7 +54,7 @@ class SearchTopBar extends React.Component {
             underlineColorAndroid="transparent"
           />
         </SearchBarContainer>
-        <IconButton name="plus" color="rgba(55, 202, 195, 0.87)" />
+        <IconButton name="plus" color="rgba(55, 202, 195, 0.87)" size={24} />
       </MainContainer>
     );
   }

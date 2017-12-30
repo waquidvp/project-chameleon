@@ -14,7 +14,7 @@ const TopBarContainer = styled.View`
   align-items: center;
   justify-content: space-between;
   padding-left: 16px;
-  padding-right: 16px;
+  padding-right: 8px;
 `;
 
 const UserDetails = {
@@ -47,7 +47,7 @@ class TopBar extends React.Component {
           profilePictureURL={profilePictureURL}
           minutes={minutes}
         />
-        <IconButton name="cog" color="rgba(0, 0, 0, 0.87)" />
+        <IconButton name="cog" color="rgba(0, 0, 0, 0.87)" size={24} />
       </TopBarContainer>
     );
   }
