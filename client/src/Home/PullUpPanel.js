@@ -1,5 +1,5 @@
 import React from 'react';
-import { Animated } from 'react-native';
+import { Animated, Platform } from 'react-native';
 import styled from 'styled-components/native';
 import Interactable from 'react-native-interactable';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -101,6 +101,21 @@ class PullUpPanel extends React.Component {
 
   deltaY = new Animated.Value(screenDimensions.height - screenDimensions.bottomBarHeight - 40);
 
+  panelConfig = Platform.select({
+    ios: {
+      boundaries: {
+        top: 0,
+        bottom: screenDimensions.height - screenDimensions.bottomBarHeight - 20,
+      },
+    },
+    android: {
+      boundaries: {
+        top: screenDimensions.statusBarHeight,
+        bottom: screenDimensions.height - screenDimensions.bottomBarHeight - 40,
+      },
+    },
+  });
+
   render() {
     return (
       <MainContainer pointerEvents="box-none">
@@ -111,10 +126,7 @@ class PullUpPanel extends React.Component {
             { y: screenDimensions.height - screenDimensions.bottomBarHeight - 40 },
             { y: screenDimensions.statusBarHeight },
           ]}
-          boundaries={{
-            top: 0,
-            bottom: screenDimensions.height - screenDimensions.bottomBarHeight - 20,
-          }}
+          boundaries={this.panelConfig.boundaries}
           initialPosition={{ y: screenDimensions.height - screenDimensions.bottomBarHeight - 40 }}
           animatedValueY={this.deltaY}
         >
