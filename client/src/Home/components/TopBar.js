@@ -38,6 +38,8 @@ class TopBar extends React.Component {
       name, online, profilePictureURL, minutes,
     } = UserDetails;
 
+    const { navigation } = this.props;
+
     return (
       <TopBarContainer statusBarHeight={screenDimensions.statusBarHeight}>
         <CustomStatusBar />
@@ -47,7 +49,12 @@ class TopBar extends React.Component {
           profilePictureURL={profilePictureURL}
           minutes={minutes}
         />
-        <IconButton name="cog" color="rgba(0, 0, 0, 0.87)" size={24} />
+        <IconButton
+          name="cog"
+          color="rgba(0, 0, 0, 0.87)"
+          size={24}
+          onPress={() => navigation.navigate('Settings')}
+        />
       </TopBarContainer>
     );
   }

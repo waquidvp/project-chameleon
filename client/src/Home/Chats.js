@@ -7,7 +7,6 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
 import Button from '../components/Button';
-import PullUpPanel from './PullUpPanel';
 import TopBar from './components/TopBar';
 import SearchTopBar from './components/SearchTopBar';
 import ChatItem from './components/ChatItem';
@@ -15,7 +14,6 @@ import { screenDimensions } from '../utils/screenDimensions';
 
 const MainContainer = styled.View`
   flex: 1;
-  background-color: rgba(55, 202, 195, 0.1);
 `;
 
 const ChatsPanel = styled.View`
@@ -27,7 +25,7 @@ const ChatsPanel = styled.View`
   overflow: hidden;
 `;
 
-const Chats = styled.ScrollView`
+const ChatsList = styled.ScrollView`
   flex: 1;
   padding-top: 54px;
 `;
@@ -121,18 +119,19 @@ const demoChats = [
   },
 ];
 
-class Home extends React.Component {
+class Chats extends React.Component {
   state = {};
 
   render() {
     const { changeLoginState } = this.props.screenProps;
     const { currentUser } = this.props.data;
+    const { navigation } = this.props;
 
     return (
       <MainContainer>
-        <TopBar />
+        <TopBar navigation={navigation} />
         <ChatsPanel>
-          <Chats>
+          <ChatsList>
             <FlatList
               data={demoChats}
               renderItem={({ item }) => <ChatItem chat={item} />}
@@ -145,10 +144,9 @@ class Home extends React.Component {
                 <Text>{currentUser.email}</Text>
               </View>
             )}
-          </Chats>
+          </ChatsList>
           <SearchTopBar />
         </ChatsPanel>
-        <PullUpPanel />
       </MainContainer>
     );
   }
@@ -161,4 +159,4 @@ export default graphql(gql`
       email
     }
   }
-`)(Home);
+`)(Chats);
