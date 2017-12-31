@@ -168,7 +168,7 @@ class PullUpPanel extends React.Component {
 
   render() {
     return (
-      <MainContainer>
+      <MainContainer pointerEvents="box-none" >
         <GreyOverlay pointerEvents="none" deltaY={this.deltaY} />
         <Interactable.View
           verticalOnly
