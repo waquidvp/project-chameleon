@@ -1,5 +1,5 @@
 import React from 'react';
-import { Animated, Platform } from 'react-native';
+import { Animated, Platform, View } from 'react-native';
 import styled from 'styled-components/native';
 import Interactable from 'react-native-interactable';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -51,6 +51,8 @@ const PullUpPanelContainer = styled.View`
   overflow: hidden;
 `;
 
+const CameraTabTouch = styled.TouchableWithoutFeedback``;
+
 const CameraTabContainer = styled.View`
   height: 40px;
   width: 100%;
@@ -58,7 +60,11 @@ const CameraTabContainer = styled.View`
   align-items: center;
 `;
 
-const CameraView = ({ style, ...props }) => <Camera style={style} {...props} />;
+const CameraView = ({ style, ...props }) => (
+  <View style={style} pointerEvents="none">
+    <Camera style={style} {...props} />
+  </View>
+);
 
 const MainCameraView = styled(CameraView)`
   flex: 1;
@@ -97,7 +103,34 @@ const TopTab = styled(AnimatedTopTab)`
 `;
 
 class PullUpPanel extends React.Component {
-  state = {};
+  state = {
+    cameraTabOpen: false,
+  };
+
+  onPanelSnap = (event) => {
+    const { index } = event.nativeEvent;
+
+    switch (index) {
+      case 0:
+        this.setState({ cameraTabOpen: false });
+        break;
+      case 1:
+        this.setState({ cameraTabOpen: true });
+        break;
+      default:
+        break;
+    }
+  };
+
+  pullCameraUp = () => {
+    const { cameraPanel } = this;
+    const { cameraTabOpen } = this.state;
+
+    if (cameraTabOpen === false) {
+      cameraPanel.snapTo({ index: 1 });
+      this.setState({ cameraTabOpen: true });
+    }
+  };
 
   deltaY = new Animated.Value(screenDimensions.height - screenDimensions.bottomBarHeight - 40);
 
@@ -107,34 +140,58 @@ class PullUpPanel extends React.Component {
         top: 0,
         bottom: screenDimensions.height - screenDimensions.bottomBarHeight - 20,
       },
+      snapPoints: [
+        { y: screenDimensions.height - screenDimensions.bottomBarHeight - 40 },
+        { y: screenDimensions.statusBarHeight },
+      ],
     },
     android: {
       boundaries: {
         top: screenDimensions.statusBarHeight,
         bottom: screenDimensions.height - screenDimensions.bottomBarHeight - 40,
+        bounce: 0,
       },
+      snapPoints: [
+        {
+          y: screenDimensions.height - screenDimensions.bottomBarHeight - 40,
+          damping: 0.8,
+          tension: 100,
+        },
+        {
+          y: screenDimensions.statusBarHeight,
+          damping: 0.8,
+          tension: 100,
+        },
+      ],
     },
   });
 
   render() {
     return (
-      <MainContainer pointerEvents="box-none">
-        <GreyOverlay pointerEvents="box-none" deltaY={this.deltaY} />
+      <MainContainer>
+        <GreyOverlay pointerEvents="none" deltaY={this.deltaY} />
         <Interactable.View
           verticalOnly
-          snapPoints={[
-            { y: screenDimensions.height - screenDimensions.bottomBarHeight - 40 },
-            { y: screenDimensions.statusBarHeight },
-          ]}
+          snapPoints={this.panelConfig.snapPoints}
           boundaries={this.panelConfig.boundaries}
           initialPosition={{ y: screenDimensions.height - screenDimensions.bottomBarHeight - 40 }}
           animatedValueY={this.deltaY}
+          ref={(ref) => {
+            this.cameraPanel = ref;
+          }}
+          onSnap={this.onPanelSnap}
         >
-          <PullUpPanelContainer pointerEvents="box-only" screenDimensions={screenDimensions}>
+          <PullUpPanelContainer pointerEvents="auto" screenDimensions={screenDimensions}>
             <TopTab screenDimensions={screenDimensions} deltaY={this.deltaY}>
-              <CameraTabContainer>
-                <Icon name="camera" color="white" size={20} />
-              </CameraTabContainer>
+              <CameraTabTouch
+                onPress={() => {
+                  this.pullCameraUp();
+                }}
+              >
+                <CameraTabContainer>
+                  <Icon name="camera" color="white" size={20} />
+                </CameraTabContainer>
+              </CameraTabTouch>
             </TopTab>
             <MainCameraView
               aspect={Camera.constants.Aspect.fill}
