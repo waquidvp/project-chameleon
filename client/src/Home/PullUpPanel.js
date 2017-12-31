@@ -4,6 +4,7 @@ import styled from 'styled-components/native';
 import Interactable from 'react-native-interactable';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Camera from 'react-native-camera';
+import Orientation from 'react-native-orientation';
 
 import { screenDimensions } from '../utils/screenDimensions';
 
@@ -15,7 +16,9 @@ const MainContainer = styled.View`
   left: 0;
 `;
 
-const AnimatedGreyOverlay = ({ style, deltaY, ...props }) => (
+const AnimatedGreyOverlay = ({
+  style, deltaY, styleProp, ...props
+}) => (
   <Animated.View
     style={[
       ...style,
@@ -23,8 +26,8 @@ const AnimatedGreyOverlay = ({ style, deltaY, ...props }) => (
         backgroundColor: 'black',
         opacity: deltaY.interpolate({
           inputRange: [
-            screenDimensions.statusBarHeight,
-            screenDimensions.height - screenDimensions.bottomBarHeight - 40,
+            styleProp.statusBarHeight,
+            styleProp.height - styleProp.bottomBarHeight - 40,
           ],
           outputRange: [0.5, 0],
           extrapolate: 'clamp',
@@ -44,7 +47,7 @@ const GreyOverlay = styled(AnimatedGreyOverlay)`
 `;
 
 const PullUpPanelContainer = styled.View`
-  height: ${props => props.screenDimensions.height + props.screenDimensions.statusBarHeight};
+  height: ${props => props.styleProp.height + props.styleProp.statusBarHeight};
   background-color: #ffffff;
   border-top-left-radius: 19;
   border-top-right-radius: 19;
@@ -71,7 +74,7 @@ const MainCameraView = styled(CameraView)`
 `;
 
 const AnimatedTopTab = ({
-  style, children, deltaY, ...props
+  style, children, deltaY, styleProp, ...props
 }) => (
   <Animated.View
     style={[
@@ -79,8 +82,8 @@ const AnimatedTopTab = ({
       {
         opacity: deltaY.interpolate({
           inputRange: [
-            screenDimensions.statusBarHeight,
-            screenDimensions.height - screenDimensions.bottomBarHeight - 40,
+            styleProp.statusBarHeight,
+            styleProp.height - styleProp.bottomBarHeight - 40,
           ],
           outputRange: [0, 1],
           extrapolate: 'clamp',
@@ -94,8 +97,8 @@ const AnimatedTopTab = ({
 );
 
 const TopTab = styled(AnimatedTopTab)`
-  height: ${props => 40 + props.bottomBarHeight};
-  width: ${props => props.width};
+  height: ${props => 40 + props.styleProp.bottomBarHeight};
+  width: ${props => props.styleProp.width};
   background-color: rgb(55, 202, 195);
   position: absolute;
   top: 0;
@@ -104,36 +107,53 @@ const TopTab = styled(AnimatedTopTab)`
 
 class PullUpPanel extends React.Component {
   state = {
-    cameraTabOpen: false,
     height: screenDimensions.height,
     width: screenDimensions.width,
     bottomBarHeight: screenDimensions.bottomBarHeight,
     statusBarHeight: screenDimensions.statusBarHeight,
   };
 
-  onPanelSnap = (event) => {
-    const { index } = event.nativeEvent;
+  componentWillMount() {
+    const initial = Orientation.getInitialOrientation();
+    if (initial === 'LANDSCAPE') {
+      this.setState({
+        height: screenDimensions.width,
+        width: screenDimensions.height,
+        bottomBarHeight: 0,
+        statusBarHeight: screenDimensions.statusBarHeight,
+      });
+    }
+  }
 
-    switch (index) {
-      case 0:
-        this.setState({ cameraTabOpen: false });
-        break;
-      case 1:
-        this.setState({ cameraTabOpen: true });
-        break;
-      default:
-        break;
+  componentDidMount() {
+    Orientation.addOrientationListener(this.orientationDidChange);
+  }
+
+  componentWillUnmount() {
+    Orientation.removeOrientationListener(this.orientationDidChange);
+  }
+
+  orientationDidChange = (orientation) => {
+    if (orientation === 'LANDSCAPE') {
+      this.setState({
+        height: screenDimensions.width,
+        width: screenDimensions.height,
+        bottomBarHeight: 0,
+        statusBarHeight: screenDimensions.statusBarHeight,
+      });
+    } else if (orientation === 'PORTRAIT' || 'PORTRAITUPSIDEDOWN') {
+      this.setState({
+        height: screenDimensions.height,
+        width: screenDimensions.width,
+        bottomBarHeight: screenDimensions.bottomBarHeight,
+        statusBarHeight: screenDimensions.statusBarHeight,
+      });
     }
   };
 
   pullCameraUp = () => {
     const { cameraPanel } = this;
-    const { cameraTabOpen } = this.state;
-
-    if (cameraTabOpen === false) {
-      cameraPanel.snapTo({ index: 1 });
-      this.setState({ cameraTabOpen: true });
-    }
+    cameraPanel.snapTo({ index: 1 });
   };
 
   deltaY = new Animated.Value(this.state.height - this.state.bottomBarHeight - 40);
@@ -142,27 +162,27 @@ class PullUpPanel extends React.Component {
     ios: {
       boundaries: {
         top: 0,
-        bottom: screenDimensions.height - screenDimensions.bottomBarHeight - 20,
+        bottom: this.state.height - this.state.bottomBarHeight - 20,
       },
       snapPoints: [
-        { y: screenDimensions.height - screenDimensions.bottomBarHeight - 40 },
-        { y: screenDimensions.statusBarHeight },
+        { y: this.state.height - this.state.bottomBarHeight - 40 },
+        { y: this.state.statusBarHeight },
       ],
     },
     android: {
       boundaries: {
-        top: screenDimensions.statusBarHeight,
-        bottom: screenDimensions.height - screenDimensions.bottomBarHeight - 40,
+        top: this.state.statusBarHeight,
+        bottom: this.state.height - this.state.bottomBarHeight - 40,
         bounce: 0,
       },
       snapPoints: [
         {
-          y: screenDimensions.height - screenDimensions.bottomBarHeight - 40,
+          y: this.state.height - this.state.bottomBarHeight - 40,
           damping: 0.8,
           tension: 100,
         },
         {
-          y: screenDimensions.statusBarHeight,
+          y: this.state.statusBarHeight,
           damping: 0.8,
           tension: 100,
         },
@@ -171,24 +191,45 @@ class PullUpPanel extends React.Component {
   });
 
   render() {
+    const {
+      height, width, statusBarHeight, bottomBarHeight,
+    } = this.state;
+
     return (
       <MainContainer pointerEvents="box-none">
-        <GreyOverlay pointerEvents="none" deltaY={this.deltaY} />
+        <GreyOverlay
+          pointerEvents="none"
+          deltaY={this.deltaY}
+          styleProp={{
+            height,
+            statusBarHeight,
+            bottomBarHeight,
+          }}
+        />
         <Interactable.View
           verticalOnly
           snapPoints={this.panelConfig.snapPoints}
           boundaries={this.panelConfig.boundaries}
-          initialPosition={{ y: this.state.height - this.state.bottomBarHeight - 40 }}
+          initialPosition={{ y: height - bottomBarHeight - 40 }}
           animatedValueY={this.deltaY}
           ref={(ref) => {
             this.cameraPanel = ref;
           }}
-          // onSnap={this.onPanelSnap}
         >
-          <PullUpPanelContainer pointerEvents="auto" screenDimensions={screenDimensions}>
+          <PullUpPanelContainer
+            pointerEvents="auto"
+            styleProp={{
+              height,
+              statusBarHeight,
+            }}
+          >
             <TopTab
-              bottomBarHeight={this.state.bottomBarHeight}
-              width={this.state.width}
+              styleProp={{
+                bottomBarHeight,
+                width,
+                height,
+                statusBarHeight,
+              }}
               deltaY={this.deltaY}
             >
               <CameraTabTouch
