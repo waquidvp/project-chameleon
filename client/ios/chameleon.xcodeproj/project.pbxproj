@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -54,11 +55,11 @@
 		C8522C8C91F0410AB4B7FFD0 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4CCE457CA3BF437A8075CCB4 /* EvilIcons.ttf */; };
 		C8C189EEA029447D830CFFFA /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2D04F684CB4F4F238FC9B64F /* Octicons.ttf */; };
 		CB6576A286E24356AA53EE05 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6AAEEF78B57A4F3A9DB48CB4 /* Ionicons.ttf */; };
+		E761F6711FF984100024EAD7 /* libRCTOrientation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E761F6701FF984100024EAD7 /* libRCTOrientation.a */; };
 		E7DB022D1FBA601C00F03598 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DB022C1FBA601C00F03598 /* FBSDKCoreKit.framework */; };
 		E7DB022F1FBA603A00F03598 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DB022E1FBA603A00F03598 /* FBSDKLoginKit.framework */; };
 		E7DB02311FBA605600F03598 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DB02301FBA605600F03598 /* FBSDKShareKit.framework */; };
 		E7DB02661FBA61BD00F03598 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7DB02401FBA61BD00F03598 /* Bolts.framework */; };
-		10693B500D3744DEA934CC9E /* libRCTOrientation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E7A7D2BEBD594BD8B0D2AEA8 /* libRCTOrientation.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -272,6 +273,13 @@
 			remoteGlobalIDString = 64D1BD361EEFE88700F3F219;
 			remoteInfo = "RNBlur-tvOS";
 		};
+		E761F66F1FF984100024EAD7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E761F66B1FF984100024EAD7 /* RCTOrientation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RCTOrientation;
+		};
 		E79B7D061FAF481D00B81FC7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */;
@@ -427,14 +435,14 @@
 		AE70E14AACFF4C03822D0EFC /* BVLinearGradient.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = BVLinearGradient.xcodeproj; path = "../node_modules/react-native-linear-gradient/BVLinearGradient.xcodeproj"; sourceTree = "<group>"; };
 		B7B1691DBC9744359C0D7B6E /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		E25D4121AFF14EF5BDD44E00 /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
+		E761F66B1FF984100024EAD7 /* RCTOrientation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTOrientation.xcodeproj; path = "../node_modules/react-native-orientation/iOS/RCTOrientation.xcodeproj"; sourceTree = "<group>"; };
+		E7A7D2BEBD594BD8B0D2AEA8 /* libRCTOrientation.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTOrientation.a; sourceTree = "<group>"; };
 		E7DB022C1FBA601C00F03598 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../../../Documents/FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		E7DB022E1FBA603A00F03598 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../../../Documents/FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		E7DB02301FBA605600F03598 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = ../../../../Documents/FacebookSDK/FBSDKShareKit.framework; sourceTree = "<group>"; };
 		E7DB02401FBA61BD00F03598 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = ../../../../Documents/FacebookSDK/Bolts.framework; sourceTree = "<group>"; };
 		E9F91EB1761147B2B21391CF /* libRNBlur.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNBlur.a; sourceTree = "<group>"; };
 		F1A6DA3CBCDE489A94F08C3E /* RCTCamera.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTCamera.xcodeproj; path = "../node_modules/react-native-camera/ios/RCTCamera.xcodeproj"; sourceTree = "<group>"; };
-		57656163B6F546709F664DC3 /* RCTOrientation.xcodeproj */ = {isa = PBXFileReference; name = "RCTOrientation.xcodeproj"; path = "../node_modules/react-native-orientation/iOS/RCTOrientation.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		E7A7D2BEBD594BD8B0D2AEA8 /* libRCTOrientation.a */ = {isa = PBXFileReference; name = "libRCTOrientation.a"; path = "libRCTOrientation.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -473,7 +481,7 @@
 				6BF359A44B3D467C9EE83199 /* libBVLinearGradient.a in Frameworks */,
 				0D2BBAD805434899ACC1749C /* libInteractable.a in Frameworks */,
 				C0598FA6462C420FB35C48B1 /* libRNVectorIcons.a in Frameworks */,
-				10693B500D3744DEA934CC9E /* libRCTOrientation.a in Frameworks */,
+				E761F6711FF984100024EAD7 /* libRCTOrientation.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -656,6 +664,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				E761F66B1FF984100024EAD7 /* RCTOrientation.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
@@ -674,7 +683,6 @@
 				AE70E14AACFF4C03822D0EFC /* BVLinearGradient.xcodeproj */,
 				079CF052ECF34CF797CE1CEC /* Interactable.xcodeproj */,
 				2554B753F0F840909D333E72 /* RNVectorIcons.xcodeproj */,
-				57656163B6F546709F664DC3 /* RCTOrientation.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -733,6 +741,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		E761F66C1FF984100024EAD7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E761F6701FF984100024EAD7 /* libRCTOrientation.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		E7D968E41FDC41C700E222A2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -767,6 +783,7 @@
 				2FCBA9E5996B461A8FECCAE0 /* libBVLinearGradient.a */,
 				AE08B2CC9FC049578547A292 /* libInteractable.a */,
 				E25D4121AFF14EF5BDD44E00 /* libRNVectorIcons.a */,
+				E7A7D2BEBD594BD8B0D2AEA8 /* libRCTOrientation.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -957,6 +974,10 @@
 				{
 					ProductGroup = 00C302D41ABCB9D200DB3ED1 /* Products */;
 					ProjectRef = 00C302D31ABCB9D200DB3ED1 /* RCTNetwork.xcodeproj */;
+				},
+				{
+					ProductGroup = E761F66C1FF984100024EAD7 /* Products */;
+					ProjectRef = E761F66B1FF984100024EAD7 /* RCTOrientation.xcodeproj */;
 				},
 				{
 					ProductGroup = 139105B71AF99BAD00B5F7CC /* Products */;
@@ -1192,6 +1213,13 @@
 			fileType = archive.ar;
 			path = libRNBlur.a;
 			remoteRef = B3CCB8631FD1CBE900D567BC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E761F6701FF984100024EAD7 /* libRCTOrientation.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTOrientation.a;
+			remoteRef = E761F66F1FF984100024EAD7 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		E79B7D071FAF481D00B81FC7 /* libRCTBlob-tvOS.a */ = {
@@ -1458,7 +1486,7 @@
 					"$(SRCROOT)..\node_modules\neact-native-linear-gradientBVLinearGradient",
 					"$(SRCROOT)..\node_modules\neact-native-interactableiosInteractable/**",
 					"$(SRCROOT)..\node_modules\neact-native-vector-iconsRNVectorIconsManager",
-					"$(SRCROOT)\..\node_modules\react-native-orientation\iOS\RCTOrientation/**",
+					"$(SRCROOT)..\node_modules\neact-native-orientationiOSRCTOrientation/**",
 				);
 				INFOPLIST_FILE = chameleonTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1496,7 +1524,7 @@
 					"$(SRCROOT)..\node_modules\neact-native-linear-gradientBVLinearGradient",
 					"$(SRCROOT)..\node_modules\neact-native-interactableiosInteractable/**",
 					"$(SRCROOT)..\node_modules\neact-native-vector-iconsRNVectorIconsManager",
-					"$(SRCROOT)\..\node_modules\react-native-orientation\iOS\RCTOrientation/**",
+					"$(SRCROOT)..\node_modules\neact-native-orientationiOSRCTOrientation/**",
 				);
 				INFOPLIST_FILE = chameleonTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1533,13 +1561,24 @@
 				FRAMEWORK_SEARCH_PATHS = "~/Documents/FacebookSDK";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)..\node_modules\neact-native-cameraios",
+					"$(SRCROOT)..",
+					ode_modules,
+					"eact-native-cameraios",
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
 					"$(SRCROOT)/../node_modules/react-native-blur/ios",
-					"$(SRCROOT)..\node_modules\neact-native-linear-gradientBVLinearGradient",
-					"$(SRCROOT)..\node_modules\neact-native-interactableiosInteractable/**",
-					"$(SRCROOT)..\node_modules\neact-native-vector-iconsRNVectorIconsManager",
-					"$(SRCROOT)\..\node_modules\react-native-orientation\iOS\RCTOrientation/**",
+					"$(SRCROOT)..",
+					ode_modules,
+					"eact-native-linear-gradientBVLinearGradient",
+					"$(SRCROOT)..",
+					ode_modules,
+					"eact-native-interactableiosInteractable/**",
+					"$(SRCROOT)..",
+					ode_modules,
+					"eact-native-vector-iconsRNVectorIconsManager",
+					"$(SRCROOT)..",
+					ode_modules,
+					"eact-native-orientationiOSRCTOrientation/**",
+					"$(SRCROOT)/../node_modules/react-native-orientation/iOS/RCTOrientation/",
 				);
 				INFOPLIST_FILE = chameleon/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1569,13 +1608,24 @@
 				FRAMEWORK_SEARCH_PATHS = "~/Documents/FacebookSDK";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)..\node_modules\neact-native-cameraios",
+					"$(SRCROOT)..",
+					ode_modules,
+					"eact-native-cameraios",
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
 					"$(SRCROOT)/../node_modules/react-native-blur/ios",
-					"$(SRCROOT)..\node_modules\neact-native-linear-gradientBVLinearGradient",
-					"$(SRCROOT)..\node_modules\neact-native-interactableiosInteractable/**",
-					"$(SRCROOT)..\node_modules\neact-native-vector-iconsRNVectorIconsManager",
-					"$(SRCROOT)\..\node_modules\react-native-orientation\iOS\RCTOrientation/**",
+					"$(SRCROOT)..",
+					ode_modules,
+					"eact-native-linear-gradientBVLinearGradient",
+					"$(SRCROOT)..",
+					ode_modules,
+					"eact-native-interactableiosInteractable/**",
+					"$(SRCROOT)..",
+					ode_modules,
+					"eact-native-vector-iconsRNVectorIconsManager",
+					"$(SRCROOT)..",
+					ode_modules,
+					"eact-native-orientationiOSRCTOrientation/**",
+					"$(SRCROOT)/../node_modules/react-native-orientation/iOS/RCTOrientation/",
 				);
 				INFOPLIST_FILE = chameleon/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1613,7 +1663,7 @@
 					"$(SRCROOT)..\node_modules\neact-native-linear-gradientBVLinearGradient",
 					"$(SRCROOT)..\node_modules\neact-native-interactableiosInteractable/**",
 					"$(SRCROOT)..\node_modules\neact-native-vector-iconsRNVectorIconsManager",
-					"$(SRCROOT)\..\node_modules\react-native-orientation\iOS\RCTOrientation/**",
+					"$(SRCROOT)..\node_modules\neact-native-orientationiOSRCTOrientation/**",
 				);
 				INFOPLIST_FILE = "chameleon-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1659,7 +1709,7 @@
 					"$(SRCROOT)..\node_modules\neact-native-linear-gradientBVLinearGradient",
 					"$(SRCROOT)..\node_modules\neact-native-interactableiosInteractable/**",
 					"$(SRCROOT)..\node_modules\neact-native-vector-iconsRNVectorIconsManager",
-					"$(SRCROOT)\..\node_modules\react-native-orientation\iOS\RCTOrientation/**",
+					"$(SRCROOT)..\node_modules\neact-native-orientationiOSRCTOrientation/**",
 				);
 				INFOPLIST_FILE = "chameleon-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

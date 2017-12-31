@@ -139,40 +139,40 @@ class PullUpPanel extends React.Component {
   deltaY = new Animated.Value(this.state.height - this.state.bottomBarHeight - 40);
 
   panelConfig = Platform.select({
-    ios: () => ({
+    ios: {
       boundaries: {
         top: 0,
-        bottom: this.state.height - this.state.bottomBarHeight - 20,
+        bottom: screenDimensions.height - screenDimensions.bottomBarHeight - 20,
       },
       snapPoints: [
-        { y: this.state.height - this.state.bottomBarHeight - 40 },
-        { y: this.state.statusBarHeight },
+        { y: screenDimensions.height - screenDimensions.bottomBarHeight - 40 },
+        { y: screenDimensions.statusBarHeight },
       ],
-    }),
-    android: () => ({
+    },
+    android: {
       boundaries: {
-        top: this.state.statusBarHeight,
-        bottom: this.state.height - this.state.bottomBarHeight - 40,
+        top: screenDimensions.statusBarHeight,
+        bottom: screenDimensions.height - screenDimensions.bottomBarHeight - 40,
         bounce: 0,
       },
       snapPoints: [
         {
-          y: this.state.height - this.state.bottomBarHeight - 40,
+          y: screenDimensions.height - screenDimensions.bottomBarHeight - 40,
           damping: 0.8,
           tension: 100,
         },
         {
-          y: this.state.statusBarHeight,
+          y: screenDimensions.statusBarHeight,
           damping: 0.8,
           tension: 100,
         },
       ],
-    }),
+    },
   });
 
   render() {
     return (
-      <MainContainer>
+      <MainContainer pointerEvents="box-none">
         <GreyOverlay pointerEvents="none" deltaY={this.deltaY} />
         <Interactable.View
           verticalOnly
@@ -183,7 +183,7 @@ class PullUpPanel extends React.Component {
           ref={(ref) => {
             this.cameraPanel = ref;
           }}
-          onSnap={this.onPanelSnap}
+          // onSnap={this.onPanelSnap}
         >
           <PullUpPanelContainer pointerEvents="auto" screenDimensions={screenDimensions}>
             <TopTab
