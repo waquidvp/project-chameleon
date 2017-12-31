@@ -10,6 +10,7 @@ const ChatContainer = styled(Touchable)`
   padding: 0 16px;
   flex-direction: row;
   align-items: center;
+  background-color: #ffffff;
 `;
 
 const ChatItem = ({
@@ -17,7 +18,7 @@ const ChatItem = ({
     name, online, profilePictureURL, minutes, chatPreview,
   },
 }) => (
-  <ChatContainer>
+  <ChatContainer list>
     <ProfileInfo
       name={name}
       online={online}
