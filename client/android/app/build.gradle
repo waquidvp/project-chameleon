@@ -143,7 +143,8 @@ dependencies {
     compile project(':react-native-camera')
     compile project(':react-native-linear-gradient')
     compile project(':react-native-interactable')
-    compile project(':react-native-vector-icons')      
+    compile project(':react-native-vector-icons')
+    compile project(':react-native-orientation')      
     compile fileTree(dir: "libs", include: ["*.jar"])
     compile "com.android.support:appcompat-v7:26+"
     compile "com.facebook.react:react-native:+"  // From node_modules

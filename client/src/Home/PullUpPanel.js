@@ -94,8 +94,8 @@ const AnimatedTopTab = ({
 );
 
 const TopTab = styled(AnimatedTopTab)`
-  height: ${props => 40 + props.screenDimensions.bottomBarHeight};
-  width: ${props => props.screenDimensions.width};
+  height: ${props => 40 + props.bottomBarHeight};
+  width: ${props => props.width};
   background-color: rgb(55, 202, 195);
   position: absolute;
   top: 0;
@@ -105,6 +105,10 @@ const TopTab = styled(AnimatedTopTab)`
 class PullUpPanel extends React.Component {
   state = {
     cameraTabOpen: false,
+    height: screenDimensions.height,
+    width: screenDimensions.width,
+    bottomBarHeight: screenDimensions.bottomBarHeight,
+    statusBarHeight: screenDimensions.statusBarHeight,
   };
 
   onPanelSnap = (event) => {
@@ -132,49 +136,49 @@ class PullUpPanel extends React.Component {
     }
   };
 
-  deltaY = new Animated.Value(screenDimensions.height - screenDimensions.bottomBarHeight - 40);
+  deltaY = new Animated.Value(this.state.height - this.state.bottomBarHeight - 40);
 
   panelConfig = Platform.select({
-    ios: {
+    ios: () => ({
       boundaries: {
         top: 0,
-        bottom: screenDimensions.height - screenDimensions.bottomBarHeight - 20,
+        bottom: this.state.height - this.state.bottomBarHeight - 20,
       },
       snapPoints: [
-        { y: screenDimensions.height - screenDimensions.bottomBarHeight - 40 },
-        { y: screenDimensions.statusBarHeight },
+        { y: this.state.height - this.state.bottomBarHeight - 40 },
+        { y: this.state.statusBarHeight },
       ],
-    },
-    android: {
+    }),
+    android: () => ({
       boundaries: {
-        top: screenDimensions.statusBarHeight,
-        bottom: screenDimensions.height - screenDimensions.bottomBarHeight - 40,
+        top: this.state.statusBarHeight,
+        bottom: this.state.height - this.state.bottomBarHeight - 40,
         bounce: 0,
       },
       snapPoints: [
         {
-          y: screenDimensions.height - screenDimensions.bottomBarHeight - 40,
+          y: this.state.height - this.state.bottomBarHeight - 40,
           damping: 0.8,
           tension: 100,
         },
         {
-          y: screenDimensions.statusBarHeight,
+          y: this.state.statusBarHeight,
           damping: 0.8,
           tension: 100,
         },
       ],
-    },
+    }),
   });
 
   render() {
     return (
-      <MainContainer pointerEvents="box-none" >
+      <MainContainer>
         <GreyOverlay pointerEvents="none" deltaY={this.deltaY} />
         <Interactable.View
           verticalOnly
           snapPoints={this.panelConfig.snapPoints}
           boundaries={this.panelConfig.boundaries}
-          initialPosition={{ y: screenDimensions.height - screenDimensions.bottomBarHeight - 40 }}
+          initialPosition={{ y: this.state.height - this.state.bottomBarHeight - 40 }}
           animatedValueY={this.deltaY}
           ref={(ref) => {
             this.cameraPanel = ref;
@@ -182,7 +186,11 @@ class PullUpPanel extends React.Component {
           onSnap={this.onPanelSnap}
         >
           <PullUpPanelContainer pointerEvents="auto" screenDimensions={screenDimensions}>
-            <TopTab screenDimensions={screenDimensions} deltaY={this.deltaY}>
+            <TopTab
+              bottomBarHeight={this.state.bottomBarHeight}
+              width={this.state.width}
+              deltaY={this.deltaY}
+            >
               <CameraTabTouch
                 onPress={() => {
                   this.pullCameraUp();
