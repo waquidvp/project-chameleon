@@ -15,6 +15,7 @@ const TopBarContainer = styled.View`
   justify-content: space-between;
   padding-left: 16px;
   padding-right: 8px;
+  elevation: 2;
 `;
 
 const UserDetails = {

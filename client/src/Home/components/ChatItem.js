@@ -18,7 +18,7 @@ const ChatItem = ({
     name, online, profilePictureURL, minutes, chatPreview,
   },
 }) => (
-  <ChatContainer list>
+  <ChatContainer list onPress={() => {}}>
     <ProfileInfo
       name={name}
       online={online}

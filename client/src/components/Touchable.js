@@ -7,13 +7,13 @@ const Touch = Platform.select({
   android: TouchableNativeFeedback,
 });
 
-const Touchable = ({ style, children, list, ...props }) => {
+const Touchable = ({
+  style, children, list, ...props
+}) => {
   if (list) {
     return (
-      <Touch style={style} {...props}>
-        <View>
-          {children}
-        </View>
+      <Touch {...props} activeOpacity={0.9}>
+        <View style={style}>{children}</View>
       </Touch>
     );
   }

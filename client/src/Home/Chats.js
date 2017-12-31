@@ -23,6 +23,7 @@ const ChatsPanel = styled.View`
   border-top-left-radius: 19;
   border-top-right-radius: 19;
   overflow: hidden;
+  elevation: 1;
 `;
 
 const ChatsList = styled.ScrollView`
