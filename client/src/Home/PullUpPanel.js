@@ -54,7 +54,9 @@ const PullUpPanelContainer = styled.View`
   overflow: hidden;
 `;
 
-const CameraTabTouch = styled.TouchableWithoutFeedback``;
+const CameraTabTouch = styled.TouchableWithoutFeedback`
+  flex: 1;
+`;
 
 const CameraTabContainer = styled.View`
   height: 40px;
@@ -85,7 +87,7 @@ const AnimatedTopTab = ({
             styleProp.statusBarHeight,
             styleProp.height - styleProp.bottomBarHeight - 40,
           ],
-          outputRange: [0, 1],
+          outputRange: [-1, 1],
           extrapolate: 'clamp',
         }),
       },
@@ -97,8 +99,9 @@ const AnimatedTopTab = ({
 );
 
 const TopTab = styled(AnimatedTopTab)`
-  height: ${props => 40 + props.styleProp.bottomBarHeight};
+  /* height: ${props => 40 + props.styleProp.bottomBarHeight}; */
   width: 100%;
+  height: 100%;
   background-color: rgb(55, 202, 195);
   position: absolute;
   top: 0;
@@ -136,7 +139,7 @@ class PullUpPanel extends React.Component {
       height: window.height,
       width: window.width,
     });
-  }
+  };
 
   orientationDidChange = (orientation) => {
     if (orientation === 'LANDSCAPE') {
