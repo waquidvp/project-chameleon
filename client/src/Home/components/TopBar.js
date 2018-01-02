@@ -4,7 +4,7 @@ import styled from 'styled-components/native';
 import IconButton from '../../components/IconButton';
 import ProfileInfo from '../../components/ProfileInfo';
 
-import { screenDimensions } from '../../utils/screenDimensions';
+import screenDimensions from '../../utils/screenDimensions';
 
 const TopBarContainer = styled.View`
   height: ${props => props.statusBarHeight + 56};

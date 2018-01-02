@@ -8,11 +8,7 @@ const isIphoneTen = () =>
   !Platform.isTVOS &&
   (screen.height === 812 || screen.width === 812);
 
-export const getHeight = () => screen.height;
-
-export const getWidth = () => screen.width;
-
-export const getStatusBarHeight = () => {
+const getStatusBarHeight = () => {
   if (isIphoneTen() === true) {
     return 44;
   } else if (Platform.OS === 'ios') {
@@ -24,7 +20,7 @@ export const getStatusBarHeight = () => {
   return null;
 };
 
-export const getBottomBarHeight = () => {
+const getBottomBarHeight = () => {
   if (isIphoneTen() === true) {
     return 24;
   }
@@ -32,8 +28,10 @@ export const getBottomBarHeight = () => {
   return 0;
 };
 
-export const screenDimensions = {
+const screenDimensions = {
   ...screen,
   statusBarHeight: getStatusBarHeight(),
   bottomBarHeight: getBottomBarHeight(),
 };
+
+export default screenDimensions;

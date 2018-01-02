@@ -10,7 +10,7 @@ import Button from '../components/Button';
 import TopBar from './components/TopBar';
 import SearchTopBar from './components/SearchTopBar';
 import ChatItem from './components/ChatItem';
-import { screenDimensions } from '../utils/screenDimensions';
+import screenDimensions from '../utils/screenDimensions';
 
 const MainContainer = styled.View`
   flex: 1;
