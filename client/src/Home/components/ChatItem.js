@@ -16,9 +16,9 @@ const ChatContainer = styled(Touchable)`
 const ChatItem = ({
   chat: {
     name, online, profilePictureURL, minutes, chatPreview,
-  },
+  }, onPress,
 }) => (
-  <ChatContainer list onPress={() => {}}>
+  <ChatContainer list onPress={onPress}>
     <ProfileInfo
       name={name}
       online={online}
@@ -37,7 +37,8 @@ ChatItem.propTypes = {
     name: PropTypes.string.isRequired,
     minutes: PropTypes.number.isRequired,
     chatPreview: PropTypes.string,
-  }),
+  }).isRequired,
+  onPress: PropTypes.func.isRequired,
 };
 
 export default ChatItem;

@@ -135,7 +135,9 @@ class Chats extends React.Component {
           <ChatsList>
             <FlatList
               data={demoChats}
-              renderItem={({ item }) => <ChatItem chat={item} />}
+              renderItem={({ item }) => (
+                <ChatItem chat={item} onPress={() => navigation.navigate('Chat')} />
+              )}
               ListFooterComponent={<FooterSpacerComponent screenDimensions={screenDimensions} />}
             />
             <Button text="Sign Out" onPress={() => changeLoginState(false)} />
