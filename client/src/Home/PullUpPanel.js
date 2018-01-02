@@ -1,12 +1,12 @@
 import React from 'react';
-import { Animated, Platform, View } from 'react-native';
+import { Animated, Platform, View, Dimensions } from 'react-native';
 import styled from 'styled-components/native';
 import Interactable from 'react-native-interactable';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Camera from 'react-native-camera';
 import Orientation from 'react-native-orientation';
 
-import { screenDimensions } from '../utils/screenDimensions';
+import screenDimensions from '../utils/screenDimensions';
 
 const MainContainer = styled.View`
   position: absolute;
@@ -98,7 +98,7 @@ const AnimatedTopTab = ({
 
 const TopTab = styled(AnimatedTopTab)`
   height: ${props => 40 + props.styleProp.bottomBarHeight};
-  width: ${props => props.styleProp.width};
+  width: 100%;
   background-color: rgb(55, 202, 195);
   position: absolute;
   top: 0;
@@ -113,40 +113,39 @@ class PullUpPanel extends React.Component {
     statusBarHeight: screenDimensions.statusBarHeight,
   };
 
-  componentWillMount() {
-    const initial = Orientation.getInitialOrientation();
-    if (initial === 'LANDSCAPE') {
-      this.setState({
-        height: screenDimensions.width,
-        width: screenDimensions.height,
-        bottomBarHeight: 0,
-        statusBarHeight: screenDimensions.statusBarHeight,
-      });
-    }
-  }
+  // componentWillMount() {
+  //   const initial = Orientation.getInitialOrientation();
+  //   if (initial === 'LANDSCAPE') {
+  //     this.setState({
+  //       bottomBarHeight: 0,
+  //     });
+  //   }
+  // }
 
   componentDidMount() {
     Orientation.addOrientationListener(this.orientationDidChange);
+    Dimensions.addEventListener('change', this.dimensionsDidChange);
   }
 
   componentWillUnmount() {
     Orientation.removeOrientationListener(this.orientationDidChange);
   }
 
+  dimensionsDidChange = ({ window }) => {
+    this.setState({
+      height: window.height,
+      width: window.width,
+    });
+  }
+
   orientationDidChange = (orientation) => {
     if (orientation === 'LANDSCAPE') {
       this.setState({
-        height: screenDimensions.width,
-        width: screenDimensions.height,
         bottomBarHeight: 0,
-        statusBarHeight: screenDimensions.statusBarHeight,
       });
     } else if (orientation === 'PORTRAIT' || 'PORTRAITUPSIDEDOWN') {
       this.setState({
-        height: screenDimensions.height,
-        width: screenDimensions.width,
         bottomBarHeight: screenDimensions.bottomBarHeight,
-        statusBarHeight: screenDimensions.statusBarHeight,
       });
     }
   };
