@@ -17,11 +17,11 @@ const HomeStack = StackNavigator(
       header: null,
     },
     cardStyle: {
-      backgroundColor: 'rgba(55, 202, 195, 0.1)',
+      backgroundColor: 'rgba(55, 202, 195, 0.05)',
     },
     transitionConfig: () => ({
       containerStyle: {
-        backgroundColor: 'rgba(55, 202, 195, 0.1)',
+        backgroundColor: 'rgba(55, 202, 195, 0.05)',
       },
     }),
   },
