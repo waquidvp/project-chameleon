@@ -99,7 +99,6 @@ const AnimatedTopTab = ({
 );
 
 const TopTab = styled(AnimatedTopTab)`
-  /* height: ${props => 40 + props.styleProp.bottomBarHeight}; */
   width: 100%;
   height: 100%;
   background-color: rgb(55, 202, 195);
