@@ -141,7 +141,7 @@ class Chats extends React.Component {
 
     return (
       <MainContainer>
-        <TopBar navigation={navigation} />
+        {/* <TopBar navigation={navigation} /> */}
         <ChatsPanel>
           <ChatsList>
             <FlatList

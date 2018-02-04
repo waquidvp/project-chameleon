@@ -5,6 +5,8 @@ import Chat from '../Chat/Main';
 
 import screenDimensions from '../utils/screenDimensions';
 
+console.warn(screenDimensions.statusBarHeight);
+
 const HomeStack = StackNavigator(
   {
     Chats: {
@@ -17,8 +19,13 @@ const HomeStack = StackNavigator(
   {
     navigationOptions: {
       headerStyle: {
-        height: screenDimensions.statusBarHeight + 56,
-        paddingTop: screenDimensions.statusBarHeight,
+        height: 56,
+        backgroundColor: '#FFFFFF',
+        borderBottomWidth: 0,
+        shadowColor: 'black',
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0.2,
+        shadowRadius: 5,
       },
     },
     cardStyle: {
