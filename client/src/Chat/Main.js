@@ -21,10 +21,10 @@ class Chat extends React.Component {
   static navigationOptions = {
     headerLeft: (
       <ProfileInfo
-        name="waquid"
+        name="Kovacs"
         online
-        profilePictureURL="https://randomuser.me/api/portraits/men/84.jpg"
-        minutes={123}
+        profilePictureURL="https://randomuser.me/api/portraits/men/86.jpg"
+        minutes={2354}
       />
     ),
   };

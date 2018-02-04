@@ -7,6 +7,7 @@ import CustomStatusBar from '../components/CustomStatusBar';
 
 const MainContainer = styled.View`
   flex: 1;
+  background-color: rgba(55, 202, 195, 0.2);
 `;
 
 class Main extends React.Component {

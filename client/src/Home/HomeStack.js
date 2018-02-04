@@ -6,7 +6,7 @@ import Chat from '../Chat/Main';
 
 import screenDimensions from '../utils/screenDimensions';
 
-const headerHeight = Platform.select({
+const headerPadding = Platform.select({
   ios: 0,
   android: screenDimensions.statusBarHeight,
 });
@@ -23,8 +23,8 @@ const HomeStack = StackNavigator(
   {
     navigationOptions: {
       headerStyle: {
-        height: 56 + headerHeight,
-        paddingTop: headerHeight,
+        height: 56 + headerPadding,
+        paddingTop: headerPadding,
         paddingLeft: 16,
         paddingRight: 8,
         backgroundColor: '#FFFFFF',
@@ -37,11 +37,11 @@ const HomeStack = StackNavigator(
       },
     },
     cardStyle: {
-      backgroundColor: 'rgba(55, 202, 195, 0.05)',
+      backgroundColor: 'rgba(0, 0, 0, 0)',
     },
     transitionConfig: () => ({
       containerStyle: {
-        backgroundColor: 'rgba(55, 202, 195, 0.05)',
+        backgroundColor: 'rgba(0, 0, 0, 0)',
       },
     }),
   },
