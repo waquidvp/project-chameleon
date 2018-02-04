@@ -7,10 +7,11 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
 import Button from '../components/Button';
-import TopBar from './components/TopBar';
 import SearchTopBar from './components/SearchTopBar';
 import ChatItem from './components/ChatItem';
 import screenDimensions from '../utils/screenDimensions';
+import ProfileInfo from '../components/ProfileInfo';
+import IconButton from '../components/IconButton';
 
 const MainContainer = styled.View`
   flex: 1;
@@ -121,6 +122,24 @@ const demoChats = [
 ];
 
 class Chats extends React.Component {
+  static navigationOptions = {
+    headerLeft: (
+      <ProfileInfo
+        name="Waquid"
+        online
+        profilePictureURL="https://randomuser.me/api/portraits/men/84.jpg"
+        minutes={643}
+      />
+    ),
+    headerRight: (
+      <IconButton
+        name="cog"
+        color="rgba(0, 0, 0, 0.87)"
+        size={24}
+        onPress={() => navigation.navigate('Settings')}
+      />
+    ),
+  };
   state = {};
 
   render() {
@@ -130,7 +149,6 @@ class Chats extends React.Component {
 
     return (
       <MainContainer>
-        <TopBar navigation={navigation} />
         <ChatsPanel>
           <ChatsList>
             <FlatList

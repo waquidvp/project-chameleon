@@ -1,10 +1,10 @@
 import React from 'react';
-import { StatusBar, Platform } from 'react-native';
 import styled from 'styled-components/native';
 import IconButton from '../../components/IconButton';
 import ProfileInfo from '../../components/ProfileInfo';
 
 import screenDimensions from '../../utils/screenDimensions';
+import CustomStatusBar from '../../components/CustomStatusBar';
 
 const TopBarContainer = styled.View`
   height: ${props => props.statusBarHeight + 56};
@@ -25,11 +25,6 @@ const UserDetails = {
     'https://avatars3.githubusercontent.com/u/15846228?s=400&u=a882c5df4fd991ee0d97ac6be4b1887fd580dad5&v=4',
   minutes: 6547,
 };
-
-const CustomStatusBar = Platform.select({
-  ios: () => <StatusBar barStyle="dark-content" backgroundColor="#0000003c" translucent />,
-  android: () => <StatusBar barStyle="light-content" backgroundColor="#0000003c" translucent />,
-});
 
 class TopBar extends React.Component {
   state = {};
