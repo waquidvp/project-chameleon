@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
 
-import TopBar from '../Home/components/TopBar';
 import ProfileInfo from '../components/ProfileInfo';
 
 const MainContainer = styled.View`
@@ -34,7 +33,6 @@ class Chat extends React.Component {
   render() {
     return (
       <MainContainer>
-        <TopBar />
         <ChatsPanel />
       </MainContainer>
     );

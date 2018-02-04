@@ -1,3 +1,4 @@
+import { Platform } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
 import Chats from './Chats';
@@ -5,7 +6,10 @@ import Chat from '../Chat/Main';
 
 import screenDimensions from '../utils/screenDimensions';
 
-console.warn(screenDimensions.statusBarHeight);
+const headerHeight = Platform.select({
+  ios: 0,
+  android: screenDimensions.statusBarHeight,
+});
 
 const HomeStack = StackNavigator(
   {
@@ -19,13 +23,17 @@ const HomeStack = StackNavigator(
   {
     navigationOptions: {
       headerStyle: {
-        height: 56,
+        height: 56 + headerHeight,
+        paddingTop: headerHeight,
+        paddingLeft: 16,
+        paddingRight: 8,
         backgroundColor: '#FFFFFF',
         borderBottomWidth: 0,
         shadowColor: 'black',
         shadowOffset: { width: 0, height: 0 },
         shadowOpacity: 0.2,
         shadowRadius: 5,
+        elevation: 2,
       },
     },
     cardStyle: {

@@ -3,6 +3,7 @@ import styled from 'styled-components/native';
 
 import PullUpPanel from './PullUpPanel';
 import HomeStack from './HomeStack';
+import CustomStatusBar from '../components/CustomStatusBar';
 
 const MainContainer = styled.View`
   flex: 1;
@@ -15,6 +16,7 @@ class Main extends React.Component {
 
     return (
       <MainContainer>
+        <CustomStatusBar />
         <HomeStack screenProps={{ changeLoginState }} />
         <PullUpPanel />
       </MainContainer>
