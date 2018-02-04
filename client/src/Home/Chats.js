@@ -11,6 +11,7 @@ import TopBar from './components/TopBar';
 import SearchTopBar from './components/SearchTopBar';
 import ChatItem from './components/ChatItem';
 import screenDimensions from '../utils/screenDimensions';
+import ProfileInfo from '../components/ProfileInfo';
 
 const MainContainer = styled.View`
   flex: 1;
@@ -121,6 +122,16 @@ const demoChats = [
 ];
 
 class Chats extends React.Component {
+  static navigationOptions = {
+    headerLeft: (
+      <ProfileInfo
+        name="waquid"
+        online
+        profilePictureURL="https://randomuser.me/api/portraits/men/84.jpg"
+        minutes={123}
+      />
+    ),
+  };
   state = {};
 
   render() {

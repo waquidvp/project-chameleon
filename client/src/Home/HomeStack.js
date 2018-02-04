@@ -3,6 +3,8 @@ import { StackNavigator } from 'react-navigation';
 import Chats from './Chats';
 import Chat from '../Chat/Main';
 
+import screenDimensions from '../utils/screenDimensions';
+
 const HomeStack = StackNavigator(
   {
     Chats: {
@@ -14,7 +16,10 @@ const HomeStack = StackNavigator(
   },
   {
     navigationOptions: {
-      header: null,
+      headerStyle: {
+        height: screenDimensions.statusBarHeight + 56,
+        paddingTop: screenDimensions.statusBarHeight,
+      },
     },
     cardStyle: {
       backgroundColor: 'rgba(55, 202, 195, 0.05)',
