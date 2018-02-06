@@ -7,7 +7,7 @@ import screenDimensions from '../utils/screenDimensions';
 import IconButton from '../components/IconButton';
 
 const keyboardOffset = Platform.select({
-  ios: screenDimensions.bottomBarHeight + 36,
+  ios: 36,
   android: 40,
 });
 
@@ -53,7 +53,7 @@ const FooterIconContainer = styled.View`
 const ChatInput = styled.TextInput`
   flex: 1;
   margin: 4px 0;
-  padding: 4px 12px;
+  padding: 10px 12px;
   border-radius: 12px;
   background-color: rgba(0, 0, 0, 0.12);
   padding-vertical: 0px;
@@ -183,7 +183,7 @@ class Chat extends React.Component {
   render() {
     return (
       <MainContainer>
-        <ChatsPanelContainer keyboardVerticalOffset={keyboardOffset} behavior="height">
+        <ChatsPanelContainer keyboardVerticalOffset={keyboardOffset} behavior="padding">
           <ChatsPanel>
             <ChatList
               data={chatData}
