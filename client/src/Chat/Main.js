@@ -1,11 +1,12 @@
 import React from 'react';
-import { Platform, Text } from 'react-native';
+import { Platform } from 'react-native';
 import styled from 'styled-components/native';
 
 import ProfileInfo from '../components/ProfileInfo';
 import screenDimensions from '../utils/screenDimensions';
+import IconButton from '../components/IconButton';
 
-const KeyboardOffset = Platform.select({
+const keyboardOffset = Platform.select({
   ios: screenDimensions.bottomBarHeight + 36,
   android: 40,
 });
@@ -32,15 +33,32 @@ const ChatList = styled.FlatList`
   flex: 1;
 `;
 
-const ChatFooter = styled.View`
-  margin-bottom: ${screenDimensions.bottomBarHeight + 40};
-  height: 40px;
+const ChatFooterContainer = styled.View`
   width: 100%;
+  /* border-top-width: 1px;
+  border-color: rgba(0, 0, 0, 0.12); */
+  padding: 0 8px;
+  padding-bottom: ${screenDimensions.bottomBarHeight + 40};
+`;
+
+const ChatFooter = styled.View`
   flex-direction: row;
+  align-items: center;
+`;
+
+const FooterIconContainer = styled.View`
+  padding: 0 4px;
 `;
 
 const ChatInput = styled.TextInput`
   flex: 1;
+  margin: 4px 0;
+  padding: 4px 12px;
+  border-radius: 12px;
+  background-color: rgba(0, 0, 0, 0.12);
+  padding-vertical: 0px;
+  font-size: 14px;
+  color: black;
 `;
 
 const ChatSpacer = styled.View`
@@ -58,29 +76,82 @@ const ChatBubbleContainer = styled.View`
   border-radius: 15px;
   max-width: 75%;
   background-color: ${props => (props.sent ? 'rgb(55, 202, 195)' : '#E0E0E0')};
-  padding: 10px 13px;
   justify-content: center;
+`;
+
+const ChatTextContainer = styled.View`
+  padding: 10px 13px;
 `;
 
 const ChatText = styled.Text`
   color: ${props => (props.sent ? 'white' : 'black')};
 `;
 
-const ChatBubble = ({ chat }) => (
-  <MainRowContainer sent={chat.id === 2354}>
-    <ChatBubbleContainer sent={chat.id === 2354}>
-      <ChatText sent={chat.id === 2354}>{chat.message}</ChatText>
+const ChatImageContainer = styled.View`
+  width: 75%;
+  border-radius: 12px;
+  background-color: ${props => (props.sent ? 'rgb(55, 202, 195)' : '#E0E0E0')};
+  max-height: 300px;
+  padding: 4px 4px;
+`;
+
+const ChatImage = styled.Image`
+  border-radius: 5px;
+  width: 100%;
+  aspect-ratio: 1.5;
+`;
+
+const ChatContent = ({ chat, sent = false }) => {
+  if (chat.imgUrl) {
+    return (
+      <ChatImageContainer sent={sent}>
+        <ChatImage source={{ uri: chat.imgUrl }} resizeMode="contain" />
+      </ChatImageContainer>
+    );
+  }
+
+  return (
+    <ChatBubbleContainer sent={sent}>
+      <ChatTextContainer>
+        <ChatText sent={sent}>{chat.message}</ChatText>
+      </ChatTextContainer>
     </ChatBubbleContainer>
-  </MainRowContainer>
-);
+  );
+};
+
+const ChatBubble = ({ chat }) => {
+  if (chat.id === 2354) {
+    return (
+      <MainRowContainer sent>
+        <ChatContent chat={chat} sent />
+      </MainRowContainer>
+    );
+  }
+
+  return (
+    <MainRowContainer>
+      <ChatContent chat={chat} />
+    </MainRowContainer>
+  );
+};
 
 const chatData = [
   { id: 2354, message: 'Hey There, Hey There, Hey There' },
+  {
+    id: 2354,
+    imgUrl:
+      'https://car-images.bauersecure.com/pagefiles/78105/450x300/01_a_class_044.jpg?quality=50',
+  },
   { id: 2435, message: 'Hello, Hey There' },
   { id: 2354, message: 'Hey There, Hey ThereHey ThereHey ThereHey ThereHey There' },
   { id: 2435, message: 'Hey There, Hey ThereHey ThereHey ThereHey ThereHey There' },
   { id: 2354, message: 'Hey There' },
   { id: 2435, message: 'Hello' },
+  {
+    id: 2335,
+    imgUrl:
+      'https://car-images.bauersecure.com/pagefiles/78105/450x300/01_a_class_044.jpg?quality=50',
+  },
   { id: 2354, message: 'Hey There' },
   { id: 2435, message: 'Hello' },
   { id: 2354, message: 'Hey There' },
@@ -108,10 +179,11 @@ class Chat extends React.Component {
   };
 
   state = {};
+
   render() {
     return (
       <MainContainer>
-        <ChatsPanelContainer keyboardVerticalOffset={KeyboardOffset} behavior="padding">
+        <ChatsPanelContainer keyboardVerticalOffset={keyboardOffset} behavior="height">
           <ChatsPanel>
             <ChatList
               data={chatData}
@@ -122,9 +194,32 @@ class Chat extends React.Component {
               ListFooterComponent={ChatSpacer}
               inverted
             />
-            <ChatFooter>
-              <ChatInput />
-            </ChatFooter>
+            <ChatFooterContainer>
+              <ChatFooter>
+                <FooterIconContainer>
+                  <IconButton
+                    name="microphone"
+                    color="rgb(255, 255, 255)"
+                    size={22}
+                    backgroundColor="rgb(55, 202, 195)"
+                  />
+                </FooterIconContainer>
+                <FooterIconContainer>
+                  <IconButton
+                    name="plus"
+                    color="rgb(255, 255, 255)"
+                    size={22}
+                    backgroundColor="rgb(55, 202, 195)"
+                  />
+                </FooterIconContainer>
+                <ChatInput
+                  placeholder="Type a message..."
+                  placeholderTextColor="rgba(0, 0, 0, 0.54)"
+                  underlineColorAndroid="transparent"
+                  multiline
+                />
+              </ChatFooter>
+            </ChatFooterContainer>
           </ChatsPanel>
         </ChatsPanelContainer>
       </MainContainer>

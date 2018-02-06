@@ -9,6 +9,7 @@ import Touchable from './Touchable';
 const TouchContainer = styled.View`
   height: 40px;
   width: 40px;
+  background-color: ${props => props.backgroundColor};
   border-radius: 20px;
 `;
 
@@ -26,22 +27,24 @@ class IconButton extends React.Component {
     color: PropTypes.string,
     size: PropTypes.number,
     onPress: PropTypes.func.isRequired,
+    backgroundColor: PropTypes.string,
   };
 
   static defaultProps = {
     color: 'rgba(0, 0, 0, 0.87)',
     size: 20,
+    backgroundColor: 'rgba(0, 0, 0, 0)',
   };
 
   state = {};
 
   render() {
     const {
-      name, color, size, onPress,
+      name, color, size, onPress, backgroundColor,
     } = this.props;
 
     return (
-      <TouchContainer>
+      <TouchContainer backgroundColor={backgroundColor}>
         <Touch
           onPress={() => onPress()}
           background={PlatformTouchable.SelectableBackgroundBorderless()}

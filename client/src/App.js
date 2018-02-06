@@ -38,10 +38,10 @@ export default class App extends React.Component {
     if (this.state.render) {
       return (
         <ApolloProvider client={client}>
-          {/* {this.state.loggedIn ? ( */}
+          {/* {this.state.loggedIn ? (
             <Home changeLoginState={this.handleChangeLoginState} />
-          {/* ) : ( */}
-            {/* <Onboarding changeLoginState={this.handleChangeLoginState} /> */}
+          ) : ( */}
+            <Onboarding changeLoginState={this.handleChangeLoginState} />
           {/* )} */}
         </ApolloProvider>
       );
