@@ -7,26 +7,34 @@
     "test": "jest",
     "ios:setup": "node ./node_modules/react-native-fbsdk/bin/ios_setup.js"
   },
+  "rnpm": {
+    "assets": [
+      "./src/Assets/fonts/"
+    ]
+  },
   "dependencies": {
-    "apollo-cache-inmemory": "^1.1.0",
-    "apollo-client": "^2.0.2",
-    "apollo-link": "^1.0.3",
-    "apollo-link-context": "^1.0.0",
-    "apollo-link-error": "^1.0.1",
-    "apollo-link-http": "^1.1.0",
-    "graphql": "^0.11.7",
-    "graphql-tag": "^2.5.0",
+    "apollo-cache-inmemory": "^1.1.4",
+    "apollo-client": "^2.0.4",
+    "apollo-link": "^1.0.7",
+    "apollo-link-context": "^1.0.3",
+    "apollo-link-error": "^1.0.3",
+    "apollo-link-http": "^1.3.2",
+    "graphql": "^0.12.3",
+    "graphql-tag": "^2.6.1",
     "prop-types": "^15.6.0",
     "react": "16.0.0",
-    "react-apollo": "^2.0.1",
-    "react-native": "0.50.1",
+    "react-apollo": "^2.0.4",
+    "react-native": "0.51.0",
     "react-native-blur": "^3.2.2",
     "react-native-camera": "^1.0.0",
     "react-native-fbsdk": "^0.6.3",
-    "react-native-linear-gradient": "^2.3.0",
+    "react-native-interactable": "^0.1.7",
+    "react-native-linear-gradient": "^2.4.0",
+    "react-native-orientation": "^3.1.3",
     "react-native-platform-touchable": "^1.1.1",
+    "react-native-vector-icons": "^4.4.3",
     "react-navigation": "^1.0.0-beta.22",
-    "styled-components": "^2.2.3"
+    "styled-components": "^2.4.0"
   },
   "devDependencies": {
     "babel-jest": "21.2.0",
