@@ -21,7 +21,7 @@
     "react-apollo": "^2.0.1",
     "react-native": "0.50.1",
     "react-native-blur": "^3.2.2",
-    "react-native-camera": "^0.10.0",
+    "react-native-camera": "^1.0.0",
     "react-native-fbsdk": "^0.6.3",
     "react-native-linear-gradient": "^2.3.0",
     "react-native-platform-touchable": "^1.1.1",

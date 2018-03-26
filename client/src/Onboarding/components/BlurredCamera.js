@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, findNodeHandle } from 'react-native';
 import styled from 'styled-components/native';
-import Camera from 'react-native-camera';
+import { RNCamera } from 'react-native-camera';
 import { BlurView } from 'react-native-blur';
 
 const View = styled.View`
@@ -30,22 +30,20 @@ export default class BlurredCamera extends React.Component {
     };
   }
 
-  componentDidMount() {
+  cameraLoaded = () => {
     this.setState({ cameraRef: findNodeHandle(this.camera) });
-  }
+  };
 
   render() {
     return (
       <View>
-        <Camera
-          ref={
-            (cam) => {
-              this.camera = cam;
-            }
-          }
-          style={styles.container}
-          aspect={Camera.constants.Aspect.fill}
-          type={Camera.constants.Type.front}
+        <RNCamera
+          ref={(cam) => {
+            this.camera = cam;
+          }}
+          onCameraReady={this.cameraLoaded}
+          style={styles.absolute}
+          type={RNCamera.Constants.Type.front}
         />
         <BlurView
           style={styles.absolute}

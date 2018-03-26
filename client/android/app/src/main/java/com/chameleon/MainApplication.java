@@ -6,7 +6,7 @@ import com.facebook.react.ReactApplication;
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.cmcewen.blurview.BlurViewPackage;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
-import com.lwansbrough.RCTCamera.RCTCameraPackage;
+import org.reactnative.camera.RNCameraPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -38,7 +38,7 @@ public class MainApplication extends Application implements ReactApplication {
           new MainReactPackage(),
             new LinearGradientPackage(),
             new BlurViewPackage(),
-            new RCTCameraPackage(),
+            new RNCameraPackage(),
             new FBSDKPackage(mCallbackManager)
       );
     }
