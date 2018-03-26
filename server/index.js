@@ -15,25 +15,31 @@ const startServer = async () => {
   const db = await dbConnect();
 
   const schema = mergeSchemas({
-    schemas: [
-      authSchema,
-    ],
+    schemas: [authSchema],
   });
 
-  app.use('/graphql', bodyParser.json(), jwt({
-    secret: JWT_SECRET,
-    credentialsRequired: false,
-  }), graphqlExpress(async req => ({
-    context: {
-      db,
-      user: req.user ? await db.Users.findOne({ _id: ObjectID(req.user._id) }) : null,
-    },
-    schema,
-  })));
+  app.use(
+    '/graphql',
+    bodyParser.json(),
+    jwt({
+      secret: JWT_SECRET,
+      credentialsRequired: false,
+    }),
+    graphqlExpress(async req => ({
+      context: {
+        db,
+        user: req.user ? await db.Users.findOne({ _id: ObjectID(req.user._id) }) : null,
+      },
+      schema,
+    })),
+  );
 
-  app.use('/graphiql', graphiqlExpress({
-    endpointURL: '/graphql',
-  }));
+  app.use(
+    '/graphiql',
+    graphiqlExpress({
+      endpointURL: '/graphql',
+    }),
+  );
 
   const PORT = 8080;
   app.listen(PORT, () => console.log(`Listening on port ${PORT}`));

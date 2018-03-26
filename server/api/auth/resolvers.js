@@ -86,11 +86,12 @@ const resolvers = {
 
       console.log(fbAccessToken);
 
-      await axios.get('https://graph.facebook.com/me?fields=email', {
-        params: {
-          access_token: fbAccessToken,
-        },
-      })
+      await axios
+        .get('https://graph.facebook.com/me?fields=email', {
+          params: {
+            access_token: fbAccessToken,
+          },
+        })
         .then((response) => {
           fbResponse = response;
         });
